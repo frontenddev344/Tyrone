@@ -5,6 +5,7 @@ import { StepListStep } from "./steps/StepListStep";
 import { CategorySelectStep } from "./steps/CategorySelectStep";
 import { BusinessInfoStep } from "./steps/BusinessInfoStep";
 import { ToolCategoryStep } from "./steps/ToolCategoryStep";
+import { BusinessGoalStep } from "./steps/BusinessGoalStep";
 import { RecommendedStackStep } from "./steps/RecommendedStackStep";
 
 export const Onboarding = (): JSX.Element => {
@@ -35,6 +36,9 @@ export const Onboarding = (): JSX.Element => {
           <ToolCategoryStep onBack={handleBack} onContinue={handleNext} />
         )}
         {currentStep === 6 && (
+          <BusinessGoalStep onBack={handleBack} onContinue={handleNext} />
+        )}
+        {currentStep === 7 && (
           <RecommendedStackStep onBack={handleBack} />
         )}
         {/* Additional steps can be added here */}
