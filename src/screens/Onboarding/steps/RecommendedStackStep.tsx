@@ -1,15 +1,42 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 const tools = [
-  { icon: <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="24" height="24" rx="8" fill="#ffb86b"/><path d="M8 16h8M8 12h8M8 8h8" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>, name: "Tool 1", desc: "Manage contacts, deals, and customer relationships effectively", badge: true, price: "$45/mo" },
-  { icon: <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="24" height="24" rx="8" fill="#ffe066"/><path d="M8 16h8M8 12h8M8 8h8" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>, name: "Tool 2", desc: "Create and send professional email campaigns", badge: true, price: "$299/mo" },
-  { icon: <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="24" height="24" rx="8" fill="#7b8cff"/><path d="M8 16h8M8 12h8M8 8h8" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>, name: "Tool 3", desc: "Track website performance and user behavior", badge: true, price: "Free" },
-  { icon: <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="24" height="24" rx="8" fill="#c7bfff"/><path d="M8 16h8M8 12h8M8 8h8" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>, name: "Tool 4", desc: "Organize tasks and collaborate with your team", badge: true, price: "$24.99/mo" },
-  { icon: <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="24" height="24" rx="8" fill="#ff7b8c"/><path d="M8 16h8M8 12h8M8 8h8" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>, name: "Tool 5", desc: "Schedule and manage social media posts", badge: true, price: "$5 - $100/mo" },
-  { icon: <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="24" height="24" rx="8" fill="#7be495"/><path d="M8 16h8M8 12h8M8 8h8" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>, name: "Tool 6", desc: "Streamline team communication and collaboration", badge: true, price: "$12.50/mo" },
+  { icon: <svg width="54" height="55" viewBox="0 0 54 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.0859375" y="0.898499" width="53.1539" height="53.1539" rx="26.5769" fill="#FFEDD5"/>
+    <path d="M19.7411 15.8848C18.2141 15.8848 16.9727 17.1263 16.9727 18.6533V35.2638C16.9727 36.7908 18.2141 38.0323 19.7411 38.0323H32.199C33.726 38.0323 34.9675 36.7908 34.9675 35.2638V18.6533C34.9675 17.1263 33.726 15.8848 32.199 15.8848H19.7411ZM24.5858 28.3428H27.3543C29.2662 28.3428 30.8148 29.8914 30.8148 31.8033C30.8148 32.184 30.5034 32.4954 30.1227 32.4954H21.8174C21.4368 32.4954 21.1253 32.184 21.1253 31.8033C21.1253 29.8914 22.6739 28.3428 24.5858 28.3428ZM23.2016 24.1901C23.2016 23.4559 23.4933 22.7517 24.0125 22.2325C24.5317 21.7134 25.2358 21.4217 25.9701 21.4217C26.7043 21.4217 27.4085 21.7134 27.9276 22.2325C28.4468 22.7517 28.7385 23.4559 28.7385 24.1901C28.7385 24.9244 28.4468 25.6285 27.9276 26.1477C27.4085 26.6669 26.7043 26.9586 25.9701 26.9586C25.2358 26.9586 24.5317 26.6669 24.0125 26.1477C23.4933 25.6285 23.2016 24.9244 23.2016 24.1901ZM37.7359 19.3454C37.7359 18.9647 37.4244 18.6533 37.0438 18.6533C36.6631 18.6533 36.3517 18.9647 36.3517 19.3454V22.1138C36.3517 22.4945 36.6631 22.8059 37.0438 22.8059C37.4244 22.8059 37.7359 22.4945 37.7359 22.1138V19.3454ZM37.0438 24.1901C36.6631 24.1901 36.3517 24.5016 36.3517 24.8822V27.6507C36.3517 28.0313 36.6631 28.3428 37.0438 28.3428C37.4244 28.3428 37.7359 28.0313 37.7359 27.6507V24.8822C37.7359 24.5016 37.4244 24.1901 37.0438 24.1901ZM37.7359 30.4191C37.7359 30.0384 37.4244 29.727 37.0438 29.727C36.6631 29.727 36.3517 30.0384 36.3517 30.4191V33.1875C36.3517 33.5682 36.6631 33.8796 37.0438 33.8796C37.4244 33.8796 37.7359 33.5682 37.7359 33.1875V30.4191Z" fill="#EA580C"/>
+    </svg>
+    , name: "Tool 1", desc: "Manage contacts, deals, and customer relationships effectively", badge: true, price: "$45/mo" , namesub: "Customer Management", },
+  { icon: <svg width="54" height="55" viewBox="0 0 54 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.00390625" y="0.898499" width="53.1539" height="53.1539" rx="26.5769" fill="#FEF9C3"/>
+    <path d="M17.5822 18.6524C16.4359 18.6524 15.5059 19.5824 15.5059 20.7287C15.5059 21.3819 15.813 21.9962 16.3364 22.3898L25.7491 29.4493C26.2422 29.817 26.917 29.817 27.4101 29.4493L36.8228 22.3898C37.3462 21.9962 37.6533 21.3819 37.6533 20.7287C37.6533 19.5824 36.7233 18.6524 35.577 18.6524H17.5822ZM15.5059 23.4972V32.4946C15.5059 34.0215 16.7473 35.263 18.2743 35.263H34.8849C36.4118 35.263 37.6533 34.0215 37.6533 32.4946V23.4972L28.2406 30.5567C27.2544 31.2964 25.9048 31.2964 24.9185 30.5567L15.5059 23.4972Z" fill="#CA8A04"/>
+    </svg>
+    , name: "Tool 2", desc: "Create and send professional email campaigns", badge: true, price: "$299/mo" , namesub: "Email Marketing", },
+  { icon: <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.919922" y="0.898499" width="53.1539" height="53.1539" rx="26.5769" fill="#DBEAFE"/>
+    <path d="M17.8061 17.2696C18.5717 17.2696 19.1903 17.8882 19.1903 18.6538V33.1881C19.1903 33.5687 19.5018 33.8802 19.8824 33.8802H37.1851C37.9508 33.8802 38.5693 34.4988 38.5693 35.2644C38.5693 36.03 37.9508 36.6486 37.1851 36.6486H19.8824C17.9705 36.6486 16.4219 35.1 16.4219 33.1881V18.6538C16.4219 17.8882 17.0404 17.2696 17.8061 17.2696ZM21.9587 21.4222C21.9587 20.6566 22.5773 20.038 23.343 20.038H31.6482C32.4139 20.038 33.0325 20.6566 33.0325 21.4222C33.0325 22.1879 32.4139 22.8065 31.6482 22.8065H23.343C22.5773 22.8065 21.9587 22.1879 21.9587 21.4222ZM23.343 24.1907H28.8798C29.6455 24.1907 30.264 24.8092 30.264 25.5749C30.264 26.3405 29.6455 26.9591 28.8798 26.9591H23.343C22.5773 26.9591 21.9587 26.3405 21.9587 25.5749C21.9587 24.8092 22.5773 24.1907 23.343 24.1907ZM23.343 28.3433H34.4167C35.1823 28.3433 35.8009 28.9619 35.8009 29.7275C35.8009 30.4932 35.1823 31.1117 34.4167 31.1117H23.343C22.5773 31.1117 21.9587 30.4932 21.9587 29.7275C21.9587 28.9619 22.5773 28.3433 23.343 28.3433Z" fill="#2563EB"/>
+    </svg>
+    , name: "Tool 3", desc: "Track website performance and user behavior", badge: true, price: "Free" , namesub: "Web Analytics",},
+  { icon: <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.0859375" y="0.521484" width="53.1539" height="53.1539" rx="26.5769" fill="#F3E8FF"/>
+    <path d="M22.1675 17.1605C22.5957 17.5455 22.6303 18.1986 22.2453 18.6269L19.1308 22.0874C18.9405 22.2994 18.6723 22.4248 18.3868 22.4292C18.1013 22.4335 17.8288 22.3253 17.6255 22.1264L15.8909 20.3961C15.4886 19.9895 15.4886 19.332 15.8909 18.9254C16.2932 18.5187 16.955 18.5187 17.3573 18.9254L18.3133 19.8813L20.6967 17.234C21.0817 16.8058 21.7349 16.7712 22.1631 17.1562L22.1675 17.1605ZM22.1675 24.0816C22.5957 24.4665 22.6303 25.1197 22.2453 25.548L19.1308 29.0085C18.9405 29.2205 18.6723 29.3459 18.3868 29.3502C18.1013 29.3546 17.8288 29.2464 17.6255 29.0474L15.8909 27.3172C15.4843 26.9106 15.4843 26.2531 15.8909 25.8508C16.2975 25.4485 16.955 25.4441 17.3573 25.8508L18.3133 26.8067L20.6967 24.1594C21.0817 23.7312 21.7349 23.6966 22.1631 24.0816H22.1675ZM25.2776 19.6607C25.2776 18.8951 25.8962 18.2765 26.6618 18.2765H36.3513C37.117 18.2765 37.7356 18.8951 37.7356 19.6607C37.7356 20.4264 37.117 21.0449 36.3513 21.0449H26.6618C25.8962 21.0449 25.2776 20.4264 25.2776 19.6607ZM25.2776 26.5818C25.2776 25.8162 25.8962 25.1976 26.6618 25.1976H36.3513C37.117 25.1976 37.7356 25.8162 37.7356 26.5818C37.7356 27.3474 37.117 27.966 36.3513 27.966H26.6618C25.8962 27.966 25.2776 27.3474 25.2776 26.5818ZM22.5092 33.5029C22.5092 32.7372 23.1278 32.1187 23.8934 32.1187H36.3513C37.117 32.1187 37.7356 32.7372 37.7356 33.5029C37.7356 34.2685 37.117 34.8871 36.3513 34.8871H23.8934C23.1278 34.8871 22.5092 34.2685 22.5092 33.5029ZM17.6644 31.4266C18.2151 31.4266 18.7432 31.6453 19.1326 32.0347C19.522 32.4241 19.7407 32.9522 19.7407 33.5029C19.7407 34.0536 19.522 34.5817 19.1326 34.9711C18.7432 35.3605 18.2151 35.5792 17.6644 35.5792C17.1137 35.5792 16.5856 35.3605 16.1962 34.9711C15.8069 34.5817 15.5881 34.0536 15.5881 33.5029C15.5881 32.9522 15.8069 32.4241 16.1962 32.0347C16.5856 31.6453 17.1137 31.4266 17.6644 31.4266Z" fill="#9333EA"/>
+    </svg>
+    , name: "Tool 4", desc: "Organize tasks and collaborate with your team", badge: true, price: "$24.99/mo" , namesub: "Project Management", },
+  { icon: <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.00390625" y="0.521484" width="53.1539" height="53.1539" rx="26.5769" fill="#FCE7F3"/>
+    <path d="M32.1075 25.1781C34.3958 25.1781 36.2523 23.3217 36.2523 21.0334C36.2523 18.7452 34.3958 16.8887 32.1075 16.8887C29.8193 16.8887 27.9628 18.7452 27.9628 21.0334C27.9628 21.2061 27.9714 21.3788 27.993 21.5472L23.9303 23.5764C23.1877 22.8554 22.1731 22.415 21.0549 22.415C18.7667 22.415 16.9102 24.2715 16.9102 26.5597C16.9102 28.848 18.7667 30.7045 21.0549 30.7045C22.1731 30.7045 23.1877 30.2641 23.9303 29.5431L27.993 31.5723C27.9714 31.7406 27.9628 31.909 27.9628 32.086C27.9628 34.3743 29.8193 36.2308 32.1075 36.2308C34.3958 36.2308 36.2523 34.3743 36.2523 32.086C36.2523 29.7978 34.3958 27.9413 32.1075 27.9413C30.9893 27.9413 29.9747 28.3817 29.2321 29.1027L25.1694 27.0735C25.191 26.9051 25.1996 26.7367 25.1996 26.5597C25.1996 26.3827 25.191 26.2143 25.1694 26.046L29.2321 24.0168C29.9747 24.7378 30.9893 25.1781 32.1075 25.1781Z" fill="#DB2777"/>
+    </svg>
+    , name: "Tool 5", desc: "Schedule and manage social media posts", badge: true, price: "$5 - $100/mo" , namesub: "Social Media", },
+  { icon: <svg width="55" height="54" viewBox="0 0 55 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.921875" y="0.521484" width="53.1539" height="53.1539" rx="26.5769" fill="#DCFCE7"/>
+    <path d="M22.617 30.7342C27.5872 30.7342 31.6144 27.3256 31.6144 23.121C31.6144 18.9164 27.5872 15.5078 22.617 15.5078C17.6468 15.5078 13.6196 18.9164 13.6196 23.121C13.6196 24.7907 14.2555 26.335 15.3326 27.5937C15.1812 28.0004 14.9562 28.3594 14.7183 28.6622C14.5107 28.9304 14.2987 29.138 14.143 29.2808C14.0652 29.35 14.0003 29.4062 13.957 29.4408C13.9354 29.4581 13.9181 29.4711 13.9094 29.4754L13.9008 29.4841C13.6629 29.6614 13.5591 29.9729 13.6542 30.254C13.7494 30.5352 14.0133 30.7342 14.3117 30.7342C15.2547 30.7342 16.2064 30.4919 16.998 30.1935C17.3959 30.0421 17.7679 29.8734 18.0924 29.7004C19.4203 30.3579 20.9646 30.7342 22.617 30.7342ZM32.9986 23.121C32.9986 27.9787 28.7119 31.6383 23.6336 32.0751C24.6847 35.2934 28.1712 37.6553 32.3065 37.6553C33.9589 37.6553 35.5032 37.2789 36.8355 36.6214C37.1599 36.7945 37.5276 36.9632 37.9256 37.1146C38.7172 37.413 39.6688 37.6553 40.6118 37.6553C40.9103 37.6553 41.1785 37.4606 41.2693 37.1751C41.3602 36.8896 41.2607 36.5782 41.0184 36.4008L41.0098 36.3922C41.0011 36.3835 40.9838 36.3749 40.9622 36.3576C40.9189 36.323 40.8541 36.271 40.7762 36.1975C40.6205 36.0548 40.4085 35.8471 40.2009 35.5789C39.963 35.2761 39.738 34.9128 39.5866 34.5105C40.6637 33.2561 41.2996 31.7118 41.2996 30.0378C41.2996 26.0235 37.6271 22.7317 32.9684 22.4462C32.9857 22.6668 32.9943 22.8917 32.9943 23.1167L32.9986 23.121Z" fill="#16A34A"/>
+    </svg>
+    , name: "Tool 6", desc: "Streamline team communication and collaboration", badge: true, price: "$12.50/mo" , namesub: "Team Communication", },
 ];
 
 export const RecommendedStackStep = ({ onBack }: { onBack: () => void }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
       {/* Top Bar */}
@@ -31,74 +58,141 @@ export const RecommendedStackStep = ({ onBack }: { onBack: () => void }) => {
         </div>
       </div>
       {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4">
-        <div className="w-full max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-10 flex flex-col items-center" style={{ borderRadius: '20px', boxShadow: '0 8px 40px 0 rgba(16,30,54,.10)' }}>
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
+        <div className="w-full max-w-[1133px] mx-auto bg-white  shadow-lg p-12 flex flex-col items-center border border-[#F3F4F6]  " style={{ borderRadius: '20px', boxShadow: '0 8px 40px 0 rgba(16,30,54,.10)' }}>
           {/* Icon */}
-          <div className="w-12 h-12 bg-[#32cd32] rounded-full flex items-center justify-center mb-6">
-            <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fff"/><path d="M12 7v5l3 3" stroke="#32cd32" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <div className="w-[70px] h-[70px] bg-[#32cd32] rounded-full flex items-center justify-center mb-6">
+            <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.1516 2.33577L11.1946 3.06767C11.0389 3.12477 10.9351 3.2753 10.9351 3.44141C10.9351 3.60752 11.0389 3.75805 11.1946 3.81515L13.1516 4.54705L13.8835 6.50399C13.9406 6.65971 14.0911 6.76353 14.2572 6.76353C14.4233 6.76353 14.5739 6.65971 14.631 6.50399L15.3629 4.54705L17.3198 3.81515C17.4755 3.75805 17.5793 3.60752 17.5793 3.44141C17.5793 3.2753 17.4755 3.12477 17.3198 3.06767L15.3629 2.33577L14.631 0.378834C14.5739 0.223109 14.4233 0.119293 14.2572 0.119293C14.0911 0.119293 13.9406 0.223109 13.8835 0.378834L13.1516 2.33577ZM3.36171 20.6437C2.39103 21.6144 2.39103 23.1924 3.36171 24.1683L5.15773 25.9643C6.12841 26.935 7.70642 26.935 8.68229 25.9643L28.4748 6.16658C29.4455 5.1959 29.4455 3.6179 28.4748 2.64203L26.6788 0.851197C25.7081 -0.119484 24.1301 -0.119484 23.1543 0.851197L3.36171 20.6437ZM26.1234 4.4069L20.6731 9.85725L19.4636 8.64779L24.914 3.19744L26.1234 4.4069ZM1.35806 6.20292C1.12447 6.29116 0.96875 6.51437 0.96875 6.76353C0.96875 7.01269 1.12447 7.23589 1.35806 7.32414L4.29087 8.42459L5.39132 11.3574C5.47956 11.591 5.70277 11.7467 5.95193 11.7467C6.20109 11.7467 6.42429 11.591 6.51253 11.3574L7.61299 8.42459L10.5458 7.32414C10.7794 7.23589 10.9351 7.01269 10.9351 6.76353C10.9351 6.51437 10.7794 6.29116 10.5458 6.20292L7.61299 5.10247L6.51253 2.16966C6.42429 1.93608 6.20109 1.78035 5.95193 1.78035C5.70277 1.78035 5.47956 1.93608 5.39132 2.16966L4.29087 5.10247L1.35806 6.20292ZM19.6297 19.4914C19.3961 19.5796 19.2404 19.8028 19.2404 20.052C19.2404 20.3012 19.3961 20.5244 19.6297 20.6126L22.5625 21.7131L23.663 24.6459C23.7512 24.8794 23.9744 25.0352 24.2236 25.0352C24.4727 25.0352 24.6959 24.8794 24.7842 24.6459L25.8846 21.7131L28.8174 20.6126C29.051 20.5244 29.2068 20.3012 29.2068 20.052C29.2068 19.8028 29.051 19.5796 28.8174 19.4914L25.8846 18.3909L24.7842 15.4581C24.6959 15.2245 24.4727 15.0688 24.2236 15.0688C23.9744 15.0688 23.7512 15.2245 23.663 15.4581L22.5625 18.3909L19.6297 19.4914Z" fill="white"/>
+            </svg>
           </div>
           {/* Heading */}
-          <h2 className="text-2xl font-extrabold text-[#1a2330] mb-2 text-center">Your Recommended Tool Stack</h2>
+          <h2 className="text-[32px] font-bold text-[#111827] mb-2 text-center">Your Recommended Tool Stack</h2>
           {/* Subtitle */}
-          <p className="text-gray-400 text-base mb-8 text-center">Based on your business profile and goals, we've curated the perfect set of tools to help you succeed. Review and customize your selection below.</p>
+          <p className="text-[#4B5563] text-[18px] mb-8 text-center max-w-[700px] mx-auto" style={{ fontWeight: 400, lineHeight: '31px' }}>Based on your business profile and goals, we've curated the perfect set of tools to help you succeed. Review and customize your selection below.</p>
           {/* Profile Summary */}
-          <div className="w-full bg-[#e6f9ea] rounded-lg flex items-center justify-between px-6 py-4 mb-8">
-            <div className="flex items-center gap-4 flex-wrap">
-              <span className="text-[#32cd32] font-medium flex items-center"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" className="mr-1"><rect x="5" y="7" width="14" height="10" rx="2" fill="#32cd32"/><rect x="7" y="9" width="2" height="2" rx="1" fill="#fff"/><rect x="11" y="9" width="2" height="2" rx="1" fill="#fff"/><rect x="15" y="9" width="2" height="2" rx="1" fill="#fff"/></svg>Marketing Agency</span>
-              <span className="text-[#32cd32] font-medium flex items-center"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" className="mr-1"><circle cx="12" cy="12" r="10" fill="#32cd32"/><text x="12" y="16" textAnchor="middle" fontSize="10" fill="#fff">11-50</text></svg>11-50 employees</span>
-              <span className="text-[#32cd32] font-medium flex items-center"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" className="mr-1"><path d="M12 7v5l3 3" stroke="#32cd32" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>Scale goal</span>
+          <div className="w-full bg-gradient-to-r from-[#32cd320d] to-[#82e38743] to-[#32cd320d] border border-[#35da351a] rounded-xl flex items-center justify-between px-8 py-5 mb-8" style={{ borderWidth:'3px' }}>
+            <div>
+              <div className="font-bold text-[22px] text-[#111827] mb-2">Your Business Profile</div>
+              <div className="flex flex-wrap gap-6 items-center">
+                <span className="flex items-center text-[#000000] font-normal text-[15px]">
+                <svg className="mr-2" width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.43265 -0.00415039C1.62769 -0.00415039 0.974609 0.64893 0.974609 1.45389V14.0902C0.974609 14.8952 1.62769 15.5483 2.43265 15.5483H5.34873V13.1182C5.34873 12.3133 6.00181 11.6602 6.80677 11.6602C7.61173 11.6602 8.26481 12.3133 8.26481 13.1182V15.5483H11.1809C11.9859 15.5483 12.6389 14.8952 12.6389 14.0902V1.45389C12.6389 0.64893 11.9859 -0.00415039 11.1809 -0.00415039H2.43265ZM2.91866 7.28605C2.91866 7.01875 3.13737 6.80004 3.40468 6.80004H4.3767C4.64401 6.80004 4.86272 7.01875 4.86272 7.28605V8.25808C4.86272 8.52539 4.64401 8.74409 4.3767 8.74409H3.40468C3.13737 8.74409 2.91866 8.52539 2.91866 8.25808V7.28605ZM6.32076 6.80004H7.29279C7.56009 6.80004 7.7788 7.01875 7.7788 7.28605V8.25808C7.7788 8.52539 7.56009 8.74409 7.29279 8.74409H6.32076C6.05345 8.74409 5.83474 8.52539 5.83474 8.25808V7.28605C5.83474 7.01875 6.05345 6.80004 6.32076 6.80004ZM8.75083 7.28605C8.75083 7.01875 8.96953 6.80004 9.23684 6.80004H10.2089C10.4762 6.80004 10.6949 7.01875 10.6949 7.28605V8.25808C10.6949 8.52539 10.4762 8.74409 10.2089 8.74409H9.23684C8.96953 8.74409 8.75083 8.52539 8.75083 8.25808V7.28605ZM3.40468 2.91193H4.3767C4.64401 2.91193 4.86272 3.13064 4.86272 3.39794V4.36997C4.86272 4.63728 4.64401 4.85599 4.3767 4.85599H3.40468C3.13737 4.85599 2.91866 4.63728 2.91866 4.36997V3.39794C2.91866 3.13064 3.13737 2.91193 3.40468 2.91193ZM5.83474 3.39794C5.83474 3.13064 6.05345 2.91193 6.32076 2.91193H7.29279C7.56009 2.91193 7.7788 3.13064 7.7788 3.39794V4.36997C7.7788 4.63728 7.56009 4.85599 7.29279 4.85599H6.32076C6.05345 4.85599 5.83474 4.63728 5.83474 4.36997V3.39794C5.83474 3.13064 6.05345 2.91193 6.32076 2.91193ZM9.23684 2.91193H10.2089C10.4762 2.91193 10.6949 3.13064 10.6949 3.39794V4.36997C10.6949 4.63728 10.4762 4.85599 10.2089 4.85599H9.23684C8.96953 4.85599 8.75083 4.63728 8.75083 4.36997V3.39794C8.75083 3.13064 8.96953 2.91193 9.23684 2.91193Z" fill="#32CD32"/>
+                  </svg>
+                  Marketing Agency
+                </span>
+                <span className="flex items-center text-[#000000] font-normal text-[15px]">
+                <svg className="mr-2" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.9096 -0.00415039C5.55328 -0.00415039 6.17059 0.25155 6.62574 0.706699C7.08089 1.16185 7.33659 1.77916 7.33659 2.42284C7.33659 3.06652 7.08089 3.68383 6.62574 4.13898C6.17059 4.59413 5.55328 4.84983 4.9096 4.84983C4.26592 4.84983 3.64861 4.59413 3.19346 4.13898C2.73831 3.68383 2.48261 3.06652 2.48261 2.42284C2.48261 1.77916 2.73831 1.16185 3.19346 0.706699C3.64861 0.25155 4.26592 -0.00415039 4.9096 -0.00415039ZM16.0738 -0.00415039C16.7174 -0.00415039 17.3348 0.25155 17.7899 0.706699C18.2451 1.16185 18.5008 1.77916 18.5008 2.42284C18.5008 3.06652 18.2451 3.68383 17.7899 4.13898C17.3348 4.59413 16.7174 4.84983 16.0738 4.84983C15.4301 4.84983 14.8128 4.59413 14.3576 4.13898C13.9025 3.68383 13.6468 3.06652 13.6468 2.42284C13.6468 1.77916 13.9025 1.16185 14.3576 0.706699C14.8128 0.25155 15.4301 -0.00415039 16.0738 -0.00415039ZM0.541016 9.05763C0.541016 7.27076 1.99114 5.82063 3.77802 5.82063H5.07342C5.55579 5.82063 6.01388 5.92681 6.42647 6.1149C6.38703 6.33333 6.36883 6.56086 6.36883 6.79143C6.36883 7.95031 6.8785 8.99089 7.68244 9.70382C7.67637 9.70382 7.6703 9.70382 7.6612 9.70382H1.1872C0.832255 9.70382 0.541016 9.41258 0.541016 9.05763ZM12.8368 9.70382C12.8307 9.70382 12.8246 9.70382 12.8155 9.70382C13.6225 8.99089 14.1291 7.95031 14.1291 6.79143C14.1291 6.56086 14.1079 6.33637 14.0715 6.1149C14.4841 5.92378 14.9422 5.82063 15.4245 5.82063H16.7199C18.5068 5.82063 19.957 7.27076 19.957 9.05763C19.957 9.41561 19.6657 9.70382 19.3108 9.70382H12.8368ZM7.33659 6.79143C7.33659 6.01901 7.64343 5.27823 8.18961 4.73206C8.73579 4.18588 9.47657 3.87904 10.249 3.87904C11.0214 3.87904 11.7622 4.18588 12.3084 4.73206C12.8545 5.27823 13.1614 6.01901 13.1614 6.79143C13.1614 7.56384 12.8545 8.30462 12.3084 8.8508C11.7622 9.39698 11.0214 9.70382 10.249 9.70382C9.47657 9.70382 8.73579 9.39698 8.18961 8.8508C7.64343 8.30462 7.33659 7.56384 7.33659 6.79143ZM4.4242 14.7186C4.4242 12.4858 6.23534 10.6746 8.46818 10.6746H12.0298C14.2626 10.6746 16.0738 12.4858 16.0738 14.7186C16.0738 15.1645 15.7127 15.5286 15.2638 15.5286H5.23421C4.78825 15.5286 4.4242 15.1676 4.4242 14.7186Z" fill="#32CD32"/>
+                  </svg>
+
+                  11-50 employees
+                </span>
+                <span className="flex items-center text-[#000000] font-normal text-[15px]">
+                <svg className="mr-2" width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.36812 13.5546L4.98659 14.4478C4.42036 14.1602 3.89955 13.8059 3.42719 13.3911L4.11454 12.7037C4.49303 13.0338 4.91392 13.3214 5.36812 13.5546ZM1.8587 8.23445H0.886719C0.92911 8.87638 1.05023 9.49711 1.24099 10.0845L2.14333 9.72421C1.99496 9.24882 1.89503 8.7492 1.8587 8.23445ZM1.8587 7.26549C1.90109 6.69624 2.01615 6.14514 2.1948 5.62736L1.30155 5.24584C1.07445 5.88171 0.932138 6.55998 0.886719 7.26549H1.8587ZM2.57633 4.73714C2.81251 4.28597 3.09714 3.86508 3.42719 3.48053L2.73984 2.79318C2.32501 3.26554 1.9677 3.78635 1.68308 4.35258L2.57633 4.73714ZM12.6504 12.7037C12.2295 13.0671 11.7602 13.379 11.2545 13.6242L11.6148 14.5266C12.2416 14.2268 12.82 13.8423 13.3377 13.3881L12.6504 12.7037ZM4.11151 2.79621C4.5324 2.43285 5.00173 2.12097 5.50741 1.8757L5.14708 0.973367C4.52029 1.27314 3.94194 1.65769 3.42719 2.11188L4.11151 2.79621ZM14.1856 10.7628C13.9494 11.214 13.6648 11.6349 13.3347 12.0194L14.0221 12.7068C14.4369 12.2344 14.7942 11.7106 15.0788 11.1474L14.1856 10.7628ZM14.9032 8.23445C14.8608 8.8037 14.7457 9.3548 14.5671 9.87258L15.4604 10.2541C15.6874 9.6152 15.8298 8.93693 15.8722 8.23142H14.9032V8.23445ZM10.3552 13.9876C9.8798 14.139 9.38018 14.2359 8.86543 14.2722V15.2442C9.50736 15.2018 10.1281 15.0807 10.7155 14.8899L10.3552 13.9876ZM7.89648 14.2722C7.32722 14.2298 6.77613 14.1148 6.25834 13.9361L5.87682 14.8294C6.51572 15.0565 7.19399 15.1988 7.8995 15.2412V14.2722H7.89648ZM14.6186 5.77573C14.77 6.25112 14.8669 6.75074 14.9032 7.26549H15.8752C15.8328 6.62356 15.7117 6.00283 15.5209 5.4154L14.6186 5.77573ZM3.42719 12.0194C3.06383 11.5985 2.75195 11.1292 2.50668 10.6235L1.60435 10.9838C1.90412 11.6106 2.28867 12.189 2.74287 12.7068L3.42719 12.0194ZM8.86543 1.22772C9.43469 1.27011 9.98275 1.38517 10.5036 1.56382L10.8851 0.67057C10.2492 0.443472 9.57094 0.301157 8.86543 0.255737V1.22772ZM6.40671 1.51235C6.8821 1.36095 7.38172 1.26405 7.89648 1.22772V0.255737C7.25455 0.298129 6.63381 0.419248 6.04638 0.61001L6.40671 1.51235ZM14.0221 2.79318L13.3347 3.48053C13.6981 3.90142 14.01 4.37075 14.2582 4.87642L15.1606 4.51609C14.8608 3.8893 14.4763 3.31096 14.0221 2.79318ZM12.6504 2.79621L13.3377 2.10886C12.8654 1.69402 12.3446 1.33672 11.7783 1.05209L11.3968 1.94535C11.845 2.18153 12.2689 2.46616 12.6504 2.79621Z" fill="#32CD32"/>
+                  <path d="M8.38134 11.8661C8.84975 11.8661 9.22948 11.4863 9.22948 11.0179C9.22948 10.5495 8.84975 10.1698 8.38134 10.1698C7.91293 10.1698 7.5332 10.5495 7.5332 11.0179C7.5332 11.4863 7.91293 11.8661 8.38134 11.8661Z" fill="#32CD32"/>
+                  <path d="M7.67223 4.06984L7.88419 9.15684C7.89327 9.35063 8.05375 9.50505 8.24754 9.50505H8.52006C8.71385 9.50505 8.87433 9.35063 8.88342 9.15684L9.09538 4.06984C9.10446 3.86394 8.93792 3.69135 8.73202 3.69135H8.03559C7.82968 3.69135 7.66315 3.86394 7.67223 4.06984Z" fill="#32CD32"/>
+                  </svg>
+
+                  Scale goal
+                </span>
+              </div>
             </div>
-            <button className="text-[#32cd32] font-medium flex items-center hover:underline"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" className="mr-1"><path d="M4 13v3a2 2 0 0 0 2 2h3m4-16h6a2 2 0 0 1 2 2v6m-2 10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10z" stroke="#32cd32" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>Edit</button>
+            <button className="flex items-center text-[#32CD32] font-semibold text-[17px] hover:underline transition">
+            <svg className="mr-1" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.2457 1.00199C16.4878 0.244129 15.2628 0.244129 14.5049 1.00199L13.4633 2.04015L16.8512 5.42802L17.8928 4.38639C18.6507 3.62854 18.6507 2.40351 17.8928 1.64565L17.2457 1.00199ZM6.89175 8.61517C6.68066 8.82627 6.51801 9.08581 6.42458 9.37303L5.40026 12.446C5.2999 12.7436 5.3795 13.0723 5.60097 13.2973C5.82244 13.5222 6.1512 13.5983 6.45226 13.498L9.52522 12.4737C9.80899 12.3802 10.0685 12.2176 10.2831 12.0065L16.0726 6.21356L12.6812 2.82223L6.89175 8.61517ZM4.2479 2.4658C2.41381 2.4658 0.925781 3.95383 0.925781 5.78791V14.6469C0.925781 16.481 2.41381 17.969 4.2479 17.969H13.1069C14.941 17.969 16.429 16.481 16.429 14.6469V11.3248C16.429 10.7123 15.9341 10.2174 15.3216 10.2174C14.7091 10.2174 14.2143 10.7123 14.2143 11.3248V14.6469C14.2143 15.2594 13.7194 15.7543 13.1069 15.7543H4.2479C3.63538 15.7543 3.14053 15.2594 3.14053 14.6469V5.78791C3.14053 5.1754 3.63538 4.68054 4.2479 4.68054H7.57002C8.18253 4.68054 8.67739 4.18568 8.67739 3.57317C8.67739 2.96065 8.18253 2.4658 7.57002 2.4658H4.2479Z" fill="#32CD32"/>
+            </svg>
+
+              Edit
+            </button>
           </div>
           {/* Section Title and Add More */}
           <div className="w-full flex justify-between items-center mb-4">
-            <span className="text-lg font-bold text-[#1a2330]">Recommended Tools</span>
+            <span className="text-[26px] font-bold text-[#111827]">Recommended Tools</span>
             <div className="flex items-center gap-4">
-              <span className="text-gray-400 text-sm">8 tools selected</span>
-              <button className="h-9 px-4 bg-gradient-to-r from-[#32cd32] to-[#4ade80] text-white font-semibold rounded-[12px] flex items-center text-sm"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" className="mr-1"><path d="M12 5v14m7-7H5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>Add More</button>
+              <span className="text-[#6B7280] text-15px[]">8 tools selected</span>
+              <button className="h-10 px-5  bg-[#32cd321a] text-[#32CD32] font-semibold rounded-[10px] flex items-center text-[17px]"><svg className="mr-1" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.82287 1.29316C8.82287 0.680648 8.32802 0.185791 7.7155 0.185791C7.10299 0.185791 6.60813 0.680648 6.60813 1.29316V6.27634H1.62495C1.01244 6.27634 0.517578 6.7712 0.517578 7.38371C0.517578 7.99623 1.01244 8.49109 1.62495 8.49109H6.60813V13.4743C6.60813 14.0868 7.10299 14.5816 7.7155 14.5816C8.32802 14.5816 8.82287 14.0868 8.82287 13.4743V8.49109H13.8061C14.4186 8.49109 14.9134 7.99623 14.9134 7.38371C14.9134 6.7712 14.4186 6.27634 13.8061 6.27634H8.82287V1.29316Z" fill="#32CD32"/>
+              </svg>
+              Add More</button>
             </div>
           </div>
           {/* Recommended Tools Grid */}
           <div className="grid grid-cols-3 gap-6 w-full mb-8">
             {tools.map((tool, idx) => (
-              <div key={tool.name} className="relative bg-white border border-gray-200 rounded-xl flex flex-col items-start p-5 min-h-[120px] transition-all hover:shadow-md hover:border-[#32cd32]">
+              <div key={tool.name} className="relative bg-white border border-[#E5E7EB] rounded-xl flex flex-col items-start p-5 min-h-[120px] transition-all hover:shadow-md hover:border-[#32cd32]" style={{ borderWidth: '3px' }}>
                 <div className="flex items-center mb-2">
                   <span className="text-2xl mr-2">{tool.icon}</span>
-                  <span className="font-semibold text-[#1a2330] text-base">{tool.name}</span>
+                  <div className="flex flex-col">
+                    <h3 className="font-bold text-[#111827] text-[17px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.name}</h3>
+                    <p className="font-normal text-[#6B7280] text-[15px] text-left">{tool.namesub}</p>
+                  </div>
                 </div>
-                <div className="text-xs text-gray-400 mb-2 text-left">{tool.desc}</div>
-                {tool.badge && <span className="px-3 py-1 rounded-lg text-xs font-semibold bg-[#e6f9ea] text-[#32cd32] mb-2">Recommended</span>}
-                <span className="text-sm font-bold text-[#1a2330]">{tool.price === "Free" ? <span className="text-[#32cd32]">Free</span> : tool.price}</span>
+                
+                <div className=" text-[#4B5563] text-[15px] mb-2 text-left" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.desc}</div>
+                <div className="flex justify-between items-center w-full mt-3">
+                {tool.badge && <span className="px-3 py-1 rounded-xl text-[13px] font-normal bg-[#DCFCE7] text-[#15803D]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Recommended</span>}
+                <span className="text-[15px] font-semibold text-[#111827]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.price === "Free" ? <span className="text-[#32cd32]">Free</span> : tool.price}</span>
+                </div>
               </div>
             ))}
           </div>
           {/* Estimated Monthly Cost */}
-          <div className="w-full bg-[#f6fcf8] rounded-lg flex flex-col md:flex-row items-center justify-between px-6 py-4 mb-8">
-            <div className="flex flex-wrap gap-6 text-sm text-[#1a2330] mb-2 md:mb-0">
-              <span>3 Free Tools<br /><span className="text-gray-400">$0/mo</span></span>
-              <span>5 Paid Tools<br /><span className="text-gray-400">$127/mo</span></span>
-              <span>Setup Time<br /><span className="text-gray-400">2-3 days</span></span>
-              <span>ROI Timeline<br /><span className="text-gray-400">3-6 months</span></span>
+          <div className="w-full bg-[#F9FAFB] rounded-[20px] flex flex-col justify-between px-8 py-6 mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <div className="text-[22px] font-bold text-[#111827]">Estimated Monthly Cost</div>
+              <div className="flex flex-col items-end justify-center min-w-[120px]">
+                <span className="text-[#32CD32] text-[33px] font-bold leading-none">$127</span>
+                <span className="text-[#6B7280] text-[15px]">per month</span>
+              </div>
             </div>
-            <div className="text-2xl font-bold text-[#32cd32]">$127 <span className="text-base font-medium text-gray-400">per month</span></div>
+            <div className="grid grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="font-bold text-[15px] text-[#111827] ">3 Free Tools</div>
+                <div className="text-[#6B7280] text-[15px]">$0/mo</div>
+              </div>
+              <div className="text-center">
+                <div className="font-bold text-[15px] text-[#111827] ">5 Paid Tools</div>
+                <div className="text-[#6B7280] text-[15px]">$127/mo</div>
+              </div>
+              <div className="text-center">
+                <div className="font-bold text-[15px] text-[#111827] ">Setup Time</div>
+                <div className="text-[#6B7280] text-[15px]">2-3 days</div>
+              </div>
+              <div className="text-center">
+                <div className="font-bold text-[15px] text-[#111827] ">ROI Timeline</div>
+                <div className="text-[#6B7280] text-[15px]">3-6 months</div>
+              </div>
+            </div>
           </div>
           {/* Buttons */}
-          <div className="flex w-full justify-between items-center mt-4">
-            <button onClick={onBack} className="text-gray-400 text-base font-medium flex items-center hover:underline"><span className="mr-2">&#8592;</span>Back</button>
+          <div className="flex w-full justify-between items-center  border-t border-[#F3F4F6] pt-6 border-t-[7px] mt-4">
+            <button onClick={onBack} className="text-[#4B5563] text-[17px] font-medium flex items-center hover:underline"><span className="mr-2">&#8592;</span>Back</button>
             <div className="flex gap-4">
-              <button className="h-12 px-8 bg-white border border-gray-200 font-bold text-lg text-[#1a2330] flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none rounded-[20px]">Save Draft</button>
-              <button className="h-12 px-8 bg-gradient-to-r from-[#32cd32] to-[#4ade80] font-bold text-lg text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none rounded-[20px]">Create My Stack <span className="ml-2 flex items-center"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span></button>
+              <button className="h-14 px-10 bg-white border border-[#D1D5DB] font-bold text-[17px] text-[#374151] flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none rounded-[16px]" style={{ borderWidth: '2px' }}>
+              <svg className="mr-2" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.65497 1.27539C1.28216 1.27539 0.166016 2.39153 0.166016 3.76434V16.2091C0.166016 17.5819 1.28216 18.6981 2.65497 18.6981H15.0997C16.4725 18.6981 17.5887 17.5819 17.5887 16.2091V6.77053C17.5887 6.1094 17.3281 5.4755 16.8614 5.00882L13.8553 2.00263C13.3886 1.53595 12.7547 1.27539 12.0935 1.27539H2.65497ZM2.65497 5.00882C2.65497 4.32047 3.21109 3.76434 3.89944 3.76434H11.3663C12.0547 3.76434 12.6108 4.32047 12.6108 5.00882V7.49777C12.6108 8.18612 12.0547 8.74225 11.3663 8.74225H3.89944C3.21109 8.74225 2.65497 8.18612 2.65497 7.49777V5.00882ZM8.87735 11.2312C9.53746 11.2312 10.1705 11.4934 10.6373 11.9602C11.1041 12.427 11.3663 13.06 11.3663 13.7202C11.3663 14.3803 11.1041 15.0133 10.6373 15.4801C10.1705 15.9469 9.53746 16.2091 8.87735 16.2091C8.21724 16.2091 7.58416 15.9469 7.11739 15.4801C6.65062 15.0133 6.3884 14.3803 6.3884 13.7202C6.3884 13.06 6.65062 12.427 7.11739 11.9602C7.58416 11.4934 8.21724 11.2312 8.87735 11.2312Z" fill="#374151"/>
+              </svg>
+              Save Draft</button>
+              <button
+                className="h-14 px-10 bg-gradient-to-r from-[#32cd32] to-[#4ade80] font-bold text-[17px] text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none rounded-[16px]"
+                onClick={() => navigate('/dashboard')}
+              >
+                Create My Stack <span className="ml-2 flex items-center"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+              </button>
             </div>
           </div>
-          {/* Progress Dots */}
-          <div className="flex justify-center items-center mt-8 space-x-2">
+          
+        </div>
+        {/* Progress Dots */}
+        <div className="flex justify-center items-center mt-8 space-x-2">
             <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
             <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
             <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
             <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
             <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
           </div>
-        </div>
       </div>
     </div>
   );

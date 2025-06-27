@@ -48,51 +48,51 @@ export const SignIn = (): JSX.Element => {
       <div className="w-1/2 flex flex-col justify-center items-center bg-gray-50 px-12 py-12">
         <form onSubmit={handleSignIn} className="w-full max-w-[597px] mx-auto ">
           {/* Heading */}
-          <h2 className="text-[#111827] text-[40px] font-bold mb-3" style={{lineHeight: '2.5rem'}}>Welcome back</h2>
-          <p className="text-[#4B5563] text-[21px] mb-8 font-light">Sign in to your Transify account to continue</p>
+          <h2 className="text-[#111827] text-[30px] font-bold mb-3" style={{lineHeight: '2.5rem'}}>Welcome back</h2>
+          <p className="text-[#4B5563] text-[16px] mb-4 font-light">Sign in to your Transify account to continue</p>
           {/* Email */}
-          <div className="mb-8">
-            <label className="block text-gray-700 font-medium mb-2 text-[18px] text-[#374151]">Email address</label>
+          <div className="mb-5">
+            <label className="block text-gray-700 font-medium mb-2 text-[15px] text-[#374151]">Email address</label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300">
                 <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.5-.5a.5.5 0 0 0-.5.5v.379l8 5.333 8-5.333V6.5a.5.5 0 0 0-.5-.5h-15Zm15 13a.5.5 0 0 0 .5-.5V9.121l-7.5 5-7.5-5V17.5a.5.5 0 0 0 .5.5h15Z" fill="#9CA3AF"/></svg>
               </span>
-              <Input className="pl-10 h-[58px] rounded-xl text-[21px] border border-[#D1D5DB] focus:border-green-400" placeholder="Enter your email" type="email" required />
+              <Input className="pl-10 h-[45px] rounded-xl text-[17px] border border-[#D1D5DB] focus:border-green-400" placeholder="Enter your email" type="email" required />
             </div>
           </div>
           {/* Password */}
-          <div className="mb-8">
-            <label className="block text-gray-700 font-medium mb-2 text-[18px] text-[#374151]">Password</label>
+          <div className="mb-5">
+            <label className="block text-gray-700 font-medium mb-2 text-[15px] text-[#374151]">Password</label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300">
                 <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M17 10V7a5 5 0 0 0-10 0v3H5a1 1 0 0 0-1 1v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a1 1 0 0 0-1-1h-1Zm-8-3a3 3 0 1 1 6 0v3H9V7Zm10 4v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-8h14Zm-7 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="#9CA3AF"/></svg>
               </span>
-              <Input type="password" className="pl-10 h-[58px] rounded-xl text-[21px] border border-[#D1D5DB] focus:border-green-400" placeholder="Enter your password" required />
+              <Input type="password" className="pl-10 h-[45px] rounded-xl text-[17px] border border-[#D1D5DB] focus:border-green-400" placeholder="Enter your password" required />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 cursor-pointer">
                 <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7Zm0 12c-4.418 0-7.364-3.134-8.484-5C4.636 8.134 7.582 5 12 5s7.364 3.134 8.484 5C19.364 13.866 16.418 17 12 17Zm0-10a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" fill="#9CA3AF"/></svg>
               </span>
             </div>
           </div>
           {/* Remember me and Forgot password */}
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center">
-              <Checkbox id="remember" className="rounded-sm border-gray-400 mr-2" />
-              <label htmlFor="remember" className="text-[#4B5563] text-[18px]">Remember me</label>
-            </div>
-            <button type="button" className="text-[#32CD32] text-[18px] font-semibold hover:underline">Forgot password?</button>
+          <div className="flex items-start space-x-3 pt-1 mb-5">
+            <Checkbox id="remember" className="rounded border-gray-300 mt-1" />
+            <label htmlFor="remember" className="text-[#4B5563] text-[15px] font-normal">
+              Remember me
+            </label>
+            <button type="button" className="text-[#32CD32] text-[15px] font-semibold hover:underline ml-auto">Forgot password?</button>
           </div>
           {/* Sign In Button */}
-          <Button type="submit" className="w-full px-6 h-[58px] bg-[#32CD32] hover:bg-[#2db82d] rounded-[10px] font-medium text-[21px] text-white flex items-center justify-center transition-colors shadow-none mb-8">
+          <Button type="submit" className="w-full px-6 h-[45px] bg-[#32CD32] hover:bg-[#2db82d] rounded-[10px] font-medium text-[17px] text-white flex items-center justify-center transition-colors shadow-none mb-5">
             Sign In
           </Button>
           {/* Divider */}
           <div className="flex items-center justify-center w-full my-8">
             <div className="flex-grow h-px bg-[#D1D5DB]" />
-            <span className="px-2 text-[#6B7280] text-[18px] font-normal">Or continue with</span>
+            <span className="px-2 text-[#6B7280] text-[15px] font-normal">Or continue with</span>
             <div className="flex-grow h-px bg-[#D1D5DB]" />
           </div>
           {/* Google Button */}
-          <Button variant="outline" className="w-full flex items-center justify-center gap-2 pl-10 h-[58px] rounded-xl text-[21px] border border-[#D1D5DB] text-[#374151]">
+          <Button variant="outline" className="w-full flex items-center justify-center gap-2 pl-10 h-[45px] rounded-xl text-[17px] border border-[#D1D5DB] text-[#374151]">
             <svg viewBox="0 0 24 24" width="18" height="18">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
@@ -103,7 +103,7 @@ export const SignIn = (): JSX.Element => {
           </Button>
           {/* Bottom text */}
           <div className="flex justify-center mt-8 text-center">
-            <p className="text-[#4B5563] text-[18px]">
+            <p className="text-[#4B5563] text-[16px]">
               Don't have an account?{' '}
               <button onClick={handleSignUp} className="text-[#32cd32] font-semibold hover:underline">Sign up here</button>
             </p>

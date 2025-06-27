@@ -77,7 +77,7 @@ export const ToolCategoryStep = ({ onBack, onContinue }: { onBack: () => void; o
         </div>
       </div>
       {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 p-12">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
         <div className="w-full max-w-[1133px] mx-auto bg-white rounded-2xl shadow-lg p-12 flex flex-col items-center border border-[#F3F4F6]  " style={{ borderWidth: '7px', borderRadius: '24px', boxShadow: '0 8px 40px 0 rgba(16,30,54,.10)' }}>
           {/* Icon */}
           <div className="w-12 h-12 bg-[#32cd32] rounded-full flex items-center justify-center mb-6">
