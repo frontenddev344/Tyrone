@@ -41,7 +41,7 @@ export const RecommendedStackStep = ({ onBack }: { onBack: () => void }) => {
     <div className="min-h-screen bg-white flex flex-col font-sans" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
       {/* Top Bar */}
       <div className="" style={{ boxShadow: '0 2px 8px 0 rgba(16,30,54,.03)' }}>
-        <div className="w-full max-w-[939px] mx-auto px-2 sm:px-4 lg:px-8 flex items-center justify-between px-0 py-4 sm:py-6 bg-white flex-wrap" >
+        <div className="w-full max-w-[939px] mx-auto px-8 flex items-center justify-between px-0 py-6 bg-white flex-wrap" >
           {/* Logo */}
           <div className="flex items-center">
             <img src="/assets/logi-dark.png" alt="Transify Logo" className="w-[120px] sm:w-[140px] lg:w-[161px] mr-2 sm:mr-3" />
