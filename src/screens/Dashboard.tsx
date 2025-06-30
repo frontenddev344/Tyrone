@@ -262,9 +262,9 @@ export const Dashboard = () => {
             </div>
           </div>
           {/* Your Tool Stack */}
-          <div className="flex flex-col sm:flex-row items-center justify-between mb-2 sm:mb-4 mt-3 sm:mt-5">
+          <div className="flex  sm:flex-row items-center justify-between mb-2 sm:mb-4 mt-3 sm:mt-5">
             <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-bold text-[#111827] text-center sm:text-left" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Your Tool Stack</div>
-            <a href="#" className="text-[#32CD32] font-semibold text-[15px] sm:text-[18px] flex items-center mt-2 sm:mt-0" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>View All <svg className='ml-1' width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a href="#" className="text-[#32CD32] font-semibold text-[15px] sm:text-[18px] flex items-center mt-0 sm:mt-0" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>View All <svg className='ml-1' width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M18.275 11.6075C18.7958 11.0867 18.7958 10.2408 18.275 9.72001L11.6083 3.05334C11.0875 2.53251 10.2417 2.53251 9.72083 3.05334C9.2 3.57418 9.2 4.42001 9.72083 4.94084L14.1167 9.33251H1.33333C0.595833 9.33251 0 9.92834 0 10.6658C0 11.4033 0.595833 11.9992 1.33333 11.9992H14.1125L9.725 16.3908C9.20417 16.9117 9.20417 17.7575 9.725 18.2783C10.2458 18.7992 11.0917 18.7992 11.6125 18.2783L18.2792 11.6117L18.275 11.6075Z" fill="#32CD32"/>
             </svg></a>
           </div>
