@@ -34,13 +34,13 @@ export const StepListStep = ({ onNext }: { onNext: () => void }) => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center text-center p-12">
         {/* Heading */}
-        <h1 className="text-[53px] font-bold text-[#111827] mb-4" style={{ letterSpacing: '-0.03em', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Welcome to Transify</h1>
+        <h1 className="text-[28px] sm:text-[53px] font-bold text-[#111827] mb-4" style={{ letterSpacing: '-0.03em', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Welcome to Transify</h1>
         {/* Subtitle */}
-        <p className="text-[#4B5563] text-[22px] mb-10 max-w-[705px] mx-auto" style={{ fontWeight: 400, lineHeight: '36px' }}>
+        <p className="text-[#4B5563] text-[14px] sm:text-[22px] mb-8 sm:mb-10 max-w-[705px] mx-auto px-2 sm:px-0" style={{ fontWeight: 400, lineHeight: '1.5' }}>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
         </p>
         {/* Steps List */}
-        <div className="flex flex-col items-center w-full max-w-2xl mb-12">
+        <div className="flex flex-col items-center w-full max-w-2xl mb-8 sm:mb-12 px-2 sm:px-0">
           {steps.map((text, idx) => {
             const isActive = idx === selected;
             return (
@@ -48,11 +48,11 @@ export const StepListStep = ({ onNext }: { onNext: () => void }) => {
                 key={idx}
                 type="button"
                 onClick={() => setSelected(idx)}
-                className="flex items-center w-full mb-6 last:mb-0 group focus:outline-none"
+                className="flex items-center w-full mb-4 sm:mb-6 last:mb-0 group focus:outline-none"
                 tabIndex={0}
               >
                 {/* Number Circle */}
-                <div className="flex-shrink-0 w-[50px] h-[50px] rounded-full bg-[#32cd32] flex items-center justify-center text-white text-[32px] font-medium mr-6" style={{ fontWeight: 700 , fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif'}}>
+                <div className="flex-shrink-0 w-10 h-10 sm:w-[50px] sm:h-[50px] rounded-full bg-[#32cd32] flex items-center justify-center text-white text-[20px] sm:text-[32px] font-medium mr-4 sm:mr-6" style={{ fontWeight: 700 , fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif'}}>
                   {idx + 1}
                 </div>
                 {/* Arrow Bubble */}
@@ -61,7 +61,7 @@ export const StepListStep = ({ onNext }: { onNext: () => void }) => {
                 </svg>
                 {/* Step Box */}
                 <div
-                  className={`flex-1 bg-[rgba(50, 205, 50, 0.05)] flex items-center justify-center py-5 px-[50px] transition-all duration-150 ${isActive ? 'bg-[#A6E9A6] text-[#000] font-bold' : 'bg-[rgba(50, 205, 50, 0.05)] text-[#1a2330] font-normal border border-[#32cd3233]'} text-[18px]`}
+                  className={`flex-1 bg-[rgba(50, 205, 50, 0.05)] flex items-center justify-center py-3 sm:py-5 px-2 sm:px-[50px] transition-all duration-150 ${isActive ? 'bg-[#A6E9A6] text-[#000] font-bold' : 'bg-[rgba(50, 205, 50, 0.05)] text-[#1a2330] font-normal border border-[#32cd3233]'} text-[14px] sm:text-[18px]`}
                   style={{fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',   fontWeight: isActive ? 500 : 400, boxShadow: isActive ? '0 2px 8px 0 rgba(50,205,50,0.08)' : 'none'}}
                 >
                   {text}
@@ -73,10 +73,10 @@ export const StepListStep = ({ onNext }: { onNext: () => void }) => {
         {/* Next Button */}
         <button
           onClick={onNext}
-          className="h-[66px] px-14 bg-gradient-to-r from-[#32cd32] to-[#4ade80] hover:from-[#28b428] hover:to-[#22c55e] hover:shadow-lg font-bold text-[22px] text-white flex items-center justify-center mx-auto transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none"
+          className="h-12 sm:h-[66px] px-8 sm:px-14 bg-gradient-to-r from-[#32cd32] to-[#4ade80] hover:from-[#28b428] hover:to-[#22c55e] hover:shadow-lg font-bold text-[15px] sm:text-[22px] text-white flex items-center justify-center mx-auto transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none rounded-[14px] sm:rounded-[20px]"
           style={{ boxShadow: 'none', borderRadius: '20px' }}
         >
-          <span className="mr-3 flex items-center">
+          <span className="mr-2 sm:mr-3 flex items-center">
             <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </span>
           Next

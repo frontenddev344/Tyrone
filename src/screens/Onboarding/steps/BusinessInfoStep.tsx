@@ -9,48 +9,48 @@ export const BusinessInfoStep = ({ onBack, onContinue }: { onBack: () => void; o
     <div className="min-h-screen bg-white flex flex-col font-sans" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
       {/* Top Bar */}
       <div className="" style={{ boxShadow: '0 2px 8px 0 rgba(16,30,54,.03)' }}>
-        <div className="w-full max-w-[939px] mx-auto px-8 flex items-center justify-between px-0 py-6 bg-white flex-wrap" >
+        <div className="w-full max-w-[939px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between py-4 sm:py-6 bg-white" >
           {/* Logo */}
-          <div className="flex items-center">
-            <img src="/assets/logi-dark.png" alt="Transify Logo" className="w-[161px] mr-3" />
+          <div className="flex items-center mb-4 sm:mb-0">
+            <img src="/assets/logi-dark.png" alt="Transify Logo" className="w-[120px] sm:w-[140px] lg:w-[161px] mr-3" />
           </div>
           
           {/* Step Text */}
-          <div className="text-[#6B7280] text-[15px] font-normal">Step 2 of 5</div>
+          <div className="text-[#6B7280] text-[13px] sm:text-[14px] lg:text-[15px] font-normal mb-3 sm:mb-0">Step 2 of 5</div>
           {/* Progress Bar */}
-          <div className="  w-full mt-3">
-            <div className="w-full  h-1 bg-gray-200 rounded-full overflow-hidden">
+          <div className="w-full sm:w-auto sm:flex-1 sm:ml-4">
+            <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
               <div className="h-1 bg-[#32cd32] rounded-full" style={{ width: '40%' }} />
             </div>
           </div>
         </div>
       </div>
       {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
-        <div className="w-full max-w-[850px] mx-auto bg-white p-10 flex flex-col items-center border border-[#F3F4F6]" style={{ borderRadius: '20px', boxShadow: '0 8px 40px 0 rgba(16,30,54,.10)' }}>
+      <div className="flex-1 flex flex-col items-center justify-center px-2 sm:px-4 py-6 sm:py-12">
+        <div className="w-full max-w-[850px] mx-auto bg-white p-4 sm:p-8 lg:p-10 flex flex-col items-center border border-[#F3F4F6]" style={{ borderRadius: '20px', boxShadow: '0 8px 40px 0 rgba(16,30,54,.10)' }}>
           {/* Icon */}
-          <div className="w-[70px] h-[70px] bg-[linear-gradient(123deg,rgba(50,205,50,1)_0%,rgba(74,222,128,1)_100%)] rounded-full flex items-center justify-center mb-6">
-            <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="10" rx="2" fill="#fff"/><rect x="7" y="9" width="2" height="2" rx="1" fill="#32cd32"/><rect x="11" y="9" width="2" height="2" rx="1" fill="#32cd32"/><rect x="15" y="9" width="2" height="2" rx="1" fill="#32cd32"/></svg>
+          <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] lg:w-[70px] lg:h-[70px] bg-[linear-gradient(123deg,rgba(50,205,50,1)_0%,rgba(74,222,128,1)_100%)] rounded-full flex items-center justify-center mb-4 sm:mb-6">
+            <svg width="24" height="24" className="sm:w-8 sm:h-8 lg:w-10 lg:h-10" fill="none" viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="10" rx="2" fill="#fff"/><rect x="7" y="9" width="2" height="2" rx="1" fill="#32cd32"/><rect x="11" y="9" width="2" height="2" rx="1" fill="#32cd32"/><rect x="15" y="9" width="2" height="2" rx="1" fill="#32cd32"/></svg>
           </div>
           {/* Heading */}
-          <h2 className="text-[39px] font-bold text-[#111827] mb-4" style={{ letterSpacing: '-0.03em', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tell us about your business</h2>
+          <h2 className="text-[24px] sm:text-[32px] lg:text-[39px] font-bold text-[#111827] mb-3 sm:mb-4 text-center" style={{ letterSpacing: '-0.03em', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tell us about your business</h2>
           {/* Subtitle */}
-          <p className="text-[#4B5563] text-[22px] mb-10  mx-auto text-center max-w-[600px]" style={{ fontWeight: 400, lineHeight: '36px' }}>Help us understand your company so we can recommend the perfect tools for your needs.</p>
+          <p className="text-[#4B5563] text-[15px] sm:text-[18px] lg:text-[22px] mb-6 sm:mb-8 lg:mb-10 mx-auto text-center max-w-[600px]" style={{ fontWeight: 400, lineHeight: '1.5' }}>Help us understand your company so we can recommend the perfect tools for your needs.</p>
           {/* Form */}
-          <form className="w-full flex flex-col gap-5">
+          <form className="w-full flex flex-col gap-4 sm:gap-5">
             {/* Business Name */}
             <div>
               <label className="flex items-center text-[15px] font-bold text-[#1F2937] mb-2" style={{  fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
               <svg className="mr-2" width="13" height="17" viewBox="0 0 13 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-               <path d="M1.86038 0.769531C1.05542 0.769531 0.402344 1.42261 0.402344 2.22757V14.8639C0.402344 15.6689 1.05542 16.322 1.86038 16.322H4.77647V13.8919C4.77647 13.0869 5.42955 12.4339 6.23451 12.4339C7.03947 12.4339 7.69255 13.0869 7.69255 13.8919V16.322H10.6086C11.4136 16.322 12.0667 15.6689 12.0667 14.8639V2.22757C12.0667 1.42261 11.4136 0.769531 10.6086 0.769531H1.86038ZM2.3464 8.05973C2.3464 7.79243 2.5651 7.57372 2.83241 7.57372H3.80444C4.07175 7.57372 4.29045 7.79243 4.29045 8.05973V9.03176C4.29045 9.29907 4.07175 9.51778 3.80444 9.51778H2.83241C2.5651 9.51778 2.3464 9.29907 2.3464 9.03176V8.05973ZM5.74849 7.57372H6.72052C6.98783 7.57372 7.20653 7.79243 7.20653 8.05973V9.03176C7.20653 9.29907 6.98783 9.51778 6.72052 9.51778H5.74849C5.48119 9.51778 5.26248 9.29907 5.26248 9.03176V8.05973C5.26248 7.79243 5.48119 7.57372 5.74849 7.57372ZM8.17856 8.05973C8.17856 7.79243 8.39727 7.57372 8.66457 7.57372H9.6366C9.90391 7.57372 10.1226 7.79243 10.1226 8.05973V9.03176C10.1226 9.29907 9.90391 9.51778 9.6366 9.51778H8.66457C8.39727 9.51778 8.17856 9.29907 8.17856 9.03176V8.05973ZM2.83241 3.68561H3.80444C4.07175 3.68561 4.29045 3.90432 4.29045 4.17163V5.14365C4.29045 5.41096 4.07175 5.62967 3.80444 5.62967H2.83241C2.5651 5.62967 2.3464 5.41096 2.3464 5.14365V4.17163C2.3464 3.90432 2.5651 3.68561 2.83241 3.68561ZM5.26248 4.17163C5.26248 3.90432 5.48119 3.68561 5.74849 3.68561H6.72052C6.98783 3.68561 7.20653 3.90432 7.20653 4.17163V5.14365C7.20653 5.41096 6.98783 5.62967 6.72052 5.62967H5.74849C5.48119 5.62967 5.26248 5.41096 5.26248 5.14365V4.17163ZM8.66457 3.68561H9.6366C9.90391 3.68561 10.1226 3.90432 10.1226 4.17163V5.14365C10.1226 5.41096 9.90391 5.62967 9.6366 5.62967H8.66457C8.39727 5.62967 8.17856 5.41096 8.17856 5.14365V4.17163C8.17856 3.90432 8.39727 3.68561 8.66457 3.68561Z" fill="#32CD32"/>
+               <path d="M1.86038 0.769531C1.05542 0.769531 0.402344 1.42261 0.402344 2.22757V14.8639C0.402344 15.6689 1.05542 16.322 1.86038 16.322H4.77647V13.8919C4.77647 13.0869 5.42955 12.4339 6.23451 12.4339C7.03947 12.4339 7.69255 13.0869 7.69255 13.8919V16.322H10.6086C11.4136 16.322 12.0667 15.6689 12.0667 14.8639V2.22757C12.0667 1.42261 11.4136 0.769531 10.6086 0.769531H1.86038ZM2.3464 8.05973C2.3464 7.79243 2.5651 7.57372 2.83241 7.57372H3.80444C4.07175 7.57372 4.29045 7.79243 4.29045 8.05973V9.03176C4.29045 9.29907 4.07175 9.51778 3.80444 9.51778H2.83241C2.5651 9.51778 2.3464 9.29907 2.3464 9.03176V8.05973ZM5.74849 7.57372H6.72052C6.98783 7.57372 7.20653 7.79243 7.20653 8.05973V9.03176C7.20653 9.29907 6.98783 9.51778 6.72052 9.51778H5.74849C5.48119 9.51778 5.26248 9.29907 5.26248 9.03176V8.05973C5.26248 7.79243 5.48119 7.57372 5.74849 7.57372ZM8.17856 8.05973C8.17856 7.79243 8.39727 7.57372 8.66457 7.57372H9.6366C9.90391 7.57372 10.1226 7.79243 10.1226 8.05973V9.03176C10.1226 9.29907 9.90391 9.51778 9.6366 9.51778H8.66457C8.39727 9.51778 8.17856 9.29907 8.17856 9.03176V8.05973ZM2.83241 3.68561H3.80444C4.07175 3.68561 4.29045 3.90432 4.29045 4.17163V5.14365C4.29045 5.41096 4.07175 5.62967 3.80444 5.62967H2.83241C2.5651 5.62967 2.3464 5.41096 2.3464 5.14365V4.17163C2.3464 3.90432 2.5651 3.68561 2.83241 3.68561ZM5.26248 4.17163C5.26248 3.90432 5.48119 3.68561 5.74849 3.68561H6.72052C6.98783 3.68561 7.20653 3.90432 7.20653 4.17163V5.14365C7.20653 5.41096 6.98783 5.62967 6.72052 5.62967H5.74849C5.48119 5.62967 5.26248 5.41096 5.26248 5.14365V4.17163C5.26248 3.90432 5.48119 3.68561 5.74849 3.68561ZM8.66457 3.68561H9.6366C9.90391 3.68561 10.1226 3.90432 10.1226 4.17163V5.14365C10.1226 5.41096 9.90391 5.62967 9.6366 5.62967H8.66457C8.39727 5.62967 8.17856 5.41096 8.17856 5.14365V4.17163C8.17856 3.90432 8.39727 3.68561 8.66457 3.68561Z" fill="#32CD32"/>
               </svg>
 
                 Business Name
               </label>
-              <input type="text" placeholder="Enter your company name" className="w-full h-[60px] px-4 rounded-[14px] border border-[#E5E7EB] font-medium  bg-[#F9FAFB] text-[17px] text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#32cd32]" />
+              <input type="text" placeholder="Enter your company name" className="w-full h-[48px] sm:h-[54px] lg:h-[60px] px-4 rounded-[10px] sm:rounded-[12px] lg:rounded-[14px] border border-[#E5E7EB] font-medium  bg-[#F9FAFB] text-[15px] sm:text-[16px] lg:text-[17px] text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#32cd32]" />
             </div>
             {/* Business Type & Team Size */}
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
               <label className="flex items-center text-[15px] font-bold text-[#1F2937] mb-2" style={{  fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
                 <svg className="mr-2"   width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +59,7 @@ export const BusinessInfoStep = ({ onBack, onContinue }: { onBack: () => void; o
 
                   Business Type
                 </label>
-                <select className="w-full h-[60px] px-4 rounded-[14px] border border-[#E5E7EB] bg-[#F9FAFB] text-[17px] text-[#000] font-medium  focus:outline-none focus:ring-2 focus:ring-[#32cd32]">
+                <select className="w-full h-[48px] sm:h-[54px] lg:h-[60px] px-4 rounded-[10px] sm:rounded-[12px] lg:rounded-[14px] border border-[#E5E7EB] bg-[#F9FAFB] text-[15px] sm:text-[16px] lg:text-[17px] text-[#000] font-medium  focus:outline-none focus:ring-2 focus:ring-[#32cd32]">
                   <option value="">Select your business type</option>
                   {businessTypes.map((type) => <option key={type} value={type}>{type}</option>)}
                 </select>
@@ -72,7 +72,7 @@ export const BusinessInfoStep = ({ onBack, onContinue }: { onBack: () => void; o
 
                   Team Size
                 </label>
-                <select className="w-full h-[60px] px-4 rounded-[14px] border border-[#E5E7EB] bg-[#F9FAFB] text-[17px] text-[#000] font-medium  focus:outline-none focus:ring-2 focus:ring-[#32cd32]">
+                <select className="w-full h-[48px] sm:h-[54px] lg:h-[60px] px-4 rounded-[10px] sm:rounded-[12px] lg:rounded-[14px] border border-[#E5E7EB] bg-[#F9FAFB] text-[15px] sm:text-[16px] lg:text-[17px] text-[#000] font-medium  focus:outline-none focus:ring-2 focus:ring-[#32cd32]">
                   <option value="">Select team size</option>
                   {teamSizes.map((size) => <option key={size} value={size}>{size}</option>)}
                 </select>
@@ -87,7 +87,7 @@ export const BusinessInfoStep = ({ onBack, onContinue }: { onBack: () => void; o
 
                 Industry
               </label>
-              <select className="w-full h-[60px] px-4 rounded-[14px] border border-[#E5E7EB] bg-[#F9FAFB] text-[17px] text-[#000] font-medium focus:outline-none focus:ring-2 focus:ring-[#32cd32]">
+              <select className="w-full h-[48px] sm:h-[54px] lg:h-[60px] px-4 rounded-[10px] sm:rounded-[12px] lg:rounded-[14px] border border-[#E5E7EB] bg-[#F9FAFB] text-[15px] sm:text-[16px] lg:text-[17px] text-[#000] font-medium focus:outline-none focus:ring-2 focus:ring-[#32cd32]">
                 <option value="">Select your industry</option>
                 {industries.map((ind) => <option key={ind} value={ind}>{ind}</option>)}
               </select>
@@ -101,14 +101,14 @@ export const BusinessInfoStep = ({ onBack, onContinue }: { onBack: () => void; o
 
                 Brief Description<span className="ml-1 text-gray-400 font-normal">(Optional)</span>
               </label>
-              <textarea placeholder="Tell us a bit more about what your business does..." className="w-full h-[139px] p-4 rounded-[14px] border border-[#E5E7EB] font-medium  bg-[#F9FAFB] text-[17px] text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#32cd32] resize-none" />
+              <textarea placeholder="Tell us a bit more about what your business does..." className="w-full h-[90px] sm:h-[110px] lg:h-[139px] p-3 sm:p-4 rounded-[10px] sm:rounded-[12px] lg:rounded-[14px] border border-[#E5E7EB] font-medium  bg-[#F9FAFB] text-[15px] sm:text-[16px] lg:text-[17px] text-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#32cd32] resize-none" />
             </div>
           </form>
           {/* Buttons */}
-          <div className="flex w-full justify-between items-center mt-12 border-t border-[#F3F4F6] pt-6 border-t-[7px]">
-            <button onClick={onBack} className="text-[#4B5563] text-[17px] font-medium flex items-center hover:underline"><span className="mr-2">&#8592;</span>Back</button>
-            <button onClick={onContinue} className="h-14 px-10 bg-gradient-to-r from-[#32cd32] to-[#4ade80] font-bold text-[17px] text-white flex items-center justify-center ml-auto transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none"
-          style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif', boxShadow: 'none', letterSpacing: '-0.01em', borderRadius: '16px' }}>
+          <div className="flex flex-col sm:flex-row w-full justify-between items-center mt-8 sm:mt-12 border-t border-[#F3F4F6] pt-4 sm:pt-6 border-t-[7px] gap-3 sm:gap-0">
+            <button onClick={onBack} className="text-[#4B5563] text-[15px] sm:text-[16px] lg:text-[17px] font-medium flex items-center hover:underline mb-2 sm:mb-0"><span className="mr-2">&#8592;</span>Back</button>
+            <button onClick={onContinue} className="h-12 sm:h-14 px-6 sm:px-10 bg-gradient-to-r from-[#32cd32] to-[#4ade80] font-bold text-[15px] sm:text-[16px] lg:text-[17px] text-white flex items-center justify-center sm:ml-auto transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none"
+          style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif', boxShadow: 'none', letterSpacing: '-0.01em', borderRadius: '12px' }}>
               Continue <span className="ml-2 flex items-center"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
             </button>
           </div>

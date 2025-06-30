@@ -41,65 +41,64 @@ export const RecommendedStackStep = ({ onBack }: { onBack: () => void }) => {
     <div className="min-h-screen bg-white flex flex-col font-sans" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
       {/* Top Bar */}
       <div className="" style={{ boxShadow: '0 2px 8px 0 rgba(16,30,54,.03)' }}>
-        <div className="w-full max-w-[939px] mx-auto px-8 flex items-center justify-between px-0 py-6 bg-white flex-wrap" >
+        <div className="w-full max-w-[939px] mx-auto px-2 sm:px-4 lg:px-8 flex items-center justify-between px-0 py-4 sm:py-6 bg-white flex-wrap" >
           {/* Logo */}
           <div className="flex items-center">
-            <img src="/assets/logi-dark.png" alt="Transify Logo" className="w-[161px] mr-3" />
+            <img src="/assets/logi-dark.png" alt="Transify Logo" className="w-[120px] sm:w-[140px] lg:w-[161px] mr-2 sm:mr-3" />
           </div>
-          
           {/* Step Text */}
-          <div className="text-[#6B7280] text-[15px] font-normal">Step 5 of 5</div>
+          <div className="text-[#6B7280] text-[13px] sm:text-[15px] font-normal">Step 5 of 5</div>
           {/* Progress Bar */}
-          <div className="  w-full mt-3">
-            <div className="w-full  h-1 bg-gray-200 rounded-full overflow-hidden">
+          <div className="w-full mt-2 sm:mt-3">
+            <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
               <div className="h-1 bg-[#32cd32] rounded-full" style={{ width: '100%' }} />
             </div>
           </div>
         </div>
       </div>
       {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
-        <div className="w-full max-w-[1133px] mx-auto bg-white  shadow-lg p-12 flex flex-col items-center border border-[#F3F4F6]  " style={{ borderRadius: '20px', boxShadow: '0 8px 40px 0 rgba(16,30,54,.10)' }}>
+      <div className="flex-1 flex flex-col items-center justify-center px-2 sm:px-4 py-6 sm:py-12">
+        <div className="w-full max-w-[1133px] mx-auto bg-white shadow-lg p-4 sm:p-8 lg:p-12 flex flex-col items-center border border-[#F3F4F6]" style={{ borderRadius: '20px', boxShadow: '0 8px 40px 0 rgba(16,30,54,.10)' }}>
           {/* Icon */}
-          <div className="w-[70px] h-[70px] bg-[#32cd32] rounded-full flex items-center justify-center mb-6">
-            <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className="w-12 h-12 sm:w-[70px] sm:h-[70px] bg-[#32cd32] rounded-full flex items-center justify-center mb-4 sm:mb-6">
+            <svg width="24" height="22" className="sm:w-[30px] sm:h-[27px]" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M13.1516 2.33577L11.1946 3.06767C11.0389 3.12477 10.9351 3.2753 10.9351 3.44141C10.9351 3.60752 11.0389 3.75805 11.1946 3.81515L13.1516 4.54705L13.8835 6.50399C13.9406 6.65971 14.0911 6.76353 14.2572 6.76353C14.4233 6.76353 14.5739 6.65971 14.631 6.50399L15.3629 4.54705L17.3198 3.81515C17.4755 3.75805 17.5793 3.60752 17.5793 3.44141C17.5793 3.2753 17.4755 3.12477 17.3198 3.06767L15.3629 2.33577L14.631 0.378834C14.5739 0.223109 14.4233 0.119293 14.2572 0.119293C14.0911 0.119293 13.9406 0.223109 13.8835 0.378834L13.1516 2.33577ZM3.36171 20.6437C2.39103 21.6144 2.39103 23.1924 3.36171 24.1683L5.15773 25.9643C6.12841 26.935 7.70642 26.935 8.68229 25.9643L28.4748 6.16658C29.4455 5.1959 29.4455 3.6179 28.4748 2.64203L26.6788 0.851197C25.7081 -0.119484 24.1301 -0.119484 23.1543 0.851197L3.36171 20.6437ZM26.1234 4.4069L20.6731 9.85725L19.4636 8.64779L24.914 3.19744L26.1234 4.4069ZM1.35806 6.20292C1.12447 6.29116 0.96875 6.51437 0.96875 6.76353C0.96875 7.01269 1.12447 7.23589 1.35806 7.32414L4.29087 8.42459L5.39132 11.3574C5.47956 11.591 5.70277 11.7467 5.95193 11.7467C6.20109 11.7467 6.42429 11.591 6.51253 11.3574L7.61299 8.42459L10.5458 7.32414C10.7794 7.23589 10.9351 7.01269 10.9351 6.76353C10.9351 6.51437 10.7794 6.29116 10.5458 6.20292L7.61299 5.10247L6.51253 2.16966C6.42429 1.93608 6.20109 1.78035 5.95193 1.78035C5.70277 1.78035 5.47956 1.93608 5.39132 2.16966L4.29087 5.10247L1.35806 6.20292ZM19.6297 19.4914C19.3961 19.5796 19.2404 19.8028 19.2404 20.052C19.2404 20.3012 19.3961 20.5244 19.6297 20.6126L22.5625 21.7131L23.663 24.6459C23.7512 24.8794 23.9744 25.0352 24.2236 25.0352C24.4727 25.0352 24.6959 24.8794 24.7842 24.6459L25.8846 21.7131L28.8174 20.6126C29.051 20.5244 29.2068 20.3012 29.2068 20.052C29.2068 19.8028 29.051 19.5796 28.8174 19.4914L25.8846 18.3909L24.7842 15.4581C24.6959 15.2245 24.4727 15.0688 24.2236 15.0688C23.9744 15.0688 23.7512 15.2245 23.663 15.4581L22.5625 18.3909L19.6297 19.4914Z" fill="white"/>
             </svg>
           </div>
           {/* Heading */}
-          <h2 className="text-[32px] font-bold text-[#111827] mb-2 text-center">Your Recommended Tool Stack</h2>
+          <h2 className="text-[22px] sm:text-[28px] lg:text-[32px] font-bold text-[#111827] mb-1 sm:mb-2 text-center">Your Recommended Tool Stack</h2>
           {/* Subtitle */}
-          <p className="text-[#4B5563] text-[18px] mb-8 text-center max-w-[700px] mx-auto" style={{ fontWeight: 400, lineHeight: '31px' }}>Based on your business profile and goals, we've curated the perfect set of tools to help you succeed. Review and customize your selection below.</p>
+          <p className="text-[#4B5563] text-[15px] sm:text-[16px] lg:text-[18px] mb-4 sm:mb-8 text-center max-w-[700px] mx-auto" style={{ fontWeight: 400, lineHeight: '28px' }}>Based on your business profile and goals, we've curated the perfect set of tools to help you succeed. Review and customize your selection below.</p>
           {/* Profile Summary */}
-          <div className="w-full bg-gradient-to-r from-[#32cd320d] to-[#82e38743] to-[#32cd320d] border border-[#35da351a] rounded-xl flex items-center justify-between px-8 py-5 mb-8" style={{ borderWidth:'3px' }}>
+          <div className="w-full bg-gradient-to-r from-[#32cd320d] to-[#82e38743] to-[#32cd320d] border border-[#35da351a] rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between px-4 sm:px-8 py-4 sm:py-5 mb-6 sm:mb-8 gap-4 sm:gap-0" style={{ borderWidth:'3px' }}>
             <div>
-              <div className="font-bold text-[22px] text-[#111827] mb-2">Your Business Profile</div>
-              <div className="flex flex-wrap gap-6 items-center">
-                <span className="flex items-center text-[#000000] font-normal text-[15px]">
+              <div className="font-bold text-[17px] sm:text-[20px] lg:text-[22px] text-[#111827] mb-1 sm:mb-2">Your Business Profile</div>
+              <div className="flex flex-wrap gap-3 sm:gap-6 items-center">
+                <span className="flex items-center text-[#000000] font-normal text-[13px] sm:text-[15px]">
                 <svg className="mr-2" width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2.43265 -0.00415039C1.62769 -0.00415039 0.974609 0.64893 0.974609 1.45389V14.0902C0.974609 14.8952 1.62769 15.5483 2.43265 15.5483H5.34873V13.1182C5.34873 12.3133 6.00181 11.6602 6.80677 11.6602C7.61173 11.6602 8.26481 12.3133 8.26481 13.1182V15.5483H11.1809C11.9859 15.5483 12.6389 14.8952 12.6389 14.0902V1.45389C12.6389 0.64893 11.9859 -0.00415039 11.1809 -0.00415039H2.43265ZM2.91866 7.28605C2.91866 7.01875 3.13737 6.80004 3.40468 6.80004H4.3767C4.64401 6.80004 4.86272 7.01875 4.86272 7.28605V8.25808C4.86272 8.52539 4.64401 8.74409 4.3767 8.74409H3.40468C3.13737 8.74409 2.91866 8.52539 2.91866 8.25808V7.28605ZM6.32076 6.80004H7.29279C7.56009 6.80004 7.7788 7.01875 7.7788 7.28605V8.25808C7.7788 8.52539 7.56009 8.74409 7.29279 8.74409H6.32076C6.05345 8.74409 5.83474 8.52539 5.83474 8.25808V7.28605C5.83474 7.01875 6.05345 6.80004 6.32076 6.80004ZM8.75083 7.28605C8.75083 7.01875 8.96953 6.80004 9.23684 6.80004H10.2089C10.4762 6.80004 10.6949 7.01875 10.6949 7.28605V8.25808C10.6949 8.52539 10.4762 8.74409 10.2089 8.74409H9.23684C8.96953 8.74409 8.75083 8.52539 8.75083 8.25808V7.28605ZM3.40468 2.91193H4.3767C4.64401 2.91193 4.86272 3.13064 4.86272 3.39794V4.36997C4.86272 4.63728 4.64401 4.85599 4.3767 4.85599H3.40468C3.13737 4.85599 2.91866 4.63728 2.91866 4.36997V3.39794C2.91866 3.13064 3.13737 2.91193 3.40468 2.91193ZM5.83474 3.39794C5.83474 3.13064 6.05345 2.91193 6.32076 2.91193H7.29279C7.56009 2.91193 7.7788 3.13064 7.7788 3.39794V4.36997C7.7788 4.63728 7.56009 4.85599 7.29279 4.85599H6.32076C6.05345 4.85599 5.83474 4.63728 5.83474 4.36997V3.39794C5.83474 3.13064 6.05345 2.91193 6.32076 2.91193ZM9.23684 2.91193H10.2089C10.4762 2.91193 10.6949 3.13064 10.6949 3.39794V4.36997C10.6949 4.63728 10.4762 4.85599 10.2089 4.85599H9.23684C8.96953 4.85599 8.75083 4.63728 8.75083 4.36997V3.39794C8.75083 3.13064 8.96953 2.91193 9.23684 2.91193Z" fill="#32CD32"/>
                   </svg>
                   Marketing Agency
                 </span>
-                <span className="flex items-center text-[#000000] font-normal text-[15px]">
+                <span className="flex items-center text-[#000000] font-normal text-[13px] sm:text-[15px]">
                 <svg className="mr-2" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4.9096 -0.00415039C5.55328 -0.00415039 6.17059 0.25155 6.62574 0.706699C7.08089 1.16185 7.33659 1.77916 7.33659 2.42284C7.33659 3.06652 7.08089 3.68383 6.62574 4.13898C6.17059 4.59413 5.55328 4.84983 4.9096 4.84983C4.26592 4.84983 3.64861 4.59413 3.19346 4.13898C2.73831 3.68383 2.48261 3.06652 2.48261 2.42284C2.48261 1.77916 2.73831 1.16185 3.19346 0.706699C3.64861 0.25155 4.26592 -0.00415039 4.9096 -0.00415039ZM16.0738 -0.00415039C16.7174 -0.00415039 17.3348 0.25155 17.7899 0.706699C18.2451 1.16185 18.5008 1.77916 18.5008 2.42284C18.5008 3.06652 18.2451 3.68383 17.7899 4.13898C17.3348 4.59413 16.7174 4.84983 16.0738 4.84983C15.4301 4.84983 14.8128 4.59413 14.3576 4.13898C13.9025 3.68383 13.6468 3.06652 13.6468 2.42284C13.6468 1.77916 13.9025 1.16185 14.3576 0.706699C14.8128 0.25155 15.4301 -0.00415039 16.0738 -0.00415039ZM0.541016 9.05763C0.541016 7.27076 1.99114 5.82063 3.77802 5.82063H5.07342C5.55579 5.82063 6.01388 5.92681 6.42647 6.1149C6.38703 6.33333 6.36883 6.56086 6.36883 6.79143C6.36883 7.95031 6.8785 8.99089 7.68244 9.70382C7.67637 9.70382 7.6703 9.70382 7.6612 9.70382H1.1872C0.832255 9.70382 0.541016 9.41258 0.541016 9.05763ZM12.8368 9.70382C12.8307 9.70382 12.8246 9.70382 12.8155 9.70382C13.6225 8.99089 14.1291 7.95031 14.1291 6.79143C14.1291 6.56086 14.1079 6.33637 14.0715 6.1149C14.4841 5.92378 14.9422 5.82063 15.4245 5.82063H16.7199C18.5068 5.82063 19.957 7.27076 19.957 9.05763C19.957 9.41561 19.6657 9.70382 19.3108 9.70382H12.8368ZM7.33659 6.79143C7.33659 6.01901 7.64343 5.27823 8.18961 4.73206C8.73579 4.18588 9.47657 3.87904 10.249 3.87904C11.0214 3.87904 11.7622 4.18588 12.3084 4.73206C12.8545 5.27823 13.1614 6.01901 13.1614 6.79143C13.1614 7.56384 12.8545 8.30462 12.3084 8.8508C11.7622 9.39698 11.0214 9.70382 10.249 9.70382C9.47657 9.70382 8.73579 9.39698 8.18961 8.8508C7.64343 8.30462 7.33659 7.56384 7.33659 6.79143ZM4.4242 14.7186C4.4242 12.4858 6.23534 10.6746 8.46818 10.6746H12.0298C14.2626 10.6746 16.0738 12.4858 16.0738 14.7186C16.0738 15.1645 15.7127 15.5286 15.2638 15.5286H5.23421C4.78825 15.5286 4.4242 15.1676 4.4242 14.7186Z" fill="#32CD32"/>
                   </svg>
 
                   11-50 employees
                 </span>
-                <span className="flex items-center text-[#000000] font-normal text-[15px]">
+                <span className="flex items-center text-[#000000] font-normal text-[13px] sm:text-[15px]">
                 <svg className="mr-2" width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M5.36812 13.5546L4.98659 14.4478C4.42036 14.1602 3.89955 13.8059 3.42719 13.3911L4.11454 12.7037C4.49303 13.0338 4.91392 13.3214 5.36812 13.5546ZM1.8587 8.23445H0.886719C0.92911 8.87638 1.05023 9.49711 1.24099 10.0845L2.14333 9.72421C1.99496 9.24882 1.89503 8.7492 1.8587 8.23445ZM1.8587 7.26549C1.90109 6.69624 2.01615 6.14514 2.1948 5.62736L1.30155 5.24584C1.07445 5.88171 0.932138 6.55998 0.886719 7.26549H1.8587ZM2.57633 4.73714C2.81251 4.28597 3.09714 3.86508 3.42719 3.48053L2.73984 2.79318C2.32501 3.26554 1.9677 3.78635 1.68308 4.35258L2.57633 4.73714ZM12.6504 12.7037C12.2295 13.0671 11.7602 13.379 11.2545 13.6242L11.6148 14.5266C12.2416 14.2268 12.82 13.8423 13.3377 13.3881L12.6504 12.7037ZM4.11151 2.79621C4.5324 2.43285 5.00173 2.12097 5.50741 1.8757L5.14708 0.973367C4.52029 1.27314 3.94194 1.65769 3.42719 2.11188L4.11151 2.79621ZM14.1856 10.7628C13.9494 11.214 13.6648 11.6349 13.3347 12.0194L14.0221 12.7068C14.4369 12.2344 14.7942 11.7106 15.0788 11.1474L14.1856 10.7628ZM14.9032 8.23445C14.8608 8.8037 14.7457 9.3548 14.5671 9.87258L15.4604 10.2541C15.6874 9.6152 15.8298 8.93693 15.8722 8.23142H14.9032V8.23445ZM10.3552 13.9876C9.8798 14.139 9.38018 14.2359 8.86543 14.2722V15.2442C9.50736 15.2018 10.1281 15.0807 10.7155 14.8899L10.3552 13.9876ZM7.89648 14.2722C7.32722 14.2298 6.77613 14.1148 6.25834 13.9361L5.87682 14.8294C6.51572 15.0565 7.19399 15.1988 7.8995 15.2412V14.2722H7.89648ZM14.6186 5.77573C14.77 6.25112 14.8669 6.75074 14.9032 7.26549H15.8752C15.8328 6.62356 15.7117 6.00283 15.5209 5.4154L14.6186 5.77573ZM3.42719 12.0194C3.06383 11.5985 2.75195 11.1292 2.50668 10.6235L1.60435 10.9838C1.90412 11.6106 2.28867 12.189 2.74287 12.7068L3.42719 12.0194ZM8.86543 1.22772C9.43469 1.27011 9.98275 1.38517 10.5036 1.56382L10.8851 0.67057C10.2492 0.443472 9.57094 0.301157 8.86543 0.255737V1.22772ZM6.40671 1.51235C6.8821 1.36095 7.38172 1.26405 7.89648 1.22772V0.255737C7.25455 0.298129 6.63381 0.419248 6.04638 0.61001L6.40671 1.51235ZM14.0221 2.79318L13.3347 3.48053C13.6981 3.90142 14.01 4.37075 14.2582 4.87642L15.1606 4.51609C14.8608 3.8893 14.4763 3.31096 14.0221 2.79318ZM12.6504 2.79621L13.3377 2.10886C12.8654 1.69402 12.3446 1.33672 11.7783 1.05209L11.3968 1.94535C11.845 2.18153 12.2689 2.46616 12.6504 2.79621Z" fill="#32CD32"/>
                   <path d="M8.38134 11.8661C8.84975 11.8661 9.22948 11.4863 9.22948 11.0179C9.22948 10.5495 8.84975 10.1698 8.38134 10.1698C7.91293 10.1698 7.5332 10.5495 7.5332 11.0179C7.5332 11.4863 7.91293 11.8661 8.38134 11.8661Z" fill="#32CD32"/>
                   <path d="M7.67223 4.06984L7.88419 9.15684C7.89327 9.35063 8.05375 9.50505 8.24754 9.50505H8.52006C8.71385 9.50505 8.87433 9.35063 8.88342 9.15684L9.09538 4.06984C9.10446 3.86394 8.93792 3.69135 8.73202 3.69135H8.03559C7.82968 3.69135 7.66315 3.86394 7.67223 4.06984Z" fill="#32CD32"/>
-                  </svg>
+                </svg>
 
-                  Scale goal
-                </span>
+                Scale goal
+              </span>
               </div>
             </div>
-            <button className="flex items-center text-[#32CD32] font-semibold text-[17px] hover:underline transition">
+            <button className="flex items-center text-[#32CD32] font-semibold text-[15px] sm:text-[17px] hover:underline transition mt-2 sm:mt-0">
             <svg className="mr-1" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.2457 1.00199C16.4878 0.244129 15.2628 0.244129 14.5049 1.00199L13.4633 2.04015L16.8512 5.42802L17.8928 4.38639C18.6507 3.62854 18.6507 2.40351 17.8928 1.64565L17.2457 1.00199ZM6.89175 8.61517C6.68066 8.82627 6.51801 9.08581 6.42458 9.37303L5.40026 12.446C5.2999 12.7436 5.3795 13.0723 5.60097 13.2973C5.82244 13.5222 6.1512 13.5983 6.45226 13.498L9.52522 12.4737C9.80899 12.3802 10.0685 12.2176 10.2831 12.0065L16.0726 6.21356L12.6812 2.82223L6.89175 8.61517ZM4.2479 2.4658C2.41381 2.4658 0.925781 3.95383 0.925781 5.78791V14.6469C0.925781 16.481 2.41381 17.969 4.2479 17.969H13.1069C14.941 17.969 16.429 16.481 16.429 14.6469V11.3248C16.429 10.7123 15.9341 10.2174 15.3216 10.2174C14.7091 10.2174 14.2143 10.7123 14.2143 11.3248V14.6469C14.2143 15.2594 13.7194 15.7543 13.1069 15.7543H4.2479C3.63538 15.7543 3.14053 15.2594 3.14053 14.6469V5.78791C3.14053 5.1754 3.63538 4.68054 4.2479 4.68054H7.57002C8.18253 4.68054 8.67739 4.18568 8.67739 3.57317C8.67739 2.96065 8.18253 2.4658 7.57002 2.4658H4.2479Z" fill="#32CD32"/>
             </svg>
@@ -108,75 +107,74 @@ export const RecommendedStackStep = ({ onBack }: { onBack: () => void }) => {
             </button>
           </div>
           {/* Section Title and Add More */}
-          <div className="w-full flex justify-between items-center mb-4">
-            <span className="text-[26px] font-bold text-[#111827]">Recommended Tools</span>
-            <div className="flex items-center gap-4">
-              <span className="text-[#6B7280] text-15px[]">8 tools selected</span>
-              <button className="h-10 px-5  bg-[#32cd321a] text-[#32CD32] font-semibold rounded-[10px] flex items-center text-[17px]"><svg className="mr-1" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className="w-full flex flex-col sm:flex-row justify-between items-center mb-3 sm:mb-4 gap-3 sm:gap-0">
+            <span className="text-[18px] sm:text-[22px] lg:text-[26px] font-bold text-[#111827]">Recommended Tools</span>
+            <div className="flex items-center gap-2 sm:gap-4">
+              <span className="text-[#6B7280] text-[13px] sm:text-[15px]">8 tools selected</span>
+              <button className="h-10 px-4 sm:px-5 bg-[#32cd321a] text-[#32CD32] font-semibold rounded-[10px] flex items-center text-[15px] sm:text-[17px]"><svg className="mr-1" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8.82287 1.29316C8.82287 0.680648 8.32802 0.185791 7.7155 0.185791C7.10299 0.185791 6.60813 0.680648 6.60813 1.29316V6.27634H1.62495C1.01244 6.27634 0.517578 6.7712 0.517578 7.38371C0.517578 7.99623 1.01244 8.49109 1.62495 8.49109H6.60813V13.4743C6.60813 14.0868 7.10299 14.5816 7.7155 14.5816C8.32802 14.5816 8.82287 14.0868 8.82287 13.4743V8.49109H13.8061C14.4186 8.49109 14.9134 7.99623 14.9134 7.38371C14.9134 6.7712 14.4186 6.27634 13.8061 6.27634H8.82287V1.29316Z" fill="#32CD32"/>
               </svg>
               Add More</button>
             </div>
           </div>
           {/* Recommended Tools Grid */}
-          <div className="grid grid-cols-3 gap-6 w-full mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 w-full mb-6 sm:mb-8">
             {tools.map((tool, idx) => (
-              <div key={tool.name} className="relative bg-white border border-[#E5E7EB] rounded-xl flex flex-col items-start p-5 min-h-[120px] transition-all hover:shadow-md hover:border-[#32cd32]" style={{ borderWidth: '3px' }}>
-                <div className="flex items-center mb-2">
-                  <span className="text-2xl mr-2">{tool.icon}</span>
+              <div key={tool.name} className="relative bg-white border border-[#E5E7EB] rounded-xl flex flex-col items-start p-3 sm:p-5 min-h-[100px] sm:min-h-[120px] transition-all hover:shadow-md hover:border-[#32cd32]" style={{ borderWidth: '3px' }}>
+                <div className="flex items-center mb-1 sm:mb-2">
+                  <span className="text-xl sm:text-2xl mr-2">{tool.icon}</span>
                   <div className="flex flex-col">
-                    <h3 className="font-bold text-[#111827] text-[17px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.name}</h3>
-                    <p className="font-normal text-[#6B7280] text-[15px] text-left">{tool.namesub}</p>
+                    <h3 className="font-bold text-[#111827] text-[15px] sm:text-[17px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.name}</h3>
+                    <p className="font-normal text-[#6B7280] text-[13px] sm:text-[15px] text-left">{tool.namesub}</p>
                   </div>
                 </div>
-                
-                <div className=" text-[#4B5563] text-[15px] mb-2 text-left" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.desc}</div>
-                <div className="flex justify-between items-center w-full mt-3">
-                {tool.badge && <span className="px-3 py-1 rounded-xl text-[13px] font-normal bg-[#DCFCE7] text-[#15803D]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Recommended</span>}
-                <span className="text-[15px] font-semibold text-[#111827]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.price === "Free" ? <span className="text-[#32cd32]">Free</span> : tool.price}</span>
+                <div className="text-[#4B5563] text-[13px] sm:text-[15px] mb-1 sm:mb-2 text-left" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.desc}</div>
+                <div className="flex justify-between items-center w-full mt-2 sm:mt-3">
+                {tool.badge && <span className="px-2 sm:px-3 py-1 rounded-xl text-[12px] sm:text-[13px] font-normal bg-[#DCFCE7] text-[#15803D]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Recommended</span>}
+                <span className="text-[13px] sm:text-[15px] font-semibold text-[#111827]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.price === "Free" ? <span className="text-[#32cd32]">Free</span> : tool.price}</span>
                 </div>
               </div>
             ))}
           </div>
           {/* Estimated Monthly Cost */}
-          <div className="w-full bg-[#F9FAFB] rounded-[20px] flex flex-col justify-between px-8 py-6 mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <div className="text-[22px] font-bold text-[#111827]">Estimated Monthly Cost</div>
-              <div className="flex flex-col items-end justify-center min-w-[120px]">
-                <span className="text-[#32CD32] text-[33px] font-bold leading-none">$127</span>
-                <span className="text-[#6B7280] text-[15px]">per month</span>
+          <div className="w-full bg-[#F9FAFB] rounded-[20px] flex flex-col justify-between px-4 sm:px-8 py-4 sm:py-6 mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 sm:mb-4 gap-2 sm:gap-0">
+              <div className="text-[17px] sm:text-[22px] font-bold text-[#111827]">Estimated Monthly Cost</div>
+              <div className="flex flex-col items-end justify-center min-w-[90px] sm:min-w-[120px]">
+                <span className="text-[#32CD32] text-[24px] sm:text-[33px] font-bold leading-none">$127</span>
+                <span className="text-[#6B7280] text-[13px] sm:text-[15px]">per month</span>
               </div>
             </div>
-            <div className="grid grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-8">
               <div className="text-center">
-                <div className="font-bold text-[15px] text-[#111827] ">3 Free Tools</div>
-                <div className="text-[#6B7280] text-[15px]">$0/mo</div>
+                <div className="font-bold text-[13px] sm:text-[15px] text-[#111827] ">3 Free Tools</div>
+                <div className="text-[#6B7280] text-[13px] sm:text-[15px]">$0/mo</div>
               </div>
               <div className="text-center">
-                <div className="font-bold text-[15px] text-[#111827] ">5 Paid Tools</div>
-                <div className="text-[#6B7280] text-[15px]">$127/mo</div>
+                <div className="font-bold text-[13px] sm:text-[15px] text-[#111827] ">5 Paid Tools</div>
+                <div className="text-[#6B7280] text-[13px] sm:text-[15px]">$127/mo</div>
               </div>
               <div className="text-center">
-                <div className="font-bold text-[15px] text-[#111827] ">Setup Time</div>
-                <div className="text-[#6B7280] text-[15px]">2-3 days</div>
+                <div className="font-bold text-[13px] sm:text-[15px] text-[#111827] ">Setup Time</div>
+                <div className="text-[#6B7280] text-[13px] sm:text-[15px]">2-3 days</div>
               </div>
               <div className="text-center">
-                <div className="font-bold text-[15px] text-[#111827] ">ROI Timeline</div>
-                <div className="text-[#6B7280] text-[15px]">3-6 months</div>
+                <div className="font-bold text-[13px] sm:text-[15px] text-[#111827] ">ROI Timeline</div>
+                <div className="text-[#6B7280] text-[13px] sm:text-[15px]">3-6 months</div>
               </div>
             </div>
           </div>
           {/* Buttons */}
-          <div className="flex w-full justify-between items-center  border-t border-[#F3F4F6] pt-6 border-t-[7px] mt-4">
-            <button onClick={onBack} className="text-[#4B5563] text-[17px] font-medium flex items-center hover:underline"><span className="mr-2">&#8592;</span>Back</button>
-            <div className="flex gap-4">
-              <button className="h-14 px-10 bg-white border border-[#D1D5DB] font-bold text-[17px] text-[#374151] flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none rounded-[16px]" style={{ borderWidth: '2px' }}>
+          <div className="flex w-full flex-col sm:flex-row justify-between items-center border-t border-[#F3F4F6] pt-4 sm:pt-6 border-t-[7px] mt-3 sm:mt-4 gap-3 sm:gap-0">
+            <button onClick={onBack} className="text-[#4B5563] text-[15px] sm:text-[17px] font-medium flex items-center hover:underline"><span className="mr-2">&#8592;</span>Back</button>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+              <button className="h-12 sm:h-14 px-6 sm:px-10 bg-white border border-[#D1D5DB] font-bold text-[15px] sm:text-[17px] text-[#374151] flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none rounded-[16px]" style={{ borderWidth: '2px' }}>
               <svg className="mr-2" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2.65497 1.27539C1.28216 1.27539 0.166016 2.39153 0.166016 3.76434V16.2091C0.166016 17.5819 1.28216 18.6981 2.65497 18.6981H15.0997C16.4725 18.6981 17.5887 17.5819 17.5887 16.2091V6.77053C17.5887 6.1094 17.3281 5.4755 16.8614 5.00882L13.8553 2.00263C13.3886 1.53595 12.7547 1.27539 12.0935 1.27539H2.65497ZM2.65497 5.00882C2.65497 4.32047 3.21109 3.76434 3.89944 3.76434H11.3663C12.0547 3.76434 12.6108 4.32047 12.6108 5.00882V7.49777C12.6108 8.18612 12.0547 8.74225 11.3663 8.74225H3.89944C3.21109 8.74225 2.65497 8.18612 2.65497 7.49777V5.00882ZM8.87735 11.2312C9.53746 11.2312 10.1705 11.4934 10.6373 11.9602C11.1041 12.427 11.3663 13.06 11.3663 13.7202C11.3663 14.3803 11.1041 15.0133 10.6373 15.4801C10.1705 15.9469 9.53746 16.2091 8.87735 16.2091C8.21724 16.2091 7.58416 15.9469 7.11739 15.4801C6.65062 15.0133 6.3884 14.3803 6.3884 13.7202C6.3884 13.06 6.65062 12.427 7.11739 11.9602C7.58416 11.4934 8.21724 11.2312 8.87735 11.2312Z" fill="#374151"/>
               </svg>
               Save Draft</button>
               <button
-                className="h-14 px-10 bg-gradient-to-r from-[#32cd32] to-[#4ade80] font-bold text-[17px] text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none rounded-[16px]"
+                className="h-12 sm:h-14 px-6 sm:px-10 bg-gradient-to-r from-[#32cd32] to-[#4ade80] font-bold text-[15px] sm:text-[17px] text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none rounded-[16px]"
                 onClick={() => navigate('/dashboard')}
               >
                 Create My Stack <span className="ml-2 flex items-center"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
@@ -186,12 +184,12 @@ export const RecommendedStackStep = ({ onBack }: { onBack: () => void }) => {
           
         </div>
         {/* Progress Dots */}
-        <div className="flex justify-center items-center mt-8 space-x-2">
-            <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
-            <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
-            <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
-            <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
-            <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
+        <div className="flex justify-center items-center mt-6 sm:mt-8 space-x-2">
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#32cd32] rounded-full inline-block"></span>
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#32cd32] rounded-full inline-block"></span>
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#32cd32] rounded-full inline-block"></span>
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#32cd32] rounded-full inline-block"></span>
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#32cd32] rounded-full inline-block"></span>
           </div>
       </div>
     </div>

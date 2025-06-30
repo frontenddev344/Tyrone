@@ -15,7 +15,6 @@ export const WelcomeStep = ({ onGetStarted }: WelcomeStepProps): JSX.Element => 
           <div className="flex items-center">
             <img src="/assets/logi-dark.png" alt="Transify Logo" className="w-[161px] mr-3" />
           </div>
-          
           {/* Step Text */}
           <div className="text-[#6B7280] text-[15px] font-normal">Step 1 of 5</div>
           {/* Progress Bar */}
@@ -27,7 +26,7 @@ export const WelcomeStep = ({ onGetStarted }: WelcomeStepProps): JSX.Element => 
         </div>
       </div>
       {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
+      <div className="flex-1 flex flex-col items-center justify-center text-center px-2 sm:px-4 lg:px-0">
         {/* Rocket Icon in Green Circle */}
         <div className="flex items-center justify-center mb-10">
           <div className="w-28 h-28 rounded-full bg-[#32cd32] flex items-center justify-center">
@@ -39,18 +38,18 @@ export const WelcomeStep = ({ onGetStarted }: WelcomeStepProps): JSX.Element => 
           </div>
         </div>
         {/* Heading */}
-        <h1 className="text-[53px] font-bold text-[#111827] mb-4" style={{ letterSpacing: '-0.03em', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Welcome to Transify</h1>
+        <h1 className="text-[28px] sm:text-[53px] font-bold text-[#111827] mb-4 sm:mb-4" style={{ letterSpacing: '-0.03em', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Welcome to Transify</h1>
         {/* Subtitle */}
-        <p className="text-[#4B5563] text-[22px] mb-10 max-w-[705px] mx-auto" style={{ fontWeight: 400, lineHeight: '36px' }}>
+        <p className="text-[#4B5563] text-[14px] sm:text-[22px] mb-6 sm:mb-10 max-w-[705px] mx-auto" style={{ fontWeight: 400, lineHeight: '1.5' }}>
           Let's build your perfect business toolkit in just a few minutes. We'll recommend the best tools based on your specific needs.
         </p>
         {/* Get Started Button */}
         <button
           onClick={onGetStarted}
-          className="h-[66px] px-14 bg-gradient-to-r from-[#32cd32] to-[#4ade80] hover:from-[#28b428] hover:to-[#22c55e] hover:shadow-lg font-bold text-[22px] text-white flex items-center justify-center mx-auto transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none"
+          className="h-12 sm:h-[58px] lg:h-[66px] px-8 sm:px-12 lg:px-14 bg-gradient-to-r from-[#32cd32] to-[#4ade80] hover:from-[#28b428] hover:to-[#22c55e] hover:shadow-lg font-bold text-[15px] sm:text-[22px] text-white flex items-center justify-center mx-auto transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none rounded-[14px] sm:rounded-[20px]"
           style={{ boxShadow: 'none', borderRadius: '20px' }}
         >
-          <span className="mr-4 flex items-center">
+          <span className="mr-2 sm:mr-4 flex items-center">
             <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </span>
           Get Started

@@ -60,16 +60,16 @@ export const ToolCategoryStep = ({ onBack, onContinue }: { onBack: () => void; o
     <div className="min-h-screen bg-white flex flex-col font-sans" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
       {/* Top Bar */}
       <div className="" style={{ boxShadow: '0 2px 8px 0 rgba(16,30,54,.03)' }}>
-        <div className="w-full max-w-[939px] mx-auto px-8 flex items-center justify-between px-0 py-6 bg-white flex-wrap" >
+        <div className="w-full max-w-[939px] mx-auto px-2 sm:px-4 lg:px-8 flex items-center justify-between px-0 py-4 sm:py-6 bg-white flex-wrap" >
           {/* Logo */}
           <div className="flex items-center">
-            <img src="/assets/logi-dark.png" alt="Transify Logo" className="w-[161px] mr-3" />
+            <img src="/assets/logi-dark.png" alt="Transify Logo" className="w-[120px] sm:w-[140px] lg:w-[161px] mr-2 sm:mr-3" />
           </div>
           
           {/* Step Text */}
-          <div className="text-[#6B7280] text-[15px] font-normal">Step 3 of 5</div>
+          <div className="text-[#6B7280] text-[13px] sm:text-[15px] font-normal">Step 3 of 5</div>
           {/* Progress Bar */}
-          <div className="  w-full mt-3">
+          <div className="  w-full mt-2 sm:mt-3">
             <div className="w-full  h-1 bg-gray-200 rounded-full overflow-hidden">
               <div className="h-1 bg-[#32cd32] rounded-full" style={{ width: '60%' }} />
             </div>
@@ -77,43 +77,43 @@ export const ToolCategoryStep = ({ onBack, onContinue }: { onBack: () => void; o
         </div>
       </div>
       {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
-        <div className="w-full max-w-[1133px] mx-auto bg-white rounded-2xl shadow-lg p-12 flex flex-col items-center border border-[#F3F4F6]  " style={{ borderWidth: '7px', borderRadius: '24px', boxShadow: '0 8px 40px 0 rgba(16,30,54,.10)' }}>
+      <div className="flex-1 flex flex-col items-center justify-center px-2 sm:px-4 py-6 sm:py-12">
+        <div className="w-full max-w-[1133px] mx-auto bg-white rounded-2xl shadow-lg p-4 sm:p-8 lg:p-12 flex flex-col items-center border border-[#F3F4F6]  " style={{ borderWidth: '7px', borderRadius: '24px', boxShadow: '0 8px 40px 0 rgba(16,30,54,.10)' }}>
           {/* Icon */}
-          <div className="w-12 h-12 bg-[#32cd32] rounded-full flex items-center justify-center mb-6">
-            <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="10" rx="2" fill="#fff"/><rect x="7" y="9" width="2" height="2" rx="1" fill="#32cd32"/><rect x="11" y="9" width="2" height="2" rx="1" fill="#32cd32"/><rect x="15" y="9" width="2" height="2" rx="1" fill="#32cd32"/></svg>
+          <div className="w-12 h-12 sm:w-12 sm:h-12 bg-[#32cd32] rounded-full flex items-center justify-center mb-4 sm:mb-6">
+            <svg width="32" height="32" className="w-8 h-8" fill="none" viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="10" rx="2" fill="#fff"/><rect x="7" y="9" width="2" height="2" rx="1" fill="#32cd32"/><rect x="11" y="9" width="2" height="2" rx="1" fill="#32cd32"/><rect x="15" y="9" width="2" height="2" rx="1" fill="#32cd32"/></svg>
           </div>
           {/* Heading */}
-          <h2 className="text-[32px] font-bold text-[#111827] mb-2 text-center">What tools do you need?</h2>
+          <h2 className="text-[32px] font-bold text-[#111827] mb-2 text-center sm:text-[28px] text-[22px] sm:mb-2 mb-1">What tools do you need?</h2>
           {/* Subtitle */}
-          <p className="text-[#4B5563] text-[18px] mb-8 text-center max-w-[600px] mx-auto" style={{ fontWeight: 400, lineHeight: '32px' }}>Select all the types of tools that would help your business. Don't worry - you can always add more later!</p>
+          <p className="text-[#4B5563] text-[15px] sm:text-[16px] lg:text-[18px] mb-4 sm:mb-8 text-center max-w-[600px] mx-auto" style={{ fontWeight: 400, lineHeight: '28px' }}>Select all the types of tools that would help your business. Don't worry - you can always add more later!</p>
           {/* Category Grid */}
-          <div className="grid grid-cols-3 gap-6 w-full mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 w-full mb-4 sm:mb-6">
             {categories.map((cat, idx) => (
-              <div key={cat.name} className={`relative bg-white border border-[#E5E7EB] rounded-[20px] flex flex-col items-start p-6 min-h-[120px] cursor-pointer transition-all duration-150 shadow-sm ${selected.includes(idx) ? 'border-[#32cd32] shadow-lg' : ''}`} style={{ borderWidth: '3px' }}
+              <div key={cat.name} className={`relative bg-white border border-[#E5E7EB] rounded-[20px] flex flex-col items-start p-4 sm:p-6 min-h-[100px] sm:min-h-[120px] cursor-pointer transition-all duration-150 shadow-sm ${selected.includes(idx) ? 'border-[#32cd32] shadow-lg' : ''}`} style={{ borderWidth: '3px' }}
                 onClick={() => toggleCategory(idx)}
               >
-                <div className=" mb-2">
+                <div className=" mb-1 sm:mb-2">
                   {cat.icon}
-                  <h2 className="font-bold text-[#111827] text-[17px] mt-3" style={{  fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{cat.name}</h2>
+                  <h2 className="font-bold text-[#111827] text-[15px] sm:text-[16px] lg:text-[17px] mt-2 sm:mt-3" style={{  fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{cat.name}</h2>
                 </div>
-                <div className="text-[15px] text-[#4B5563] mb-2 text-left" style={{ lineHeight: '22px', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{cat.desc}</div>
+                <div className="text-[13px] sm:text-[14px] lg:text-[15px] text-[#4B5563] mb-1 sm:mb-2 text-left" style={{ lineHeight: '20px', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{cat.desc}</div>
                 {/* Custom Checkbox */}
                 <div
-                  className={`absolute top-8 right-6 w-[26px] h-[26px] rounded border-[2px] flex items-center justify-center transition-all duration-150 ${selected.includes(idx) ? 'border-[#32cd32] bg-[#32cd32]/10' : 'border-[#D1D5DB] bg-white'}`}
+                  className={`absolute top-4 sm:top-8 right-4 sm:right-6 w-[22px] sm:w-[26px] h-[22px] sm:h-[26px] rounded border-[2px] flex items-center justify-center transition-all duration-150 ${selected.includes(idx) ? 'border-[#32cd32] bg-[#32cd32]/10' : 'border-[#D1D5DB] bg-white'}`}
                   style={{ boxSizing: 'border-box' }}
                 >
                   {selected.includes(idx) && (
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 10.5l4 4 6-8" stroke="#32cd32" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <svg width="14" height="14" className="sm:w-4 sm:h-4" viewBox="0 0 20 20" fill="none"><path d="M5 10.5l4 4 6-8" stroke="#32cd32" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   )}
                 </div>
               </div>
             ))}
           </div>
           {/* Selection text */}
-          <div className="flex items-center justify-center text-[17px] font-semibold  bg-[#F3F4F6] px-6 py-3 rounded-[50px] text-[#374151] mt-10 mb-12">
+          <div className="flex items-center justify-center text-[14px] sm:text-[15px] lg:text-[17px] font-semibold  bg-[#F3F4F6] px-4 sm:px-6 py-2 sm:py-3 rounded-[50px] text-[#374151] mt-6 sm:mt-10 mb-6 sm:mb-12">
             <span className="inline-block mr-2">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="16" height="16" className="sm:w-[18px] sm:h-[18px]" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.95078 18.0031C11.3003 18.0031 13.5536 17.0698 15.215 15.4084C16.8764 13.747 17.8098 11.4937 17.8098 9.14414C17.8098 6.79459 16.8764 4.54127 15.215 2.87989C13.5536 1.21851 11.3003 0.285156 8.95078 0.285156C6.60123 0.285156 4.34791 1.21851 2.68653 2.87989C1.02515 4.54127 0.0917969 6.79459 0.0917969 9.14414C0.0917969 11.4937 1.02515 13.747 2.68653 15.4084C4.34791 17.0698 6.60123 18.0031 8.95078 18.0031ZM12.8612 7.51768L8.4317 11.9472C8.10641 12.2725 7.5804 12.2725 7.25857 11.9472L5.04383 9.73243C4.71854 9.40714 4.71854 8.88114 5.04383 8.55931C5.36912 8.23748 5.89512 8.23401 6.21695 8.55931L7.8434 10.1858L11.6846 6.3411C12.0099 6.01581 12.5359 6.01581 12.8577 6.3411C13.1796 6.66639 13.183 7.19239 12.8577 7.51422L12.8612 7.51768Z" fill="#32CD32"/>
             </svg>
 
@@ -121,9 +121,9 @@ export const ToolCategoryStep = ({ onBack, onContinue }: { onBack: () => void; o
             {selected.length} categories selected
           </div>
           {/* Buttons */}
-          <div className="flex w-full justify-between items-center  border-t border-[#F3F4F6] pt-6 border-t-[7px]">
-            <button onClick={onBack} className="text-[#4B5563] text-[17px] font-medium flex items-center hover:underline"><span className="mr-2">&#8592;</span>Back</button>
-            <button onClick={onContinue} className="h-14 px-10 bg-gradient-to-r from-[#32cd32] to-[#4ade80] font-bold text-[17px] text-white flex items-center justify-center ml-auto transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none"
+          <div className="flex w-full flex-col sm:flex-row justify-between items-center  border-t border-[#F3F4F6] pt-4 sm:pt-6 border-t-[7px] gap-4 sm:gap-0">
+            <button onClick={onBack} className="text-[#4B5563] text-[15px] sm:text-[17px] font-medium flex items-center hover:underline"><span className="mr-2">&#8592;</span>Back</button>
+            <button onClick={onContinue} className="h-12 sm:h-14 px-6 sm:px-10 bg-gradient-to-r from-[#32cd32] to-[#4ade80] font-bold text-[15px] sm:text-[17px] text-white flex items-center justify-center ml-auto transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none"
           style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif', boxShadow: 'none', letterSpacing: '-0.01em', borderRadius: '16px' }}>
               Continue <span className="ml-2 flex items-center"><svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
             </button>
@@ -131,12 +131,12 @@ export const ToolCategoryStep = ({ onBack, onContinue }: { onBack: () => void; o
           
         </div>
         {/* Progress Dots */}
-        <div className="flex justify-center items-center mt-8 space-x-2">
-            <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
-            <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
-            <span className="w-3 h-3 bg-[#32cd32] rounded-full inline-block"></span>
-            <span className="w-3 h-3 bg-[#D1D5DB] rounded-full inline-block"></span>
-            <span className="w-3 h-3 bg-[#D1D5DB] rounded-full inline-block"></span>
+        <div className="flex justify-center items-center mt-6 sm:mt-8 space-x-2">
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#32cd32] rounded-full inline-block"></span>
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#32cd32] rounded-full inline-block"></span>
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#32cd32] rounded-full inline-block"></span>
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#D1D5DB] rounded-full inline-block"></span>
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#D1D5DB] rounded-full inline-block"></span>
         </div>
       </div>
     </div>
