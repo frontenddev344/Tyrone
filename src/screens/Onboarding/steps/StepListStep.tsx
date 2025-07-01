@@ -32,7 +32,7 @@ export const StepListStep = ({ onNext }: { onNext: () => void }) => {
         </div>
       </div>
       {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center text-center p-12">
+      <div className="flex-1 flex flex-col items-center justify-center text-center p-4 sm:p-12">
         {/* Heading */}
         <h1 className="text-[28px] sm:text-[53px] font-bold text-[#111827] mb-4" style={{ letterSpacing: '-0.03em', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Welcome to Transify</h1>
         {/* Subtitle */}
