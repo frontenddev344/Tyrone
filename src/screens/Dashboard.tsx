@@ -104,6 +104,7 @@ export const Dashboard = () => {
               </div>
             </div>
           </div>
+
           {/* Your Tool Stack */}
           <div className="flex  sm:flex-row items-center justify-between mb-2 sm:mb-4 mt-3 sm:mt-5">
             <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-center sm:text-left" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Your Tool Stack</div>
@@ -141,6 +142,7 @@ export const Dashboard = () => {
                 </svg>Open</span>
               </div>
             </div>
+
             {/* Tool Card 2 */}
             <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative">
               <div className="flex items-center mb-1 sm:mb-2">
@@ -170,6 +172,7 @@ export const Dashboard = () => {
                 Open</span>
               </div>
             </div>
+
             {/* Tool Card 3 */}
             <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative">
               <div className="flex items-center mb-1 sm:mb-2">
@@ -187,10 +190,12 @@ export const Dashboard = () => {
               </div>
             </div>
           </div>
+
           {/* Recommended Tools Section */}
           <div className="mt-8">
             <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-center sm:text-left  mb-2 sm:mb-4 mt-3 sm:mt-5" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Recommended Tools</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+              
               {/* Card 1 */}
               <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-center justify-between min-w-[280px]">
                 <div className="">
@@ -207,6 +212,7 @@ export const Dashboard = () => {
                 </div>
                 <span className="text-[#22C55E] text-2xl font-bold cursor-pointer">+</span>
               </div>
+
               {/* Card 2 */}
               <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-center justify-between min-w-[280px]">
                 <div className="">
@@ -224,6 +230,7 @@ export const Dashboard = () => {
                 </div>
                 <span className="text-[#22C55E] text-2xl font-bold cursor-pointer">+</span>
               </div>
+
               {/* Card 3 */}
               <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-center justify-between min-w-[280px]">
                 <div className="">
@@ -243,6 +250,7 @@ export const Dashboard = () => {
               </div>
             </div>
           </div>
+
           {/* Chart Area */}
           <div className="bg-white rounded-xl border border-[#F3F4F6] shadow-sm p-3 sm:p-4 lg:p-6 w-full max-w-[511px] overflow-x-auto" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} >
             <div className="font-bold text-[15px] sm:text-[17px] lg:text-[19px] text-[#1A2330]">Total yearly sales</div>
