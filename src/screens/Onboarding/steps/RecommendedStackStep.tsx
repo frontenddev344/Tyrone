@@ -131,38 +131,9 @@ export const RecommendedStackStep = ({ onBack }: { onBack: () => void }) => {
                 <div className="text-[#4B5563] text-[13px] sm:text-[15px] mb-1 sm:mb-2 text-left" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.desc}</div>
                 <div className="flex justify-between items-center w-full mt-2 sm:mt-3">
                 {tool.badge && <span className="px-2 sm:px-3 py-1 rounded-xl text-[12px] sm:text-[13px] font-normal bg-[#DCFCE7] text-[#15803D]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Recommended</span>}
-                <span className="text-[13px] sm:text-[15px] font-semibold text-[#111827]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.price === "Free" ? <span className="text-[#32cd32]">Free</span> : tool.price}</span>
                 </div>
               </div>
             ))}
-          </div>
-          {/* Estimated Monthly Cost */}
-          <div className="w-full bg-[#F9FAFB] rounded-[20px] flex flex-col justify-between px-4 sm:px-8 py-4 sm:py-6 mb-6 sm:mb-8">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 sm:mb-4 gap-2 sm:gap-0">
-              <div className="text-[17px] sm:text-[22px] font-bold text-[#111827]">Estimated Monthly Cost</div>
-              <div className="flex flex-col items-end justify-center min-w-[90px] sm:min-w-[120px]">
-                <span className="text-[#32CD32] text-[24px] sm:text-[33px] font-bold leading-none">$127</span>
-                <span className="text-[#6B7280] text-[13px] sm:text-[15px]">per month</span>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-8">
-              <div className="text-center">
-                <div className="font-bold text-[13px] sm:text-[15px] text-[#111827] ">3 Free Tools</div>
-                <div className="text-[#6B7280] text-[13px] sm:text-[15px]">$0/mo</div>
-              </div>
-              <div className="text-center">
-                <div className="font-bold text-[13px] sm:text-[15px] text-[#111827] ">5 Paid Tools</div>
-                <div className="text-[#6B7280] text-[13px] sm:text-[15px]">$127/mo</div>
-              </div>
-              <div className="text-center">
-                <div className="font-bold text-[13px] sm:text-[15px] text-[#111827] ">Setup Time</div>
-                <div className="text-[#6B7280] text-[13px] sm:text-[15px]">2-3 days</div>
-              </div>
-              <div className="text-center">
-                <div className="font-bold text-[13px] sm:text-[15px] text-[#111827] ">ROI Timeline</div>
-                <div className="text-[#6B7280] text-[13px] sm:text-[15px]">3-6 months</div>
-              </div>
-            </div>
           </div>
           {/* Buttons */}
           <div className="flex w-full flex-col sm:flex-row justify-between items-center border-t border-[#F3F4F6] pt-4 sm:pt-6 border-t-[7px] mt-3 sm:mt-4 gap-3 sm:gap-0">

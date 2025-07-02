@@ -1,6 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { Sidebar } from '../components/Sidebar';
-import { Topbar } from '../components/Topbar';
+import { Sidebar } from '../components/Sidebar/Sidebar';
+import { Topbar } from '../components/Topbar/Topbar';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
+import userOne from '../../assets/user-one.png';
+import userTwo from '../../assets/user-two.png';
+import userThree from '../../assets/user-three.png';
 
 export const Dashboard = () => {
   const [toolList, setToolList] = useState([
@@ -17,6 +21,8 @@ export const Dashboard = () => {
   ]);
   const hasTools = toolList.length > 0;
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  // Accordion state for revenue cards
+  const [openAccordion, setOpenAccordion] = useState<number | null>(0);
 
   return (
     <div className="min-h-screen bg-[#FFFFFF] flex">
@@ -192,71 +198,153 @@ export const Dashboard = () => {
           </div>
 
           {/* Recommended Tools Section */}
-          <div className="mt-8">
-            <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-center sm:text-left  mb-2 sm:mb-4 mt-3 sm:mt-5" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Recommended Tools</div>
+          <div className="mt-8 mb-6 sm:mb-8">
+            <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-left sm:text-left  mb-2 sm:mb-4 mt-3 sm:mt-5" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Recommended Tools</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
               
               {/* Card 1 */}
-              <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-center justify-between min-w-[280px]">
+              <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-start justify-between min-w-[280px]">
                 <div className="">
-                  <span className="w-12 h-12 flex items-center justify-center rounded-[10px] bg-[#FF6A00] bg-opacity-10 mr-4">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="28" height="28" rx="8" fill="#FF6A00"/>
-                      <path d="M8 18L12 14L16 18L20 14" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <span className=" flex items-center  mb-4">
+                    <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.332031" y="0.33313" width="53.3333" height="53.3333" rx="10.6667" fill="#F97316"/>
+                    <path d="M18.9987 18.9998C18.9987 18.2623 18.4029 17.6665 17.6654 17.6665C16.9279 17.6665 16.332 18.2623 16.332 18.9998V32.9998C16.332 34.8415 17.8237 36.3332 19.6654 36.3332H36.332C37.0695 36.3332 37.6654 35.7373 37.6654 34.9998C37.6654 34.2623 37.0695 33.6665 36.332 33.6665H19.6654C19.2987 33.6665 18.9987 33.3665 18.9987 32.9998V18.9998ZM35.9404 22.6082C36.4612 22.0873 36.4612 21.2415 35.9404 20.7207C35.4195 20.1998 34.5737 20.1998 34.0529 20.7207L29.6654 25.1123L27.2737 22.7207C26.7529 22.1998 25.907 22.1998 25.3862 22.7207L20.7195 27.3873C20.1987 27.9082 20.1987 28.754 20.7195 29.2748C21.2404 29.7957 22.0862 29.7957 22.607 29.2748L26.332 25.554L28.7237 27.9457C29.2445 28.4665 30.0904 28.4665 30.6112 27.9457L35.9445 22.6123L35.9404 22.6082Z" fill="white"/>
                     </svg>
                   </span>
                   <div>
-                    <div className="font-semibold text-[18px] text-[#111827]">HubSpot</div>
-                    <div className="text-[#6B7280] text-[15px]">CRM & Marketing</div>
+                    <div className="font-medium text-[17px] sm:text-[21px] text-[#1F2937] " style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>HubSpot</div>
+                    <div className="text-[#4B5563] text-[14px] sm:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>CRM & Marketing</div>
                   </div>
                 </div>
-                <span className="text-[#22C55E] text-2xl font-bold cursor-pointer">+</span>
+                <span className="text-[#22C55E] text-2xl font-bold cursor-pointer mt-5">
+                <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.332 3.66646C11.332 2.92896 10.7362 2.33313 9.9987 2.33313C9.2612 2.33313 8.66536 2.92896 8.66536 3.66646V9.66646H2.66536C1.92786 9.66646 1.33203 10.2623 1.33203 10.9998C1.33203 11.7373 1.92786 12.3331 2.66536 12.3331H8.66536V18.3331C8.66536 19.0706 9.2612 19.6665 9.9987 19.6665C10.7362 19.6665 11.332 19.0706 11.332 18.3331V12.3331H17.332C18.0695 12.3331 18.6654 11.7373 18.6654 10.9998C18.6654 10.2623 18.0695 9.66646 17.332 9.66646H11.332V3.66646Z" fill="#22C55E"/>
+                </svg>
+
+                </span>
               </div>
 
               {/* Card 2 */}
-              <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-center justify-between min-w-[280px]">
+              <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-start justify-between min-w-[280px]">
                 <div className="">
-                  <span className="w-12 h-12 flex items-center justify-center rounded-[10px] bg-[#A259FF] bg-opacity-10 mr-4">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="28" height="28" rx="8" fill="#A259FF"/>
-                      <circle cx="14" cy="14" r="6" fill="white"/>
-                      <circle cx="14" cy="14" r="3" fill="#A259FF"/>
-                    </svg>
+                  <span className=" flex items-center  mb-4">
+                  <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.332031" y="0.33313" width="53.3333" height="53.3333" rx="10.6667" fill="#A855F7"/>
+                  <path d="M37.6654 26.9998C37.6654 27.0373 37.6654 27.0748 37.6654 27.1123C37.6487 28.6331 36.2654 29.6665 34.7445 29.6665H30.6654C29.5612 29.6665 28.6654 30.5623 28.6654 31.6665C28.6654 31.8081 28.682 31.9456 28.707 32.079C28.7945 32.504 28.9779 32.9123 29.157 33.3248C29.4112 33.8998 29.6612 34.4706 29.6612 35.0748C29.6612 36.3998 28.7612 37.604 27.4362 37.6581C27.2904 37.6623 27.1445 37.6665 26.9945 37.6665C21.107 37.6665 16.332 32.8915 16.332 26.9998C16.332 21.1081 21.107 16.3331 26.9987 16.3331C32.8904 16.3331 37.6654 21.1081 37.6654 26.9998ZM21.6654 28.3331C21.6654 27.9795 21.5249 27.6404 21.2748 27.3903C21.0248 27.1403 20.6857 26.9998 20.332 26.9998C19.9784 26.9998 19.6393 27.1403 19.3892 27.3903C19.1392 27.6404 18.9987 27.9795 18.9987 28.3331C18.9987 28.6868 19.1392 29.0259 19.3892 29.2759C19.6393 29.526 19.9784 29.6665 20.332 29.6665C20.6857 29.6665 21.0248 29.526 21.2748 29.2759C21.5249 29.0259 21.6654 28.6868 21.6654 28.3331ZM21.6654 24.3331C22.019 24.3331 22.3581 24.1927 22.6082 23.9426C22.8582 23.6926 22.9987 23.3534 22.9987 22.9998C22.9987 22.6462 22.8582 22.307 22.6082 22.057C22.3581 21.8069 22.019 21.6665 21.6654 21.6665C21.3117 21.6665 20.9726 21.8069 20.7226 22.057C20.4725 22.307 20.332 22.6462 20.332 22.9998C20.332 23.3534 20.4725 23.6926 20.7226 23.9426C20.9726 24.1927 21.3117 24.3331 21.6654 24.3331ZM28.332 20.3331C28.332 19.9795 28.1916 19.6404 27.9415 19.3903C27.6915 19.1403 27.3523 18.9998 26.9987 18.9998C26.6451 18.9998 26.3059 19.1403 26.0559 19.3903C25.8058 19.6404 25.6654 19.9795 25.6654 20.3331C25.6654 20.6868 25.8058 21.0259 26.0559 21.2759C26.3059 21.526 26.6451 21.6665 26.9987 21.6665C27.3523 21.6665 27.6915 21.526 27.9415 21.2759C28.1916 21.0259 28.332 20.6868 28.332 20.3331ZM32.332 24.3331C32.6857 24.3331 33.0248 24.1927 33.2748 23.9426C33.5249 23.6926 33.6654 23.3534 33.6654 22.9998C33.6654 22.6462 33.5249 22.307 33.2748 22.057C33.0248 21.8069 32.6857 21.6665 32.332 21.6665C31.9784 21.6665 31.6393 21.8069 31.3892 22.057C31.1392 22.307 30.9987 22.6462 30.9987 22.9998C30.9987 23.3534 31.1392 23.6926 31.3892 23.9426C31.6393 24.1927 31.9784 24.3331 32.332 24.3331Z" fill="white"/>
+                  </svg>
+
                   </span>
                   <div>
-                    <div className="font-semibold text-[18px] text-[#111827]">Crello</div>
-                    <div className="text-[#6B7280] text-[15px]">Design Tool</div>
+                    <div className="font-medium text-[17px] sm:text-[21px] text-[#1F2937] " style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Crello</div>
+                    <div className="text-[#4B5563] text-[14px] sm:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Design Tool</div>
                   </div>
                 </div>
-                <span className="text-[#22C55E] text-2xl font-bold cursor-pointer">+</span>
+                <span className="text-[#22C55E] text-2xl font-bold cursor-pointer mt-5">
+                <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.332 3.66646C11.332 2.92896 10.7362 2.33313 9.9987 2.33313C9.2612 2.33313 8.66536 2.92896 8.66536 3.66646V9.66646H2.66536C1.92786 9.66646 1.33203 10.2623 1.33203 10.9998C1.33203 11.7373 1.92786 12.3331 2.66536 12.3331H8.66536V18.3331C8.66536 19.0706 9.2612 19.6665 9.9987 19.6665C10.7362 19.6665 11.332 19.0706 11.332 18.3331V12.3331H17.332C18.0695 12.3331 18.6654 11.7373 18.6654 10.9998C18.6654 10.2623 18.0695 9.66646 17.332 9.66646H11.332V3.66646Z" fill="#22C55E"/>
+                </svg>
+
+                </span>
               </div>
 
               {/* Card 3 */}
-              <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-center justify-between min-w-[280px]">
+              <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-start justify-between min-w-[280px]">
                 <div className="">
-                  <span className="w-12 h-12 flex items-center justify-center rounded-[10px] bg-[#2563EB] bg-opacity-10 mr-4">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="28" height="28" rx="8" fill="#2563EB"/>
-                      <rect x="8" y="10" width="12" height="8" rx="2" fill="white"/>
-                      <rect x="12" y="14" width="4" height="2" rx="1" fill="#2563EB"/>
-                    </svg>
+                  <span className=" flex items-center  mb-4">
+                  <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.332031" y="0.33313" width="53.3333" height="53.3333" rx="10.6667" fill="#3B82F6"/>
+                  <path d="M18.332 18.9998C17.2279 18.9998 16.332 19.8956 16.332 20.9998C16.332 21.6289 16.6279 22.2206 17.132 22.5998L26.1987 29.3998C26.6737 29.7539 27.3237 29.7539 27.7987 29.3998L36.8654 22.5998C37.3695 22.2206 37.6654 21.6289 37.6654 20.9998C37.6654 19.8956 36.7695 18.9998 35.6654 18.9998H18.332ZM16.332 23.6664V32.3331C16.332 33.8039 17.5279 34.9998 18.9987 34.9998H34.9987C36.4695 34.9998 37.6654 33.8039 37.6654 32.3331V23.6664L28.5987 30.4664C27.6487 31.1789 26.3487 31.1789 25.3987 30.4664L16.332 23.6664Z" fill="white"/>
+                  </svg>
+
                   </span>
                   <div>
-                    <div className="font-semibold text-[18px] text-[#111827]">Mailchimp</div>
-                    <div className="text-[#6B7280] text-[15px]">Email Marketing</div>
+                    <div className="font-medium text-[17px] sm:text-[21px text-[#1F2937] " style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Mailchimp</div>
+                    <div className="text-[#4B5563] text-[14px] sm:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Email Marketing</div>
                   </div>
                 </div>
-                <span className="text-[#22C55E] text-2xl font-bold cursor-pointer">+</span>
+                <span className="text-[#22C55E] text-2xl font-bold cursor-pointer mt-5">
+                <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.332 3.66646C11.332 2.92896 10.7362 2.33313 9.9987 2.33313C9.2612 2.33313 8.66536 2.92896 8.66536 3.66646V9.66646H2.66536C1.92786 9.66646 1.33203 10.2623 1.33203 10.9998C1.33203 11.7373 1.92786 12.3331 2.66536 12.3331H8.66536V18.3331C8.66536 19.0706 9.2612 19.6665 9.9987 19.6665C10.7362 19.6665 11.332 19.0706 11.332 18.3331V12.3331H17.332C18.0695 12.3331 18.6654 11.7373 18.6654 10.9998C18.6654 10.2623 18.0695 9.66646 17.332 9.66646H11.332V3.66646Z" fill="#22C55E"/>
+                </svg>
+
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* END Recommended Tools Section */}
+
+          {/* Popular Features Section */}
+          <div className="mt-8 mb-6 sm:mb-8">
+            <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-left sm:text-left mb-2 sm:mb-4 mt-3 sm:mt-5" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Popular Features</div>
+            <div className="flex flex-wrap gap-3">
+              <span className="bg-blue-100 text-blue-700 text-[16px] sm:text-[18px] font-medium px-4 py-1 rounded-full" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>CR</span>
+              <span className="bg-green-100 text-green-700 text-[16px] sm:text-[18px] font-medium px-4 py-1 rounded-full" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>IG</span>
+              <span className="bg-purple-100 text-purple-700 text-[16px] sm:text-[18px] font-medium px-4 py-1 rounded-full" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>AI</span>
+              <span className="bg-orange-100 text-orange-700 text-[16px] sm:text-[18px] font-medium px-4 py-1 rounded-full" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Analytics</span>
+              <span className="bg-pink-100 text-pink-700 text-[16px] sm:text-[18px] font-medium px-4 py-1 rounded-full" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Mobile</span>
+              <span className="bg-cyan-100 text-cyan-700 text-[16px] sm:text-[18px] font-medium px-4 py-1 rounded-full" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>API</span>
+            </div>
+          </div>
+
+          {/* Suggested Tools Section */}
+          <div className="mt-8 mb-6 sm:mb-8 ">
+            <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-left mb-6 mt-3 sm:mt-5" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+              Suggested Tools
+            </div>
+            <div className="flex flex-col sm:flex-row gap-6">
+              {/* Slack Card */}
+              <div className="flex items-center bg-white rounded-[10px] border border-[#E5E7EB] p-5 w-full sm:w-1/2 shadow-sm">
+                <span className=" flex items-center justify-center mr-2 sm:mr-4">
+                  {/* Slack icon */}
+                  <svg width="50" height="50" className=" sm:w-[65px] sm:h-[65px]" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.666016" y="0.666748" width="64" height="64" rx="10.6667" fill="#A855F7"/>
+                  <path d="M27.9992 36.6669C32.7867 36.6669 36.6658 33.3836 36.6658 29.3336C36.6658 25.2836 32.7867 22.0002 27.9992 22.0002C23.2117 22.0002 19.3325 25.2836 19.3325 29.3336C19.3325 30.9419 19.945 32.4294 20.9825 33.6419C20.8367 34.0336 20.62 34.3794 20.3908 34.6711C20.1908 34.9294 19.9867 35.1294 19.8367 35.2669C19.7617 35.3336 19.6992 35.3877 19.6575 35.4211C19.6367 35.4377 19.62 35.4502 19.6117 35.4544L19.6033 35.4627C19.3742 35.6336 19.2742 35.9336 19.3658 36.2044C19.4575 36.4752 19.7117 36.6669 19.9992 36.6669C20.9075 36.6669 21.8242 36.4336 22.5867 36.1461C22.97 36.0002 23.3283 35.8377 23.6408 35.6711C24.92 36.3044 26.4075 36.6669 27.9992 36.6669ZM37.9992 29.3336C37.9992 34.0127 33.87 37.5377 28.9783 37.9586C29.9908 41.0586 33.3492 43.3336 37.3325 43.3336C38.9242 43.3336 40.4117 42.9711 41.695 42.3377C42.0075 42.5044 42.3617 42.6669 42.745 42.8127C43.5075 43.1002 44.4242 43.3336 45.3325 43.3336C45.62 43.3336 45.8783 43.1461 45.9658 42.8711C46.0533 42.5961 45.9575 42.2961 45.7242 42.1252L45.7158 42.1169C45.7075 42.1086 45.6908 42.1002 45.67 42.0836C45.6283 42.0502 45.5658 42.0002 45.4908 41.9294C45.3408 41.7919 45.1367 41.5919 44.9367 41.3336C44.7075 41.0419 44.4908 40.6919 44.345 40.3044C45.3825 39.0961 45.995 37.6086 45.995 35.9961C45.995 32.1294 42.4575 28.9586 37.97 28.6836C37.9867 28.8961 37.995 29.1127 37.995 29.3294L37.9992 29.3336Z" fill="white"/>
+                  </svg>
+
+                </span>
+                <div>
+                  <div className="font-medium text-[18px] sm:text-[21px] text-[#1F2937]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Slack</div>
+                  <span className="bg-[#F3F4F6] text-[#4B5563] text-[14px] sm:text-[18px] font-normal px-2 py-0.5 rounded-[5px] mt-1 inline-block" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Communication</span>
+                </div>
+                <div className="ml-auto mr-0 sm:mr-5">
+                  {/* Checkmark */}
+                  <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.6082 4.39185C19.129 4.91268 19.129 5.75851 18.6082 6.27935L7.94154 16.946C7.4207 17.4668 6.57487 17.4668 6.05404 16.946L0.720703 11.6127C0.19987 11.0918 0.19987 10.246 0.720703 9.72518C1.24154 9.20435 2.08737 9.20435 2.6082 9.72518L6.99987 14.1127L16.7249 4.39185C17.2457 3.87101 18.0915 3.87101 18.6124 4.39185H18.6082Z" fill="#22C55E"/>
+                  </svg>
+
+                </div>
+              </div>
+              {/* Asana Card */}
+              <div className="flex items-center bg-white rounded-[10px] border border-[#E5E7EB] p-5 w-full sm:w-1/2 shadow-sm">
+                <span className=" flex items-center justify-center mr-2 sm:mr-4">
+                  {/* Asana icon */}
+                  <svg width="50" height="50" className=" sm:w-[65px] sm:h-[65px]" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.666016" y="0.666748" width="64" height="64" rx="10.6667" fill="#EF4444"/>
+                  <path d="M28.3357 23.5918C28.7482 23.9626 28.7815 24.5918 28.4107 25.0043L25.4107 28.3376C25.2273 28.5418 24.969 28.6626 24.694 28.6668C24.419 28.6709 24.1565 28.5668 23.9607 28.3751L22.2898 26.7084C21.9023 26.3168 21.9023 25.6834 22.2898 25.2918C22.6773 24.9001 23.3148 24.9001 23.7023 25.2918L24.6232 26.2126L26.919 23.6626C27.2898 23.2501 27.919 23.2168 28.3315 23.5876L28.3357 23.5918ZM28.3357 30.2584C28.7482 30.6293 28.7815 31.2584 28.4107 31.6709L25.4107 35.0043C25.2273 35.2084 24.969 35.3293 24.694 35.3334C24.419 35.3376 24.1565 35.2334 23.9607 35.0418L22.2898 33.3751C21.8982 32.9834 21.8982 32.3501 22.2898 31.9626C22.6815 31.5751 23.3148 31.5709 23.7023 31.9626L24.6232 32.8834L26.919 30.3334C27.2898 29.9209 27.919 29.8876 28.3315 30.2584H28.3357ZM31.3315 26.0001C31.3315 25.2626 31.9273 24.6668 32.6648 24.6668H41.9982C42.7357 24.6668 43.3315 25.2626 43.3315 26.0001C43.3315 26.7376 42.7357 27.3334 41.9982 27.3334H32.6648C31.9273 27.3334 31.3315 26.7376 31.3315 26.0001ZM31.3315 32.6668C31.3315 31.9293 31.9273 31.3334 32.6648 31.3334H41.9982C42.7357 31.3334 43.3315 31.9293 43.3315 32.6668C43.3315 33.4043 42.7357 34.0001 41.9982 34.0001H32.6648C31.9273 34.0001 31.3315 33.4043 31.3315 32.6668ZM28.6648 39.3334C28.6648 38.5959 29.2607 38.0001 29.9982 38.0001H41.9982C42.7357 38.0001 43.3315 38.5959 43.3315 39.3334C43.3315 40.0709 42.7357 40.6668 41.9982 40.6668H29.9982C29.2607 40.6668 28.6648 40.0709 28.6648 39.3334ZM23.9982 37.3334C24.5286 37.3334 25.0373 37.5442 25.4124 37.9192C25.7875 38.2943 25.9982 38.803 25.9982 39.3334C25.9982 39.8639 25.7875 40.3726 25.4124 40.7477C25.0373 41.1227 24.5286 41.3334 23.9982 41.3334C23.4677 41.3334 22.959 41.1227 22.584 40.7477C22.2089 40.3726 21.9982 39.8639 21.9982 39.3334C21.9982 38.803 22.2089 38.2943 22.584 37.9192C22.959 37.5442 23.4677 37.3334 23.9982 37.3334Z" fill="white"/>
+                  </svg>
+                </span>
+                <div>
+                  <div className="font-medium text-[18px] sm:text-[21px] text-[#1F2937]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Asana</div>
+                  <span className="bg-[#F3F4F6] text-[#4B5563] text-[14px] sm:text-[18px] font-normal px-2 py-0.5 rounded-[5px] mt-1 inline-block" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Project Management</span>
+                </div>
+                <div className="ml-auto mr-0 sm:mr-5">
+                  {/* Checkmark */}
+                  <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.6082 4.39185C19.129 4.91268 19.129 5.75851 18.6082 6.27935L7.94154 16.946C7.4207 17.4668 6.57487 17.4668 6.05404 16.946L0.720703 11.6127C0.19987 11.0918 0.19987 10.246 0.720703 9.72518C1.24154 9.20435 2.08737 9.20435 2.6082 9.72518L6.99987 14.1127L16.7249 4.39185C17.2457 3.87101 18.0915 3.87101 18.6124 4.39185H18.6082Z" fill="#22C55E"/>
+                  </svg>
+
+                </div>
               </div>
             </div>
           </div>
 
           {/* Chart Area */}
-          <div className="bg-white rounded-xl border border-[#F3F4F6] shadow-sm p-3 sm:p-4 lg:p-6 w-full max-w-[511px] overflow-x-auto" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} >
+         {/* <div className="bg-white rounded-xl border border-[#F3F4F6] shadow-sm p-3 sm:p-4 lg:p-6 w-full max-w-[511px] overflow-x-auto" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} >
             <div className="font-bold text-[15px] sm:text-[17px] lg:text-[19px] text-[#1A2330]">Total yearly sales</div>
             <div className="w-full overflow-x-auto">
               <svg className="w-full max-w-[471px] h-auto" viewBox="0 0 471 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Y axis labels and grid lines */}
+           
                 {[
                   {y: 35, label: 300},
                   {y: 65, label: 250},
@@ -271,9 +359,9 @@ export const Dashboard = () => {
                     <line x1="54" y1={y} x2="451" y2={y} stroke="#000" stroke-dasharray="3 2"/>
                   </g>
                 ))}
-                {/* Line chart */}
+              
                 <polyline points="54,215 120,185 180,145 240,135 300,125 360,165 410,85 451,35" fill="none" stroke="#58D758" stroke-width="2.5"/>
-                {/* Dots */}
+           
                 <circle cx="54" cy="215" r="4" fill="#58D758"/>
                 <circle cx="120" cy="185" r="4" fill="#58D758"/>
                 <circle cx="180" cy="145" r="4" fill="#58D758"/>
@@ -282,14 +370,98 @@ export const Dashboard = () => {
                 <circle cx="360" cy="165" r="4" fill="#58D758"/>
                 <circle cx="410" cy="85" r="4" fill="#58D758"/>
                 <circle cx="451" cy="35" r="4" fill="#58D758"/>
-                {/* X axis labels - evenly spaced, muted gray */}
+               
                 <text x="50" y="250" font-size="14" fill="#111827" text-anchor="middle">December 2024</text>
                 <text x="180" y="250" font-size="14" fill="#111827" text-anchor="middle">January 2025</text>
                 <text x="300" y="250" font-size="14" fill="#111827" text-anchor="middle">February 2025</text>
                 <text x="410" y="250" font-size="14" fill="#111827" text-anchor="middle">March 2025</text>
               </svg>
             </div>
+          </div>/*}
+
+          {/* Total Yearly Sales Section */}
+          {/* npm install recharts */}
+          <div className="bg-white rounded-xl  w-full  mt-8 mb-6 sm:mb-8 ">
+            <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Total Yearly Sales</div>
+            <ResponsiveContainer width="100%" height={320}>
+              <LineChart data={[
+                { month: 'Jan', sales: 29000 },
+                { month: 'Feb', sales: 32000 },
+                { month: 'Mar', sales: 35000 },
+                { month: 'Apr', sales: 38000 },
+                { month: 'May', sales: 42000 },
+                { month: 'Jun', sales: 45000 },
+                { month: 'Jul', sales: 48000 },
+                { month: 'Aug', sales: 52000 },
+                { month: 'Sep', sales: 55000 },
+                { month: 'Oct', sales: 58000 },
+                { month: 'Nov', sales: 62000 },
+                { month: 'Dec', sales: 65000 },
+              ]} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
+                <CartesianGrid stroke="#E5E7EB" vertical={false} />
+                <XAxis dataKey="month" tick={{ fontSize: 15, fill: '#111827' }} axisLine={false} tickLine={false} />
+                <YAxis domain={[20000, 70000]} ticks={[20000, 30000, 40000, 50000, 60000, 70000]} tickFormatter={(v: number) => `${v/1000}k`} tick={{ fontSize: 15, fill: '#6B7280' }} axisLine={false} tickLine={false} width={60} />
+                <Line type="monotone" dataKey="sales" stroke="#3B82F6" strokeWidth={3} dot={{ r: 4, fill: '#3B82F6' }} activeDot={false} />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
+
+          {/* Business Revenue Data Column & Team Member Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8  mb-10">
+            {/* Left Column: Business Revenue Data Column */}
+            <div>
+              <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Business Revenue Data Column</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Card 1 */}
+                <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-[12px] p-6 flex flex-col items-center shadow-sm" style={{borderWidth:"3px"}}>
+                  <div className="font-semibold text-[18px] text-[#000000] mb-4 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Revenue this month</div>
+                  <div className="bg-[#fff] rounded-[6px] px-8 py-2 text-[18px] text-[#4B5563] font-normal tracking-wide" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>₹1,24,000</div>
+                </div>
+                {/* Card 2 */}
+                <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-[12px] p-6 flex flex-col items-center shadow-sm" style={{borderWidth:"3px"}}>
+                  <div className="font-semibold text-[18px] text-[#000000] mb-4 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Total revenue</div>
+                  <div className="bg-[#fff] rounded-[6px] px-8 py-2 text-[18px] text-[#4B5563] font-normal tracking-wide" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>₹1,24,000</div>
+                </div>
+                {/* Card 3 */}
+                <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-[12px] p-6 flex flex-col items-center shadow-sm" style={{borderWidth:"3px"}}>
+                  <div className="font-semibold text-[18px] text-[#000000] mb-4 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Yearly Revenue</div>
+                  <div className="bg-[#fff] rounded-[6px] px-8 py-2 text-[18px] text-[#4B5563] font-normal tracking-wide" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>₹1,24,000</div>
+                </div>
+                {/* Card 4 */}
+                <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-[12px] p-6 flex flex-col items-center shadow-sm" style={{borderWidth:"3px"}}>
+                  <div className="font-semibold text-[18px] text-[#000000] mb-4 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Growth %</div>
+                  <div className="bg-[#fff] rounded-[6px] px-8 py-2 text-[18px] text-[#4B5563] font-normal tracking-wide" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>₹1,24,000</div>
+                </div>
+              </div>
+            </div>
+            {/* Right Column: Team Member */}
+            <div>
+              <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Team Member</div>
+              <div className="flex flex-col gap-4">
+                {/* Member 1 */}
+                <div className="bg-white rounded-[10px] border border-[#E5E7EB] px-6 py-4 flex items-center justify-between">
+                  <span className="text-[16px] text-[#4B5563] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Name 1</span>
+                  <span className="bg-[#F3E8FF] rounded-full w-[35px] h-[35px] flex items-center justify-center"><span className="text-[20px]"><img src={userOne} alt="user" /></span></span>
+                </div>
+                {/* Member 2 */}
+                <div className="bg-white rounded-[10px] border border-[#E5E7EB] px-6 py-4 flex items-center justify-between">
+                  <span className="text-[16px] text-[#4B5563] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Name 2</span>
+                  <span className="bg-[#F3E8FF] rounded-full w-[35px] h-[35px] flex items-center justify-center"><span className="text-[20px]"><img src={userTwo} alt="user" /></span></span>
+                </div>
+                {/* Member 3 */}
+                <div className="bg-white rounded-[10px] border border-[#E5E7EB] px-6 py-4 flex items-center justify-between">
+                  <span className="text-[16px] text-[#4B5563] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Name 3</span>
+                  <span className="bg-[#F3E8FF] rounded-full w-[35px] h-[35px] flex items-center justify-center"><span className="text-[20px]"><img src={userThree} alt="user" /></span></span>
+                </div>
+                {/* Member 4 */}
+                <div className="bg-white rounded-[10px] border border-[#E5E7EB] px-6 py-4 flex items-center justify-between">
+                  <span className="text-[16px] text-[#4B5563] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Name 4</span>
+                  <span className="bg-[#F3E8FF] rounded-full w-[35px] h-[35px] flex items-center justify-center"><span className="text-[20px]"><img src={userThree} alt="user" /></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </main>
     </div>

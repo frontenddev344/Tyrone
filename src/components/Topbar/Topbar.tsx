@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 interface TopbarProps {
   setSidebarOpen: (open: boolean) => void;
@@ -7,6 +7,23 @@ interface TopbarProps {
 export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
   const dropdownRef = useRef(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const filterRef = useRef<HTMLDivElement>(null);
+  const [searchValue, setSearchValue] = useState('');
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
+        setFilterOpen(false);
+      }
+    }
+    if (filterOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [filterOpen]);
 
   return (
     <div className="flex items-center justify-between mb-8 p-6" style={{ boxShadow: '0 2px 8px 0 rgba(16,30,54,.03)' }}>
@@ -25,22 +42,69 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8A94A6]">
             <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="#8A94A6" strokeWidth="2"/><path d="M21 21l-4.35-4.35" stroke="#8A94A6" strokeWidth="2" strokeLinecap="round"/></svg>
           </span>
-          <input style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif', borderWidth:"2px" }} className="w-full pl-11 pr-4 h-12 sm:h-[60px] py-2 rounded-[17px] border border-[#E5E7EB] bg-white text-[14px] sm:text-[21px] placeholder-[#8A94A6] focus:outline-none text-[#6B7280]" placeholder="Search tools (e.g., CRM, Email, Analytics...)" />
+          <input
+            style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif', borderWidth: "2px" }}
+            className="w-full pl-11 pr-4 h-12 sm:h-[60px] py-2 rounded-[20px] border border-[#E5E7EB] bg-white text-[14px] sm:text-[21px] placeholder-[#8A94A6] focus:outline-none text-[#6B7280]"
+            placeholder="Search tools (e.g., CRM, Email, Analytics...)"
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)}
+          />
+          {/* Dropdown results - placeholder data */}
+          {searchValue && (
+            <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl border border-gray-200 shadow-md z-40" style={{ minWidth: '100%' }}>
+              <div className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition">
+                <span className="w-[53px] h-[53px] flex items-center justify-center rounded-full bg-[#FFEDD5] mr-3">
+                <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.65515 0.986328C3.12819 0.986328 1.88672 2.2278 1.88672 3.75476V20.3653C1.88672 21.8923 3.12819 23.1338 4.65515 23.1338H17.1131C18.6401 23.1338 19.8815 21.8923 19.8815 20.3653V3.75476C19.8815 2.2278 18.6401 0.986328 17.1131 0.986328H4.65515ZM9.49991 13.4443H12.2683C14.1803 13.4443 15.7289 14.9929 15.7289 16.9048C15.7289 17.2855 15.4174 17.5969 15.0368 17.5969H6.73147C6.35082 17.5969 6.03937 17.2855 6.03937 16.9048C6.03937 14.9929 7.58796 13.4443 9.49991 13.4443ZM8.11569 9.29162C8.11569 8.55739 8.40736 7.85323 8.92655 7.33405C9.44573 6.81486 10.1499 6.52319 10.8841 6.52319C11.6184 6.52319 12.3225 6.81486 12.8417 7.33405C13.3609 7.85323 13.6526 8.55739 13.6526 9.29162C13.6526 10.0259 13.3609 10.73 12.8417 11.2492C12.3225 11.7684 11.6184 12.0601 10.8841 12.0601C10.1499 12.0601 9.44573 11.7684 8.92655 11.2492C8.40736 10.73 8.11569 10.0259 8.11569 9.29162ZM22.65 4.44687C22.65 4.06621 22.3385 3.75476 21.9578 3.75476C21.5772 3.75476 21.2657 4.06621 21.2657 4.44687V7.2153C21.2657 7.59596 21.5772 7.90741 21.9578 7.90741C22.3385 7.90741 22.65 7.59596 22.65 7.2153V4.44687ZM21.9578 9.29162C21.5772 9.29162 21.2657 9.60307 21.2657 9.98373V12.7522C21.2657 13.1328 21.5772 13.4443 21.9578 13.4443C22.3385 13.4443 22.65 13.1328 22.65 12.7522V9.98373C22.65 9.60307 22.3385 9.29162 21.9578 9.29162ZM22.65 15.5206C22.65 15.1399 22.3385 14.8285 21.9578 14.8285C21.5772 14.8285 21.2657 15.1399 21.2657 15.5206V18.289C21.2657 18.6697 21.5772 18.9811 21.9578 18.9811C22.3385 18.9811 22.65 18.6697 22.65 18.289V15.5206Z" fill="#EA580C"/>
+                </svg>
+
+                </span>
+                <span className="text-[#22223B] text-[16px] font-medium" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool 1</span>
+              </div>
+              <div className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition">
+                <span className="w-[53px] h-[53px] flex items-center justify-center rounded-full bg-[#FFEDD5] mr-3">
+                <svg width="23" height="17" viewBox="0 0 23 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.07632 0C0.93002 0 0 0.93002 0 2.07632C0 2.7295 0.307123 3.34375 0.83053 3.73738L10.2432 10.7969C10.7363 11.1646 11.4111 11.1646 11.9043 10.7969L21.3169 3.73738C21.8403 3.34375 22.1475 2.7295 22.1475 2.07632C22.1475 0.93002 21.2174 0 20.0711 0H2.07632ZM0 4.84476V13.8422C0 15.3691 1.24147 16.6106 2.76843 16.6106H19.379C20.906 16.6106 22.1475 15.3691 22.1475 13.8422V4.84476L12.7348 11.9043C11.7485 12.6439 10.3989 12.6439 9.41267 11.9043L0 4.84476Z" fill="#CA8A04"/>
+                </svg>
+
+                </span>
+                <span className="text-[#22223B] text-[16px] font-medium" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool 2</span>
+              </div>
+              <div className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition">
+                <span className="w-[53px] h-[53px] flex items-center justify-center rounded-full bg-[#FFEDD5] mr-3">
+                <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.38422 3.38477C5.14986 3.38477 5.76843 4.00334 5.76843 4.76898V19.3032C5.76843 19.6839 6.07988 19.9954 6.46054 19.9954H23.7632C24.5289 19.9954 25.1475 20.6139 25.1475 21.3796C25.1475 22.1452 24.5289 22.7638 23.7632 22.7638H6.46054C4.54859 22.7638 3 21.2152 3 19.3032V4.76898C3 4.00334 3.61857 3.38477 4.38422 3.38477ZM8.53686 7.53741C8.53686 6.77177 9.15543 6.1532 9.92108 6.1532H18.2264C18.992 6.1532 19.6106 6.77177 19.6106 7.53741C19.6106 8.30306 18.992 8.92163 18.2264 8.92163H9.92108C9.15543 8.92163 8.53686 8.30306 8.53686 7.53741ZM9.92108 10.3058H15.4579C16.2236 10.3058 16.8422 10.9244 16.8422 11.6901C16.8422 12.4557 16.2236 13.0743 15.4579 13.0743H9.92108C9.15543 13.0743 8.53686 12.4557 8.53686 11.6901C8.53686 10.9244 9.15543 10.3058 9.92108 10.3058ZM9.92108 14.4585H20.9948C21.7605 14.4585 22.379 15.0771 22.379 15.8427C22.379 16.6084 21.7605 17.2269 20.9948 17.2269H9.92108C9.15543 17.2269 8.53686 16.6084 8.53686 15.8427C8.53686 15.0771 9.15543 14.4585 9.92108 14.4585Z" fill="#2563EB"/>
+                </svg>
+
+                </span>
+                <span className="text-[#22223B] text-[16px] font-medium" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool 3</span>
+              </div>
+              <div className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition">
+                <span className="w-[53px] h-[53px] flex items-center justify-center rounded-full bg-[#FFEDD5] mr-3">
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.57956 3.65267C8.0078 4.03766 8.04241 4.69083 7.65742 5.11907L4.54294 8.57961C4.35261 8.79157 4.08442 8.91702 3.79892 8.92134C3.51343 8.92567 3.24091 8.81753 3.0376 8.61855L1.30301 6.88828C0.900719 6.48166 0.900719 5.82416 1.30301 5.41755C1.70529 5.01093 2.36712 5.01093 2.76941 5.41755L3.72538 6.37352L6.10883 3.72621C6.49382 3.29797 7.14699 3.26336 7.57523 3.64835L7.57956 3.65267ZM7.57956 10.5738C8.0078 10.9587 8.04241 11.6119 7.65742 12.0402L4.54294 15.5007C4.35261 15.7127 4.08442 15.8381 3.79892 15.8424C3.51343 15.8467 3.24091 15.7386 3.0376 15.5396L1.30301 13.8094C0.896394 13.4027 0.896394 12.7452 1.30301 12.343C1.70962 11.9407 2.36712 11.9363 2.76941 12.343L3.72538 13.2989L6.10883 10.6516C6.49382 10.2234 7.14699 10.1888 7.57523 10.5738H7.57956ZM10.6897 6.15291C10.6897 5.38727 11.3083 4.7687 12.0739 4.7687H21.7634C22.5291 4.7687 23.1477 5.38727 23.1477 6.15291C23.1477 6.91856 22.5291 7.53713 21.7634 7.53713H12.0739C11.3083 7.53713 10.6897 6.91856 10.6897 6.15291ZM10.6897 13.074C10.6897 12.3083 11.3083 11.6898 12.0739 11.6898H21.7634C22.5291 11.6898 23.1477 12.3083 23.1477 13.074C23.1477 13.8396 22.5291 14.4582 21.7634 14.4582H12.0739C11.3083 14.4582 10.6897 13.8396 10.6897 13.074ZM7.92129 19.9951C7.92129 19.2294 8.53986 18.6109 9.3055 18.6109H21.7634C22.5291 18.6109 23.1477 19.2294 23.1477 19.9951C23.1477 20.7607 22.5291 21.3793 21.7634 21.3793H9.3055C8.53986 21.3793 7.92129 20.7607 7.92129 19.9951ZM3.07653 17.9187C3.62721 17.9187 4.15533 18.1375 4.54472 18.5269C4.9341 18.9163 5.15286 19.4444 5.15286 19.9951C5.15286 20.5457 4.9341 21.0739 4.54472 21.4633C4.15533 21.8526 3.62721 22.0714 3.07653 22.0714C2.52586 22.0714 1.99774 21.8526 1.60835 21.4633C1.21896 21.0739 1.00021 20.5457 1.00021 19.9951C1.00021 19.4444 1.21896 18.9163 1.60835 18.5269C1.99774 18.1375 2.52586 17.9187 3.07653 17.9187Z" fill="#9333EA"/>
+                </svg>
+
+                </span>
+                <span className="text-[#22223B] text-[16px] font-medium" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool 4</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       
       {/* Icon Buttons */}
       <div className="flex items-center gap-2 sm:gap-4 ml-2 sm:ml-6">
-        <button className="w-10 h-10 sm:w-[60px] sm:h-[60px] rounded-full bg-[#32CD32] flex items-center justify-center text-white focus:outline-none">
+        <button className="rounded-full bg-[#22C55E] hover:bg-[#16a34a] border border-[#22C55E] w-[40px] h-[40px] sm:w-[60px] sm:h-[60px] flex items-center justify-center transition-colors duration-150 focus:outline-none">
           <svg width="20" height="20" className="sm:w-[26px] sm:h-[26px]" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.64366 3.61951C9.83277 3.3938 9.92585 3.10294 9.90292 2.80938C9.87998 2.51581 9.74286 2.24293 9.52098 2.04933C9.29911 1.85574 9.01018 1.75684 8.71621 1.77389C8.42224 1.79094 8.14667 1.92257 7.94866 2.14051L6.01066 4.36051C4.91173 5.61986 4.29052 7.22547 4.25566 8.89651L4.17016 12.975C4.164 13.2734 4.27661 13.562 4.48323 13.7773C4.68985 13.9927 4.97354 14.1171 5.27191 14.1233C5.57028 14.1294 5.85888 14.0168 6.07422 13.8102C6.28956 13.6036 6.414 13.3199 6.42016 13.0215L6.50416 8.94451C6.52823 7.8011 6.95352 6.70255 7.70566 5.84101L9.64366 3.61951Z" fill="white"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M9.35591 11.55C9.45665 9.9452 10.1652 8.43912 11.3373 7.33835C12.5094 6.23759 14.057 5.62489 15.6649 5.625H16.5004V4.5C16.5004 4.10217 16.6585 3.72064 16.9398 3.43934C17.2211 3.15804 17.6026 3 18.0004 3C18.3982 3 18.7798 3.15804 19.0611 3.43934C19.3424 3.72064 19.5004 4.10217 19.5004 4.5V5.625H20.3359C21.9439 5.62489 23.4914 6.23759 24.6635 7.33835C25.8356 8.43912 26.5442 9.9452 26.6449 11.55L26.9764 16.851C27.1046 18.8718 27.783 20.8191 28.9384 22.482C29.1775 22.8256 29.3235 23.2252 29.3624 23.642C29.4013 24.0587 29.3316 24.4785 29.1602 24.8603C28.9889 25.2422 28.7216 25.5732 28.3844 25.8212C28.0472 26.0692 27.6515 26.2257 27.2359 26.2755L22.1254 26.8875V28.5C22.1254 29.594 21.6908 30.6432 20.9172 31.4168C20.1436 32.1904 19.0944 32.625 18.0004 32.625C16.9064 32.625 15.8572 32.1904 15.0836 31.4168C14.31 30.6432 13.8754 29.594 13.8754 28.5V26.8875L8.76491 26.274C8.34956 26.2241 7.95417 26.0675 7.61718 25.8197C7.28019 25.5718 7.01304 25.2409 6.84169 24.8593C6.67034 24.4776 6.60062 24.0581 6.63929 23.6416C6.67797 23.225 6.82373 22.8256 7.06241 22.482C8.21778 20.8191 8.89626 18.8718 9.02441 16.851L9.35591 11.55ZM16.1254 28.5C16.1254 28.9973 16.323 29.4742 16.6746 29.8258C17.0262 30.1774 17.5031 30.375 18.0004 30.375C18.4977 30.375 18.9746 30.1774 19.3262 29.8258C19.6779 29.4742 19.8754 28.9973 19.8754 28.5V27.375H16.1254V28.5Z" fill="white"/>
             <path d="M26.4653 2.03249C26.2405 2.22865 26.1029 2.50603 26.0827 2.80363C26.0624 3.10123 26.1612 3.3947 26.3573 3.61949L28.2953 5.83949C29.0472 6.70164 29.472 7.80075 29.4953 8.94449L29.5808 13.02C29.5838 13.1677 29.6159 13.3134 29.6753 13.4487C29.7347 13.5841 29.8201 13.7064 29.9267 13.8087C30.0333 13.911 30.1591 13.9913 30.2967 14.045C30.4344 14.0987 30.5813 14.1248 30.729 14.1217C30.8767 14.1187 31.0224 14.0866 31.1578 14.0272C31.2931 13.9679 31.4154 13.8824 31.5177 13.7758C31.62 13.6692 31.7003 13.5434 31.754 13.4058C31.8077 13.2681 31.8338 13.1212 31.8308 12.9735L31.7453 8.89649C31.7104 7.22545 31.0892 5.61984 29.9903 4.36049L28.0523 2.14049C27.8561 1.91578 27.5787 1.77816 27.2811 1.75791C26.9835 1.73766 26.6901 1.83642 26.4653 2.03249Z" fill="white"/>
           </svg>
         </button>
-        <div className="relative" ref={dropdownRef} style={{zIndex: 50}}>
+        <div className="relative" ref={dropdownRef} style={{zIndex: 0}}>
           <button
-            className="w-10 h-10 sm:w-[60px] sm:h-[60px] rounded-full bg-[#32CD32] flex items-center justify-center text-white focus:outline-none"
+            className="rounded-full bg-[#22C55E] hover:bg-[#16a34a] border border-[#22C55E] w-[40px] h-[40px] sm:w-[60px] sm:h-[60px]  flex items-center justify-center transition-colors duration-150 focus:outline-none"
             onClick={() => setDropdownOpen((v) => !v)}
             aria-label="Open menu"
           >
@@ -79,7 +143,54 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
             </div>
           )}
         </div>
+        {/* Filter Button */}
+      <div className="relative" ref={filterRef}>
+        <button
+          className="rounded-full bg-[#22C55E] hover:bg-[#16a34a] border border-[#22C55E] w-[40px] h-[40px] sm:w-[60px] sm:h-[60px]  flex items-center justify-center transition-colors duration-150 focus:outline-none"
+          onClick={() => setFilterOpen((open) => !open)}
+        >
+          {/* Filter icon */}
+          <svg width="20" height="20" className="sm:w-[26px] sm:h-[26px]" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.5859 1.87566C10.4222 1.87505 9.28695 2.23539 8.3366 2.90701C7.38625 3.57864 6.66759 4.52849 6.27969 5.62566H0.335938V9.37566H6.27969C6.66707 10.4735 7.38545 11.4242 8.33581 12.0967C9.28618 12.7691 10.4217 13.1302 11.5859 13.1302C12.7501 13.1302 13.8857 12.7691 14.8361 12.0967C15.7864 11.4242 16.5048 10.4735 16.8922 9.37566H30.3359V5.62566H16.8922C16.5043 4.52849 15.7856 3.57864 14.8353 2.90701C13.8849 2.23539 12.7497 1.87505 11.5859 1.87566ZM9.71094 7.50066C9.71094 7.00337 9.90848 6.52646 10.2601 6.17483C10.6117 5.8232 11.0887 5.62566 11.5859 5.62566C12.0832 5.62566 12.5601 5.8232 12.9118 6.17483C13.2634 6.52646 13.4609 7.00337 13.4609 7.50066C13.4609 7.99794 13.2634 8.47485 12.9118 8.82648C12.5601 9.17811 12.0832 9.37566 11.5859 9.37566C11.0887 9.37566 10.6117 9.17811 10.2601 8.82648C9.90848 8.47485 9.71094 7.99794 9.71094 7.50066ZM19.0859 16.8757C17.9222 16.875 16.7869 17.2354 15.8366 17.907C14.8862 18.5786 14.1676 19.5285 13.7797 20.6257H0.335938V24.3757H13.7797C14.1671 25.4735 14.8854 26.4242 15.8358 27.0967C16.7862 27.7691 17.9217 28.1302 19.0859 28.1302C20.2502 28.1302 21.3857 27.7691 22.3361 27.0967C23.2864 26.4242 24.0048 25.4735 24.3922 24.3757H30.3359V20.6257H24.3922C24.0043 19.5285 23.2856 18.5786 22.3353 17.907C21.3849 17.2354 20.2497 16.875 19.0859 16.8757ZM17.2109 22.5007C17.2109 22.0034 17.4085 21.5265 17.7601 21.1748C18.1117 20.8232 18.5887 20.6257 19.0859 20.6257C19.5832 20.6257 20.0601 20.8232 20.4118 21.1748C20.7634 21.5265 20.9609 22.0034 20.9609 22.5007C20.9609 22.9979 20.7634 23.4748 20.4118 23.8265C20.0601 24.1781 19.5832 24.3757 19.0859 24.3757C18.5887 24.3757 18.1117 24.1781 17.7601 23.8265C17.4085 23.4748 17.2109 22.9979 17.2109 22.5007Z" fill="white"/>
+          </svg>
+
+        </button>
+        {filterOpen && (
+          <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-[#E5E7EB] z-50 p-5" style={{ minWidth: '220px' }}>
+            <div className="font-semibold text-[#22223B] text-[18px] mb-3">Filters</div>
+            <div className="mb-3">
+              <div className="font-medium text-[#22223B] text-[15px] mb-1">Category:</div>
+              <div className="flex flex-col gap-1 ml-2">
+                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
+                  <input type="checkbox" className="accent-[#22C55E]" /> CRM
+                </label>
+                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
+                  <input type="checkbox" className="accent-[#22C55E]" /> Analytics
+                </label>
+                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
+                  <input type="checkbox" className="accent-[#22C55E]" /> Email Marketing
+                </label>
+              </div>
+            </div>
+            <div>
+              <div className="font-medium text-[#22223B] text-[15px] mb-1">Features:</div>
+              <div className="flex flex-col gap-1 ml-2">
+                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
+                  <input type="checkbox" className="accent-[#22C55E]" /> Automation
+                </label>
+                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
+                  <input type="checkbox" className="accent-[#22C55E]" /> Reports
+                </label>
+                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
+                  <input type="checkbox" className="accent-[#22C55E]" /> Integration
+                </label>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
+      </div>
+      
     </div>
   );
 }; 
