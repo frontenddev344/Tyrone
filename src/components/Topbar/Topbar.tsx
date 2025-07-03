@@ -11,6 +11,28 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
   const filterRef = useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = useState('');
 
+  // Filter state for demo
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(["CRM"]);
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+
+  const categories = ["CRM", "Analytics", "Email Marketing"];
+  const features = ["Automation", "Reports", "Integration"];
+
+  const handleCategoryChange = (cat: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
+    );
+  };
+  const handleFeatureChange = (feat: string) => {
+    setSelectedFeatures((prev) =>
+      prev.includes(feat) ? prev.filter((f) => f !== feat) : [...prev, feat]
+    );
+  };
+  const clearFilters = () => {
+    setSelectedCategories([]);
+    setSelectedFeatures([]);
+  };
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
@@ -51,43 +73,45 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
           />
           {/* Dropdown results - placeholder data */}
           {searchValue && (
-            <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl border border-gray-200 shadow-md z-40" style={{ minWidth: '100%' }}>
-              <div className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition">
-                <span className="w-[53px] h-[53px] flex items-center justify-center rounded-full bg-[#FFEDD5] mr-3">
-                <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.65515 0.986328C3.12819 0.986328 1.88672 2.2278 1.88672 3.75476V20.3653C1.88672 21.8923 3.12819 23.1338 4.65515 23.1338H17.1131C18.6401 23.1338 19.8815 21.8923 19.8815 20.3653V3.75476C19.8815 2.2278 18.6401 0.986328 17.1131 0.986328H4.65515ZM9.49991 13.4443H12.2683C14.1803 13.4443 15.7289 14.9929 15.7289 16.9048C15.7289 17.2855 15.4174 17.5969 15.0368 17.5969H6.73147C6.35082 17.5969 6.03937 17.2855 6.03937 16.9048C6.03937 14.9929 7.58796 13.4443 9.49991 13.4443ZM8.11569 9.29162C8.11569 8.55739 8.40736 7.85323 8.92655 7.33405C9.44573 6.81486 10.1499 6.52319 10.8841 6.52319C11.6184 6.52319 12.3225 6.81486 12.8417 7.33405C13.3609 7.85323 13.6526 8.55739 13.6526 9.29162C13.6526 10.0259 13.3609 10.73 12.8417 11.2492C12.3225 11.7684 11.6184 12.0601 10.8841 12.0601C10.1499 12.0601 9.44573 11.7684 8.92655 11.2492C8.40736 10.73 8.11569 10.0259 8.11569 9.29162ZM22.65 4.44687C22.65 4.06621 22.3385 3.75476 21.9578 3.75476C21.5772 3.75476 21.2657 4.06621 21.2657 4.44687V7.2153C21.2657 7.59596 21.5772 7.90741 21.9578 7.90741C22.3385 7.90741 22.65 7.59596 22.65 7.2153V4.44687ZM21.9578 9.29162C21.5772 9.29162 21.2657 9.60307 21.2657 9.98373V12.7522C21.2657 13.1328 21.5772 13.4443 21.9578 13.4443C22.3385 13.4443 22.65 13.1328 22.65 12.7522V9.98373C22.65 9.60307 22.3385 9.29162 21.9578 9.29162ZM22.65 15.5206C22.65 15.1399 22.3385 14.8285 21.9578 14.8285C21.5772 14.8285 21.2657 15.1399 21.2657 15.5206V18.289C21.2657 18.6697 21.5772 18.9811 21.9578 18.9811C22.3385 18.9811 22.65 18.6697 22.65 18.289V15.5206Z" fill="#EA580C"/>
-                </svg>
-
-                </span>
-                <span className="text-[#22223B] text-[16px] font-medium" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool 1</span>
-              </div>
-              <div className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition">
-                <span className="w-[53px] h-[53px] flex items-center justify-center rounded-full bg-[#FFEDD5] mr-3">
-                <svg width="23" height="17" viewBox="0 0 23 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.07632 0C0.93002 0 0 0.93002 0 2.07632C0 2.7295 0.307123 3.34375 0.83053 3.73738L10.2432 10.7969C10.7363 11.1646 11.4111 11.1646 11.9043 10.7969L21.3169 3.73738C21.8403 3.34375 22.1475 2.7295 22.1475 2.07632C22.1475 0.93002 21.2174 0 20.0711 0H2.07632ZM0 4.84476V13.8422C0 15.3691 1.24147 16.6106 2.76843 16.6106H19.379C20.906 16.6106 22.1475 15.3691 22.1475 13.8422V4.84476L12.7348 11.9043C11.7485 12.6439 10.3989 12.6439 9.41267 11.9043L0 4.84476Z" fill="#CA8A04"/>
-                </svg>
-
-                </span>
-                <span className="text-[#22223B] text-[16px] font-medium" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool 2</span>
-              </div>
-              <div className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition">
-                <span className="w-[53px] h-[53px] flex items-center justify-center rounded-full bg-[#FFEDD5] mr-3">
-                <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.38422 3.38477C5.14986 3.38477 5.76843 4.00334 5.76843 4.76898V19.3032C5.76843 19.6839 6.07988 19.9954 6.46054 19.9954H23.7632C24.5289 19.9954 25.1475 20.6139 25.1475 21.3796C25.1475 22.1452 24.5289 22.7638 23.7632 22.7638H6.46054C4.54859 22.7638 3 21.2152 3 19.3032V4.76898C3 4.00334 3.61857 3.38477 4.38422 3.38477ZM8.53686 7.53741C8.53686 6.77177 9.15543 6.1532 9.92108 6.1532H18.2264C18.992 6.1532 19.6106 6.77177 19.6106 7.53741C19.6106 8.30306 18.992 8.92163 18.2264 8.92163H9.92108C9.15543 8.92163 8.53686 8.30306 8.53686 7.53741ZM9.92108 10.3058H15.4579C16.2236 10.3058 16.8422 10.9244 16.8422 11.6901C16.8422 12.4557 16.2236 13.0743 15.4579 13.0743H9.92108C9.15543 13.0743 8.53686 12.4557 8.53686 11.6901C8.53686 10.9244 9.15543 10.3058 9.92108 10.3058ZM9.92108 14.4585H20.9948C21.7605 14.4585 22.379 15.0771 22.379 15.8427C22.379 16.6084 21.7605 17.2269 20.9948 17.2269H9.92108C9.15543 17.2269 8.53686 16.6084 8.53686 15.8427C8.53686 15.0771 9.15543 14.4585 9.92108 14.4585Z" fill="#2563EB"/>
-                </svg>
-
-                </span>
-                <span className="text-[#22223B] text-[16px] font-medium" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool 3</span>
-              </div>
-              <div className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer transition">
-                <span className="w-[53px] h-[53px] flex items-center justify-center rounded-full bg-[#FFEDD5] mr-3">
-                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.57956 3.65267C8.0078 4.03766 8.04241 4.69083 7.65742 5.11907L4.54294 8.57961C4.35261 8.79157 4.08442 8.91702 3.79892 8.92134C3.51343 8.92567 3.24091 8.81753 3.0376 8.61855L1.30301 6.88828C0.900719 6.48166 0.900719 5.82416 1.30301 5.41755C1.70529 5.01093 2.36712 5.01093 2.76941 5.41755L3.72538 6.37352L6.10883 3.72621C6.49382 3.29797 7.14699 3.26336 7.57523 3.64835L7.57956 3.65267ZM7.57956 10.5738C8.0078 10.9587 8.04241 11.6119 7.65742 12.0402L4.54294 15.5007C4.35261 15.7127 4.08442 15.8381 3.79892 15.8424C3.51343 15.8467 3.24091 15.7386 3.0376 15.5396L1.30301 13.8094C0.896394 13.4027 0.896394 12.7452 1.30301 12.343C1.70962 11.9407 2.36712 11.9363 2.76941 12.343L3.72538 13.2989L6.10883 10.6516C6.49382 10.2234 7.14699 10.1888 7.57523 10.5738H7.57956ZM10.6897 6.15291C10.6897 5.38727 11.3083 4.7687 12.0739 4.7687H21.7634C22.5291 4.7687 23.1477 5.38727 23.1477 6.15291C23.1477 6.91856 22.5291 7.53713 21.7634 7.53713H12.0739C11.3083 7.53713 10.6897 6.91856 10.6897 6.15291ZM10.6897 13.074C10.6897 12.3083 11.3083 11.6898 12.0739 11.6898H21.7634C22.5291 11.6898 23.1477 12.3083 23.1477 13.074C23.1477 13.8396 22.5291 14.4582 21.7634 14.4582H12.0739C11.3083 14.4582 10.6897 13.8396 10.6897 13.074ZM7.92129 19.9951C7.92129 19.2294 8.53986 18.6109 9.3055 18.6109H21.7634C22.5291 18.6109 23.1477 19.2294 23.1477 19.9951C23.1477 20.7607 22.5291 21.3793 21.7634 21.3793H9.3055C8.53986 21.3793 7.92129 20.7607 7.92129 19.9951ZM3.07653 17.9187C3.62721 17.9187 4.15533 18.1375 4.54472 18.5269C4.9341 18.9163 5.15286 19.4444 5.15286 19.9951C5.15286 20.5457 4.9341 21.0739 4.54472 21.4633C4.15533 21.8526 3.62721 22.0714 3.07653 22.0714C2.52586 22.0714 1.99774 21.8526 1.60835 21.4633C1.21896 21.0739 1.00021 20.5457 1.00021 19.9951C1.00021 19.4444 1.21896 18.9163 1.60835 18.5269C1.99774 18.1375 2.52586 17.9187 3.07653 17.9187Z" fill="#9333EA"/>
-                </svg>
-
-                </span>
-                <span className="text-[#22223B] text-[16px] font-medium" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool 4</span>
-              </div>
+            <div className="absolute left-0 right-0 mt-2 bg-white rounded-[16px] shadow-md z-40 border border-[#E5E7EB] p-4 flex flex-col gap-4" style={{ minWidth: '100%', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif', borderWidth: "2px" }}>
+              {[1,2,3].map((tool, idx) => (
+                <div key={tool} className="flex items-start gap-4 bg-white rounded-[12px] p-4 hover:bg-gray-50 transition cursor-pointer border border-transparent">
+                  {/* Icon */}
+                  <span className={`w-[53px] h-[53px] flex items-center justify-center rounded-full mr-2 ${idx===0 ? 'bg-[#FFEDD5]' : idx===1 ? 'bg-[#FFEDD5]' : 'bg-[#FFEDD5]'}`}>
+                    {idx===0 && (
+                      <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.65515 0.986328C3.12819 0.986328 1.88672 2.2278 1.88672 3.75476V20.3653C1.88672 21.8923 3.12819 23.1338 4.65515 23.1338H17.1131C18.6401 23.1338 19.8815 21.8923 19.8815 20.3653V3.75476C19.8815 2.2278 18.6401 0.986328 17.1131 0.986328H4.65515ZM9.49991 13.4443H12.2683C14.1803 13.4443 15.7289 14.9929 15.7289 16.9048C15.7289 17.2855 15.4174 17.5969 15.0368 17.5969H6.73147C6.35082 17.5969 6.03937 17.2855 6.03937 16.9048C6.03937 14.9929 7.58796 13.4443 9.49991 13.4443ZM8.11569 9.29162C8.11569 8.55739 8.40736 7.85323 8.92655 7.33405C9.44573 6.81486 10.1499 6.52319 10.8841 6.52319C11.6184 6.52319 12.3225 6.81486 12.8417 7.33405C13.3609 7.85323 13.6526 8.55739 13.6526 9.29162C13.6526 10.0259 13.3609 10.73 12.8417 11.2492C12.3225 11.7684 11.6184 12.0601 10.8841 12.0601C10.1499 12.0601 9.44573 11.7684 8.92655 11.2492C8.40736 10.73 8.11569 10.0259 8.11569 9.29162ZM22.65 4.44687C22.65 4.06621 22.3385 3.75476 21.9578 3.75476C21.5772 3.75476 21.2657 4.06621 21.2657 4.44687V7.2153C21.2657 7.59596 21.5772 7.90741 21.9578 7.90741C22.3385 7.90741 22.65 7.59596 22.65 7.2153V4.44687ZM21.9578 9.29162C21.5772 9.29162 21.2657 9.60307 21.2657 9.98373V12.7522C21.2657 13.1328 21.5772 13.4443 21.9578 13.4443C22.3385 13.4443 22.65 13.1328 22.65 12.7522V9.98373C22.65 9.60307 22.3385 9.29162 21.9578 9.29162ZM22.65 15.5206C22.65 15.1399 22.3385 14.8285 21.9578 14.8285C21.5772 14.8285 21.2657 15.1399 21.2657 15.5206V18.289C21.2657 18.6697 21.5772 18.9811 21.9578 18.9811C22.3385 18.9811 22.65 18.6697 22.65 18.289V15.5206Z" fill="#EA580C"/>
+                      </svg>
+                      
+                   )}
+                    {idx===1 && (
+                      <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7.57761 3.65267C8.00585 4.03766 8.04045 4.69083 7.65547 5.11907L4.54098 8.57961C4.35065 8.79157 4.08246 8.91702 3.79697 8.92134C3.51147 8.92567 3.23896 8.81753 3.03565 8.61855L1.30105 6.88828C0.898766 6.48166 0.898766 5.82416 1.30105 5.41755C1.70334 5.01093 2.36517 5.01093 2.76746 5.41755L3.72343 6.37352L6.10688 3.72621C6.49186 3.29797 7.14504 3.26336 7.57328 3.64835L7.57761 3.65267ZM7.57761 10.5738C8.00585 10.9587 8.04045 11.6119 7.65547 12.0402L4.54098 15.5007C4.35065 15.7127 4.08246 15.8381 3.79697 15.8424C3.51147 15.8467 3.23896 15.7386 3.03565 15.5396L1.30105 13.8094C0.89444 13.4027 0.89444 12.7452 1.30105 12.343C1.70767 11.9407 2.36517 11.9363 2.76746 12.343L3.72343 13.2989L6.10688 10.6516C6.49186 10.2234 7.14504 10.1888 7.57328 10.5738H7.57761ZM10.6878 6.15291C10.6878 5.38727 11.3063 4.7687 12.072 4.7687H21.7615C22.5271 4.7687 23.1457 5.38727 23.1457 6.15291C23.1457 6.91856 22.5271 7.53713 21.7615 7.53713H12.072C11.3063 7.53713 10.6878 6.91856 10.6878 6.15291ZM10.6878 13.074C10.6878 12.3083 11.3063 11.6898 12.072 11.6898H21.7615C22.5271 11.6898 23.1457 12.3083 23.1457 13.074C23.1457 13.8396 22.5271 14.4582 21.7615 14.4582H12.072C11.3063 14.4582 10.6878 13.8396 10.6878 13.074ZM7.91934 19.9951C7.91934 19.2294 8.53791 18.6109 9.30355 18.6109H21.7615C22.5271 18.6109 23.1457 19.2294 23.1457 19.9951C23.1457 20.7607 22.5271 21.3793 21.7615 21.3793H9.30355C8.53791 21.3793 7.91934 20.7607 7.91934 19.9951ZM3.07458 17.9187C3.62526 17.9187 4.15338 18.1375 4.54276 18.5269C4.93215 18.9163 5.1509 19.4444 5.1509 19.9951C5.1509 20.5457 4.93215 21.0739 4.54276 21.4633C4.15338 21.8526 3.62526 22.0714 3.07458 22.0714C2.5239 22.0714 1.99578 21.8526 1.6064 21.4633C1.21701 21.0739 0.998257 20.5457 0.998257 19.9951C0.998257 19.4444 1.21701 18.9163 1.6064 18.5269C1.99578 18.1375 2.5239 17.9187 3.07458 17.9187Z" fill="#9333EA"/>
+                      </svg>
+                      
+                   )}
+                    {idx===2 && (
+                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.38422 1.38477C2.14986 1.38477 2.76843 2.00334 2.76843 2.76898V17.3032C2.76843 17.6839 3.07988 17.9954 3.46054 17.9954H20.7632C21.5289 17.9954 22.1475 18.6139 22.1475 19.3796C22.1475 20.1452 21.5289 20.7638 20.7632 20.7638H3.46054C1.54859 20.7638 0 19.2152 0 17.3032V2.76898C0 2.00334 0.618571 1.38477 1.38422 1.38477ZM5.53686 5.53741C5.53686 4.77177 6.15543 4.1532 6.92108 4.1532H15.2264C15.992 4.1532 16.6106 4.77177 16.6106 5.53741C16.6106 6.30306 15.992 6.92163 15.2264 6.92163H6.92108C6.15543 6.92163 5.53686 6.30306 5.53686 5.53741ZM6.92108 8.30584H12.4579C13.2236 8.30584 13.8422 8.92442 13.8422 9.69006C13.8422 10.4557 13.2236 11.0743 12.4579 11.0743H6.92108C6.15543 11.0743 5.53686 10.4557 5.53686 9.69006C5.53686 8.92442 6.15543 8.30584 6.92108 8.30584ZM6.92108 12.4585H17.9948C18.7605 12.4585 19.379 13.0771 19.379 13.8427C19.379 14.6084 18.7605 15.2269 17.9948 15.2269H6.92108C6.15543 15.2269 5.53686 14.6084 5.53686 13.8427C5.53686 13.0771 6.15543 12.4585 6.92108 12.4585Z" fill="#2563EB"/>
+                      </svg>
+                      
+                  )}
+                  </span>
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-[#374151] text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool {tool}</span>
+                      <span className="bg-[#EBFAEB] text-[#32CD32] rounded-full px-4 py-1 text-[13px] font-medium ml-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Popular</span>
+                    </div>
+                    <div className="text-[#787E8B] text-[14px] mt-1 mb-3" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</div>
+                    <div className="flex gap-3 mt-1">
+                      <span className="bg-[#EBFAEB] text-[#32CD32] rounded-full px-4 py-1 text-[15px] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} >CRM</span>
+                      <span className="bg-white text-[#4B5563] border border-[#B9B9B9] rounded-full px-4 py-1 text-[15px] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Email</span>
+                      <span className="bg-white text-[#4B5563] border border-[#B9B9B9] rounded-full px-4 py-1 text-[15px] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Analytics</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -156,34 +180,79 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
 
         </button>
         {filterOpen && (
-          <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-[#E5E7EB] z-50 p-5" style={{ minWidth: '220px' }}>
-            <div className="font-semibold text-[#22223B] text-[18px] mb-3">Filters</div>
-            <div className="mb-3">
-              <div className="font-medium text-[#22223B] text-[15px] mb-1">Category:</div>
-              <div className="flex flex-col gap-1 ml-2">
-                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
-                  <input type="checkbox" className="accent-[#22C55E]" /> CRM
-                </label>
-                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
-                  <input type="checkbox" className="accent-[#22C55E]" /> Analytics
-                </label>
-                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
-                  <input type="checkbox" className="accent-[#22C55E]" /> Email Marketing
-                </label>
-              </div>
+          <div className="absolute right-0 mt-2 w-72 bg-white rounded-[16px] border border-[#E5E7EB] z-50" style={{ minWidth: '260px', boxShadow: 'none', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+            {/* Header row */}
+            <div className="flex items-center justify-between px-4 pt-5 pb-3 border-b border-[#E5E7EB]">
+              <span className="font-semibold text-[#111827] text-[22px] " style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Filters</span>
+              <button onClick={clearFilters} className="text-[#EA580C] font-semibold text-[16px] hover:underline focus:outline-none" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Clear Filters</button>
             </div>
-            <div>
-              <div className="font-medium text-[#22223B] text-[15px] mb-1">Features:</div>
-              <div className="flex flex-col gap-1 ml-2">
-                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
-                  <input type="checkbox" className="accent-[#22C55E]" /> Automation
-                </label>
-                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
-                  <input type="checkbox" className="accent-[#22C55E]" /> Reports
-                </label>
-                <label className="flex items-center gap-2 text-[#22223B] text-[15px]">
-                  <input type="checkbox" className="accent-[#22C55E]" /> Integration
-                </label>
+            {/* Selected tags */}
+            {(selectedCategories.length > 0 || selectedFeatures.length > 0) && (
+              <div className="flex flex-wrap gap-2 px-4 pt-4 pb-3">
+                {selectedCategories.map((cat) => (
+                  <span key={cat} className="bg-[#EBFAEB] text-[#32CD32] rounded-[6px] px-3 py-1 text-[12px] font-semibold w-fit  text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+                    {cat}
+                  </span>
+                ))}
+                {selectedFeatures.map((feat) => (
+                  <span key={feat} className="bg-[#EBFAEB] text-[#32CD32] rounded-[6px] px-3 py-1 text-[12px] font-semibold w-fit  text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+                    {feat}
+                  </span>
+                ))}
+              </div>
+            )}
+            {/* Separator */}
+            <div className="border-b border-[#E5E7EB]"></div>
+            <div className="px-4 pt-4 pb-6">
+              {/* Category section */}
+              <div className="mb-5">
+                <div className="font-medium text-[#111827] text-[17px] mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Category:</div>
+                <div className="flex flex-col gap-3 ml-1">
+                  {categories.map((cat) => (
+                    <label key={cat} className="flex items-center gap-3 text-[#374151] text-[16px] cursor-pointer select-none" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+                      <input
+                        type="checkbox"
+                        checked={selectedCategories.includes(cat)}
+                        onChange={() => handleCategoryChange(cat)}
+                        className="sr-only peer"
+                      />
+                      <span className="w-[15px] h-[15px] rounded-[3px] flex items-center justify-center border border-[#767676] peer-checked:bg-[#22C55E] peer-checked:border-[#22C55E] bg-white transition-colors duration-150">
+                        {selectedCategories.includes(cat) && (
+                          <svg width="20" height="20" viewBox="0 0 20 20" className="w-4 h-4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="20" height="20" rx="4" fill="#22C55E"/>
+                            <path d="M5 10.5L9 14L15 7" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        )}
+                      </span>
+                      <span>{cat}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              {/* Features section */}
+              <div>
+                <div className="font-medium text-[#111827] text-[17px] mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Features:</div>
+                <div className="flex flex-col gap-3 ml-1">
+                  {features.map((feat) => (
+                    <label key={feat} className="flex items-center gap-3 text-[#374151] text-[16px] cursor-pointer select-none" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+                      <input
+                        type="checkbox"
+                        checked={selectedFeatures.includes(feat)}
+                        onChange={() => handleFeatureChange(feat)}
+                        className="sr-only peer"
+                      />
+                      <span className="w-[15px] h-[15px] rounded-[3px] flex items-center justify-center border border-[#767676] peer-checked:bg-[#22C55E] peer-checked:border-[#22C55E] bg-white transition-colors duration-150">
+                        {selectedFeatures.includes(feat) && (
+                          <svg width="20" height="20" viewBox="0 0 20 20" className="w-4 h-4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="20" height="20" rx="4" fill="#22C55E"/>
+                            <path d="M5 10.5L9 14L15 7" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        )}
+                      </span>
+                      <span>{feat}</span>
+                    </label>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

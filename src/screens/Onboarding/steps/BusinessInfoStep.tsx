@@ -35,6 +35,7 @@ export const BusinessInfoStep = ({ onBack, onContinue }: { onBack: () => void; o
           <h2 className="text-[24px] sm:text-[32px] lg:text-[39px] font-bold text-[#111827] mb-3 sm:mb-4 text-center" style={{ letterSpacing: '-0.03em', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tell us about your business</h2>
           {/* Subtitle */}
           <p className="text-[#4B5563] text-[15px] sm:text-[18px] lg:text-[22px] mb-6 sm:mb-8 lg:mb-10 mx-auto text-center max-w-[600px]" style={{ fontWeight: 400, lineHeight: '1.5' }}>Help us understand your company so we can recommend the perfect tools for your needs.</p>
+          
           {/* Form */}
           <form className="w-full flex flex-col gap-4 sm:gap-5">
             {/* Business Name */}
