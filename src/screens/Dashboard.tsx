@@ -6,6 +6,57 @@ import userOne from '../../assets/user-one.png';
 import userTwo from '../../assets/user-two.png';
 import userThree from '../../assets/user-three.png';
 
+// DonutChart component for circular progress (full background, partial foreground, screenshot style)
+const DonutChart = ({ value = 0, max = 100, label = '', color = '#06402B', bgColor = '#90EE90', size = 240, stroke = 24, valueLabel = '', valueColor = '#111827', fontSize = 24 }) => {
+  const radius = (size - stroke) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const progress = Math.min(value / max, 1);
+  const progressLength = circumference * progress;
+  // Arc starts at 12 o'clock (top)
+  const rotation = -90;
+  return (
+    <svg width={size} height={size} style={{ display: 'block' }}>
+      {/* Background arc: full circle */}
+      <circle
+        cx={size / 2}
+        cy={size / 2}
+        r={radius}
+        fill="none"
+        stroke={bgColor}
+        strokeWidth={stroke}
+        strokeDasharray={circumference}
+        strokeDashoffset={0}
+        strokeLinecap="round"
+      />
+      {/* Foreground arc: partial, overlays background */}
+      <circle
+        cx={size / 2}
+        cy={size / 2}
+        r={radius}
+        fill="none"
+        stroke={color}
+        strokeWidth={stroke}
+        strokeDasharray={`${progressLength} ${circumference - progressLength}`}
+        strokeDashoffset={0}
+        strokeLinecap="round"
+        transform={`rotate(${rotation} ${size / 2} ${size / 2})`}
+      />
+      <text
+        x="50%"
+        y="50%"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fontSize={fontSize}
+        fontWeight="bold"
+        fill={valueColor}
+        style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}
+      >
+        {valueLabel || value}
+      </text>
+    </svg>
+  );
+};
+
 export const Dashboard = () => {
   const [toolList, setToolList] = useState([
     { name: 'Tool 1', icon: <span className=" flex items-center justify-center"><svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,20 +130,15 @@ export const Dashboard = () => {
                 <div className="text-[#4B5563] text-[13px] sm:text-[16px] lg:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool Usage</div>
               </div>
               {/* Card 3 */}
-              <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative">
-                <div className="flex items-center mb-2 sm:mb-4">
-                  <span className="w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center mr-2 sm:mr-3">
-                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect y="-0.000671387" width="64" height="64" rx="16" fill="#FFEDD5"/>
-                      <path d="M26.8177 41.3163L26.1615 42.8528C25.1875 42.358 24.2917 41.7486 23.4792 41.0351L24.6615 39.8528C25.3125 40.4205 26.0365 40.9153 26.8177 41.3163ZM20.7812 32.1653H19.1094C19.1823 33.2695 19.3906 34.3372 19.7188 35.3476L21.2708 34.7278C21.0156 33.9101 20.8437 33.0507 20.7812 32.1653ZM20.7812 30.4986C20.8542 29.5195 21.0521 28.5716 21.3594 27.6809L19.8229 27.0247C19.4323 28.1184 19.1875 29.2851 19.1094 30.4986H20.7812ZM22.0156 26.1497C22.4219 25.3736 22.9115 24.6497 23.4792 23.9882L22.2969 22.8059C21.5833 23.6184 20.9687 24.5143 20.4792 25.4882L22.0156 26.1497ZM39.3438 39.8528C38.6198 40.4778 37.8125 41.0143 36.9427 41.4361L37.5625 42.9882C38.6406 42.4726 39.6354 41.8111 40.526 41.0299L39.3438 39.8528ZM24.6562 22.8111C25.3802 22.1861 26.1875 21.6497 27.0573 21.2278L26.4375 19.6757C25.3594 20.1913 24.3646 20.8528 23.4792 21.6341L24.6562 22.8111ZM41.9844 36.5143C41.5781 37.2903 41.0885 38.0143 40.5208 38.6757L41.7031 39.858C42.4167 39.0455 43.0312 38.1445 43.5208 37.1757L41.9844 36.5143ZM43.2188 32.1653C43.1458 33.1445 42.9479 34.0924 42.6406 34.983L44.1771 35.6393C44.5677 34.5403 44.8125 33.3736 44.8854 32.1601H43.2188V32.1653ZM35.3958 42.0611C34.5781 42.3216 33.7188 42.4882 32.8333 42.5507V44.2226C33.9375 44.1497 35.0052 43.9413 36.0156 43.6132L35.3958 42.0611ZM31.1667 42.5507C30.1875 42.4778 29.2396 42.2799 28.349 41.9726L27.6927 43.5091C28.7917 43.8997 29.9583 44.1445 31.1719 44.2174V42.5507H31.1667ZM42.7292 27.9361C42.9896 28.7538 43.1562 29.6132 43.2188 30.4986H44.8906C44.8177 29.3945 44.6094 28.3268 44.2812 27.3163L42.7292 27.9361ZM23.4792 38.6757C22.8542 37.9518 22.3177 37.1445 21.8958 36.2747L20.3438 36.8945C20.8594 37.9726 21.5208 38.9674 22.3021 39.858L23.4792 38.6757ZM32.8333 20.1132C33.8125 20.1861 34.7552 20.3841 35.651 20.6913L36.3073 19.1549C35.2135 18.7643 34.0469 18.5195 32.8333 18.4413V20.1132ZM28.6042 20.6028C29.4219 20.3424 30.2812 20.1757 31.1667 20.1132V18.4413C30.0625 18.5143 28.9948 18.7226 27.9844 19.0507L28.6042 20.6028ZM41.7031 22.8059L40.5208 23.9882C41.1458 24.7122 41.6823 25.5195 42.1094 26.3893L43.6615 25.7695C43.1458 24.6913 42.4844 23.6966 41.7031 22.8059ZM39.3438 22.8111L40.526 21.6288C39.7135 20.9153 38.8177 20.3007 37.8438 19.8111L37.1875 21.3476C37.9583 21.7538 38.6875 22.2434 39.3438 22.8111Z" fill="#EA580C"/>
-                  <path opacity="0.24975" d="M31.9993 38.4153C32.8048 38.4153 33.4577 37.7624 33.4577 36.957C33.4577 36.1516 32.8048 35.4987 31.9993 35.4987C31.1939 35.4987 30.541 36.1516 30.541 36.957C30.541 37.7624 31.1939 38.4153 31.9993 38.4153Z" fill="#EA580C"/>
-                  <path opacity="0.24975" d="M32.402 34.2486H31.5686C31.2249 34.2486 30.9436 33.9674 30.9436 33.6236C30.9436 29.9257 34.9749 30.2955 34.9749 28.0091C34.9749 26.9674 34.0478 25.9153 31.9853 25.9153C30.4697 25.9153 29.678 26.4153 28.902 27.4101C28.6988 27.6705 28.3238 27.7226 28.0582 27.5351L27.3759 27.0559C27.0843 26.8528 27.0166 26.4413 27.2405 26.1601C28.3447 24.7434 29.6572 23.832 31.9905 23.832C34.7145 23.832 37.0634 25.3841 37.0634 28.0091C37.0634 31.5299 33.0322 31.3163 33.0322 33.6236C33.027 33.9674 32.7457 34.2486 32.402 34.2486Z" fill="#EA580C"/>
-                </svg>
+              <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col shadow-sm w-full max-w-[100%] h-[370px]">
+                <div className="flex flex-row justify-between items-start w-full">
+                  <span className="font-bold text-[17px] text-[#23272E] text-left" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Growth %</span>
+                  <span className="flex flex-col items-end">
+                    <span className="text-[#06402B] text-[15px] font-semibold">+16%</span>
+                    <span className="text-[#EF4444] text-[15px] font-semibold">+16%</span>
                   </span>
-                  <span className="absolute right-3 sm:right-6 top-3 sm:top-8 text-[13px] sm:text-[18px] font-semibold text-[#2563EB]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} >2 of 3</span>
                 </div>
-                <div className="font-bold text-[20px] sm:text-[26px] lg:text-[32px] text-[#111827]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Scale</div>
-                <div className="text-[#4B5563] text-[13px] sm:text-[16px] lg:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Current Goal</div>
+                <DonutChart value={20} max={100} valueLabel="20%" color="#06402B" bgColor="#90EE90" stroke={28} valueColor="#23272E" fontSize={24} size={240} />
               </div>
               {/* Card 4 */}
               <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative">
@@ -103,10 +149,10 @@ export const Dashboard = () => {
                       <path d="M31.9994 17.998C32.9213 17.998 33.6661 18.7428 33.6661 19.6647V21.524C33.7494 21.5344 33.8275 21.5449 33.9109 21.5605C33.9317 21.5657 33.9473 21.5657 33.9682 21.5709L36.4682 22.0292C37.3744 22.1959 37.9734 23.0657 37.8067 23.9667C37.64 24.8678 36.7703 25.4719 35.8692 25.3053L33.3953 24.8522C31.765 24.6126 30.3275 24.774 29.3171 25.1751C28.3067 25.5761 27.9005 26.1282 27.8067 26.6386C27.7025 27.1959 27.7807 27.5084 27.8692 27.7011C27.963 27.9042 28.1557 28.1334 28.5359 28.3886C29.3848 28.9459 30.6869 29.3105 32.3744 29.7584L32.5255 29.8001C34.015 30.1959 35.838 30.6751 37.1921 31.5605C37.9317 32.0449 38.6296 32.7011 39.0619 33.6178C39.5046 34.5501 39.5984 35.5917 39.3953 36.7011C39.0359 38.6803 37.6713 40.0032 35.9786 40.6959C35.265 40.9876 34.489 41.1751 33.6661 41.2688V42.998C33.6661 43.9199 32.9213 44.6647 31.9994 44.6647C31.0775 44.6647 30.3328 43.9199 30.3328 42.998V41.1803C30.3119 41.1751 30.2859 41.1751 30.265 41.1699H30.2546C28.9838 40.9719 26.8953 40.4251 25.489 39.8001C24.6505 39.4251 24.2703 38.4407 24.6453 37.6022C25.0203 36.7636 26.0046 36.3834 26.8432 36.7584C27.9317 37.2428 29.7234 37.7219 30.7598 37.8834C32.4213 38.1282 33.7911 37.9876 34.7182 37.6074C35.5984 37.248 35.9994 36.7272 36.114 36.1022C36.213 35.5501 36.1348 35.2324 36.0463 35.0397C35.9473 34.8313 35.7546 34.6022 35.3692 34.3469C34.515 33.7897 33.2078 33.4251 31.515 32.9772L31.3692 32.9407C29.8848 32.5449 28.0619 32.0605 26.7078 31.1751C25.9682 30.6907 25.2755 30.0292 24.8432 29.1126C24.4057 28.1803 24.3171 27.1386 24.5255 26.0292C24.9005 24.0397 26.39 22.748 28.0828 22.0761C28.7755 21.8001 29.5359 21.6126 30.3328 21.5032V19.6647C30.3328 18.7428 31.0775 17.998 31.9994 17.998Z" fill="#9333EA"/>
                     </svg>
                   </span>
-                  <span className="absolute right-3 sm:right-6 top-3 sm:top-8 text-[13px] sm:text-[18px] font-semibold text-[#4B5563]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>per month</span>
+                  <span className="absolute right-3 sm:right-6 top-3 sm:top-8 text-[13px] sm:text-[18px] font-semibold text-[#2563EB]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} >2 of 3</span>
                 </div>
-                <div className="font-bold text-[20px] sm:text-[26px] lg:text-[32px] text-[#111827]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>$127</div>
-                <div className="text-[#4B5563] text-[13px] sm:text-[16px] lg:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Monthly Cost</div>
+                <div className="font-bold text-[20px] sm:text-[26px] lg:text-[32px] text-[#111827]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Scale</div>
+                <div className="text-[#4B5563] text-[13px] sm:text-[16px] lg:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Current Goal</div>
               </div>
             </div>
           </div>
@@ -339,125 +385,68 @@ export const Dashboard = () => {
             </div>
           </div>
 
-          {/* Chart Area */}
-         {/* <div className="bg-white rounded-xl border border-[#F3F4F6] shadow-sm p-3 sm:p-4 lg:p-6 w-full max-w-[511px] overflow-x-auto" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} >
-            <div className="font-bold text-[15px] sm:text-[17px] lg:text-[19px] text-[#1A2330]">Total yearly sales</div>
-            <div className="w-full overflow-x-auto">
-              <svg className="w-full max-w-[471px] h-auto" viewBox="0 0 471 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-           
-                {[
-                  {y: 35, label: 300},
-                  {y: 65, label: 250},
-                  {y: 95, label: 200},
-                  {y: 125, label: 150},
-                  {y: 155, label: 100},
-                  {y: 185, label: 50},
-                  {y: 215, label: 0},
-                ].map(({y, label}) => (
-                  <g key={y}>
-                    <text x="16" y={y+5} font-size="13" fill="#32CD32" text-anchor="start">{label}</text>
-                    <line x1="54" y1={y} x2="451" y2={y} stroke="#000" stroke-dasharray="3 2"/>
-                  </g>
-                ))}
-              
-                <polyline points="54,215 120,185 180,145 240,135 300,125 360,165 410,85 451,35" fill="none" stroke="#58D758" stroke-width="2.5"/>
-           
-                <circle cx="54" cy="215" r="4" fill="#58D758"/>
-                <circle cx="120" cy="185" r="4" fill="#58D758"/>
-                <circle cx="180" cy="145" r="4" fill="#58D758"/>
-                <circle cx="240" cy="135" r="4" fill="#58D758"/>
-                <circle cx="300" cy="125" r="4" fill="#58D758"/>
-                <circle cx="360" cy="165" r="4" fill="#58D758"/>
-                <circle cx="410" cy="85" r="4" fill="#58D758"/>
-                <circle cx="451" cy="35" r="4" fill="#58D758"/>
-               
-                <text x="50" y="250" font-size="14" fill="#111827" text-anchor="middle">December 2024</text>
-                <text x="180" y="250" font-size="14" fill="#111827" text-anchor="middle">January 2025</text>
-                <text x="300" y="250" font-size="14" fill="#111827" text-anchor="middle">February 2025</text>
-                <text x="410" y="250" font-size="14" fill="#111827" text-anchor="middle">March 2025</text>
-              </svg>
-            </div>
-          </div>/*}
-
-          {/* Total Yearly Sales Section */}
-          {/* npm install recharts */}
-          <div className="bg-white rounded-xl  w-full  mt-8 mb-6 sm:mb-8 ">
-            <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Total Yearly Sales</div>
-            <ResponsiveContainer width="100%" height={320}>
-              <LineChart data={[
-                { month: 'Jan', sales: 29000 },
-                { month: 'Feb', sales: 32000 },
-                { month: 'Mar', sales: 35000 },
-                { month: 'Apr', sales: 38000 },
-                { month: 'May', sales: 42000 },
-                { month: 'Jun', sales: 45000 },
-                { month: 'Jul', sales: 48000 },
-                { month: 'Aug', sales: 52000 },
-                { month: 'Sep', sales: 55000 },
-                { month: 'Oct', sales: 58000 },
-                { month: 'Nov', sales: 62000 },
-                { month: 'Dec', sales: 65000 },
-              ]} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
-                <CartesianGrid stroke="#E5E7EB" vertical={false} />
-                <XAxis dataKey="month" tick={{ fontSize: 15, fill: '#111827' }} axisLine={false} tickLine={false} />
-                <YAxis domain={[20000, 70000]} ticks={[20000, 30000, 40000, 50000, 60000, 70000]} tickFormatter={(v: number) => `${v/1000}k`} tick={{ fontSize: 15, fill: '#6B7280' }} axisLine={false} tickLine={false} width={60} />
-                <Line type="monotone" dataKey="sales" stroke="#3B82F6" strokeWidth={3} dot={{ r: 4, fill: '#3B82F6' }} activeDot={false} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Business Revenue Data Column & Team Member Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8  mb-10">
-            {/* Left Column: Business Revenue Data Column */}
+          {/* Business Revenue Data Column Section - 3 cards per row, 4th on new row, grid version for perfect alignment */}
+          <div className="mb-10">
             <div>
-              <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Business Revenue Data Column</div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Card 1 */}
-                <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-[12px] p-6 flex flex-col items-center shadow-sm" style={{borderWidth:"3px"}}>
-                  <div className="font-semibold text-[18px] text-[#000000] mb-4 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Revenue this month</div>
-                  <div className="bg-[#fff] rounded-[6px] px-8 py-2 text-[18px] text-[#4B5563] font-normal tracking-wide" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>₹1,24,000</div>
+              <div className="text-[22px] font-bold text-[#23272E] mb-6" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Business Revenue Data Column</div>
+              <div className="mx-auto grid grid-cols-1 md:grid-cols-3 gap-6  justify-items-center">
+                <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-[370px]">
+                  <div className="font-bold text-[17px] text-[#23272E] mb-2 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Revenue this month</div>
+                  <DonutChart value={25} max={100} valueLabel="$8000" color="#06402B" bgColor="#90EE90" stroke={28} valueColor="#23272E" fontSize={24} size={240} />
                 </div>
-                {/* Card 2 */}
-                <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-[12px] p-6 flex flex-col items-center shadow-sm" style={{borderWidth:"3px"}}>
-                  <div className="font-semibold text-[18px] text-[#000000] mb-4 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Total revenue</div>
-                  <div className="bg-[#fff] rounded-[6px] px-8 py-2 text-[18px] text-[#4B5563] font-normal tracking-wide" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>₹1,24,000</div>
+                <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-[370px]">
+                  <div className="font-bold text-[17px] text-[#23272E] mb-2 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Total revenue</div>
+                  <DonutChart value={70} max={100} valueLabel="$200,000" color="#06402B" bgColor="#90EE90" stroke={28} valueColor="#23272E" fontSize={24} size={240} />
                 </div>
-                {/* Card 3 */}
-                <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-[12px] p-6 flex flex-col items-center shadow-sm" style={{borderWidth:"3px"}}>
-                  <div className="font-semibold text-[18px] text-[#000000] mb-4 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Yearly Revenue</div>
-                  <div className="bg-[#fff] rounded-[6px] px-8 py-2 text-[18px] text-[#4B5563] font-normal tracking-wide" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>₹1,24,000</div>
+                <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-[370px]">
+                  <div className="font-bold text-[17px] text-[#23272E] mb-2 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Yearly Revenue</div>
+                  <DonutChart value={30} max={100} valueLabel="$80,000" color="#06402B" bgColor="#90EE90" stroke={28} valueColor="#23272E" fontSize={24} size={240} />
                 </div>
-                {/* Card 4 */}
-                <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-[12px] p-6 flex flex-col items-center shadow-sm" style={{borderWidth:"3px"}}>
-                  <div className="font-semibold text-[18px] text-[#000000] mb-4 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Growth %</div>
-                  <div className="bg-[#fff] rounded-[6px] px-8 py-2 text-[18px] text-[#4B5563] font-normal tracking-wide" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>₹1,24,000</div>
+                <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-[370px]">
+                  <div className="flex flex-row justify-between items-start w-full">
+                    <span className="font-bold text-[17px] text-[#23272E] text-left" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Growth %</span>
+                    <span className=" ">
+                      <span className="text-[#06402B] text-[15px] font-semibold mr-4">+16%</span>
+                      <span className="text-[#EF4444] text-[15px] font-semibold">+16%</span>
+                    </span>
+                  </div>
+                  <DonutChart value={20} max={100} valueLabel="20%" color="#06402B" bgColor="#90EE90" stroke={28} valueColor="#23272E" fontSize={24} size={240} />
                 </div>
               </div>
             </div>
-            {/* Right Column: Team Member */}
-            <div>
-              <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Team Member</div>
-              <div className="flex flex-col gap-4">
-                {/* Member 1 */}
-                <div className="bg-white rounded-[10px] border border-[#E5E7EB] px-6 py-4 flex items-center justify-between">
-                  <span className="text-[16px] text-[#4B5563] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Name 1</span>
-                  <span className="bg-[#F3E8FF] rounded-full w-[35px] h-[35px] flex items-center justify-center"><span className="text-[20px]"><img src={userOne} alt="user" /></span></span>
-                </div>
-                {/* Member 2 */}
-                <div className="bg-white rounded-[10px] border border-[#E5E7EB] px-6 py-4 flex items-center justify-between">
-                  <span className="text-[16px] text-[#4B5563] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Name 2</span>
-                  <span className="bg-[#F3E8FF] rounded-full w-[35px] h-[35px] flex items-center justify-center"><span className="text-[20px]"><img src={userTwo} alt="user" /></span></span>
-                </div>
-                {/* Member 3 */}
-                <div className="bg-white rounded-[10px] border border-[#E5E7EB] px-6 py-4 flex items-center justify-between">
-                  <span className="text-[16px] text-[#4B5563] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Name 3</span>
-                  <span className="bg-[#F3E8FF] rounded-full w-[35px] h-[35px] flex items-center justify-center"><span className="text-[20px]"><img src={userThree} alt="user" /></span></span>
-                </div>
-                {/* Member 4 */}
-                <div className="bg-white rounded-[10px] border border-[#E5E7EB] px-6 py-4 flex items-center justify-between">
-                  <span className="text-[16px] text-[#4B5563] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Name 4</span>
-                  <span className="bg-[#F3E8FF] rounded-full w-[35px] h-[35px] flex items-center justify-center"><span className="text-[20px]"><img src={userThree} alt="user" /></span></span>
-                </div>
+          </div>
+
+          {/* Team Member Section - exact screenshot style */}
+          <div className="border-t border-[#F3F4F6] mt-12 mb-0 w-full mx-auto"></div>
+          <div className="mt-6">
+            <div className="text-[22px] font-bold text-[#23272E] mb-6" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Team Member</div>
+            <div className="w-full  mx-auto">
+              <div className="flex flex-row px-6 py-3 text-[#23272E] font-semibold text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+                <div className="flex-1">Name</div>
+                <div className="flex-1">Role/Position</div>
+                <div className="flex-1">Last Active</div>
+                <div className="w-10"></div>
+              </div>
+              <div className="flex flex-col gap-3">
+                {[
+                  { name: 'Name 1', role: 'Marketing Lead', last: 'Active 2 days ago', icon: 'filled' },
+                  { name: 'Name 2', role: 'Marketing Lead', last: 'Active 2 days ago', icon: 'outline' },
+                  { name: 'Name 3', role: 'Marketing Lead', last: 'Active 2 days ago', icon: 'outline' },
+                  { name: 'Name 3', role: 'Marketing Lead', last: 'Active 2 days ago', icon: 'outline' },
+                ].map((m, i) => (
+                  <div key={i} className="flex flex-row items-center bg-white rounded-xl border border-[#F3F4F6] px-6 py-3 text-[15px] w-full" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+                    <div className="flex-1">{m.name}</div>
+                    <div className="flex-1">{m.role}</div>
+                    <div className="flex-1">{m.last}</div>
+                    <div className="w-10 flex justify-end">
+                      {m.icon === 'filled' ? (
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#F5F3FF"/><path d="M12 12.75a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" stroke="#A78BFA" strokeWidth="1.5"/><path d="M17.25 18a5.25 5.25 0 0 0-10.5 0" stroke="#A78BFA" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                      ) : (
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#A78BFA" strokeWidth="1.5" fill="none"/><path d="M12 12.75a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" stroke="#A78BFA" strokeWidth="1.5"/><path d="M17.25 18a5.25 5.25 0 0 0-10.5 0" stroke="#A78BFA" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

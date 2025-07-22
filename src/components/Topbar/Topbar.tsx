@@ -60,7 +60,7 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
       
       {/* Search Bar */}
       <div className="flex-1 flex justify-center items-center">
-        <div className="relative w-full max-w-2xl mx-2 sm:mx-4">
+        <div className="relative w-full max-w-2xl mx-0 sm:mx-4">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8A94A6]">
             <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="#8A94A6" strokeWidth="2"/><path d="M21 21l-4.35-4.35" stroke="#8A94A6" strokeWidth="2" strokeLinecap="round"/></svg>
           </span>

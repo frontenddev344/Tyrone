@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const tools = [
@@ -36,6 +36,7 @@ const tools = [
 
 export const RecommendedStackStep = ({ onBack }: { onBack: () => void }) => {
   const navigate = useNavigate();
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
@@ -119,21 +120,30 @@ export const RecommendedStackStep = ({ onBack }: { onBack: () => void }) => {
           </div>
           {/* Recommended Tools Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 w-full mb-6 sm:mb-8">
-            {tools.map((tool, idx) => (
-              <div key={tool.name} className="relative bg-white border border-[#E5E7EB] rounded-xl flex flex-col items-start p-3 sm:p-5 min-h-[100px] sm:min-h-[120px] transition-all hover:shadow-md hover:border-[#32cd32]" style={{ borderWidth: '3px' }}>
-                <div className="flex items-center mb-1 sm:mb-2">
-                  <span className="text-xl sm:text-2xl mr-2">{tool.icon}</span>
-                  <div className="flex flex-col">
-                    <h3 className="font-bold text-[#111827] text-[15px] sm:text-[17px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.name}</h3>
-                    <p className="font-normal text-[#6B7280] text-[13px] sm:text-[15px] text-left">{tool.namesub}</p>
+            {tools.map((tool, idx) => {
+              const isHovered = hoveredIdx === idx;
+              return (
+                <div
+                  key={tool.name}
+                  className={`relative border rounded-xl flex flex-col items-start p-3 sm:p-5 min-h-[100px] sm:min-h-[120px] transition-all ${isHovered ? 'bg-[#22C55E] border-[#E5E7EB] shadow-lg' : 'bg-white border-[#E5E7EB]'} hover:bg-[#22C55E] hover:shadow-lg`}
+                  style={{ borderWidth: '3px', cursor: 'pointer' }}
+                  onMouseEnter={() => setHoveredIdx(idx)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                >
+                  <div className="flex items-center mb-1 sm:mb-2">
+                    <span className="text-xl sm:text-2xl mr-2">{tool.icon}</span>
+                    <div className="flex flex-col">
+                      <h3 className={`font-bold text-[15px] sm:text-[17px] ${isHovered ? 'text-white' : 'text-[#111827]'}`} style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.name}</h3>
+                      <p className={`font-normal text-[13px] sm:text-[15px] text-left ${isHovered ? 'text-white/90' : 'text-[#6B7280]'}`}>{tool.namesub}</p>
+                    </div>
+                  </div>
+                  <div className={`text-[13px] sm:text-[15px] mb-1 sm:mb-2 text-left ${isHovered ? 'text-white/90' : 'text-[#4B5563]'}`} style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.desc}</div>
+                  <div className="flex justify-between items-center w-full mt-2 sm:mt-3">
+                  {tool.badge && <span className={`px-2 sm:px-3 py-1 rounded-xl text-[12px] sm:text-[13px] font-normal ${isHovered ? 'bg-white text-[#22C55E]' : 'bg-[#DCFCE7] text-[#15803D]'}`} style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Recommended</span>}
                   </div>
                 </div>
-                <div className="text-[#4B5563] text-[13px] sm:text-[15px] mb-1 sm:mb-2 text-left" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>{tool.desc}</div>
-                <div className="flex justify-between items-center w-full mt-2 sm:mt-3">
-                {tool.badge && <span className="px-2 sm:px-3 py-1 rounded-xl text-[12px] sm:text-[13px] font-normal bg-[#DCFCE7] text-[#15803D]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Recommended</span>}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           {/* Buttons */}
           <div className="flex w-full flex-col sm:flex-row justify-between items-center border-t border-[#F3F4F6] pt-4 sm:pt-6 border-t-[7px] mt-3 sm:mt-4 gap-3 sm:gap-0">
