@@ -258,6 +258,7 @@ export const Dashboard = () => {
                     </svg>
                   </span>
                   <div>
+                    
                     <div className="font-medium text-[17px] sm:text-[21px] text-[#1F2937] " style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>HubSpot</div>
                     <div className="text-[#4B5563] text-[14px] sm:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>CRM & Marketing</div>
                   </div>
