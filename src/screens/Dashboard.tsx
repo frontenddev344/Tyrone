@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { Sidebar } from '../components/Sidebar/Sidebar';
 import { Topbar } from '../components/Topbar/Topbar';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, BarChart, Bar } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import userOne from '../../assets/user-one.png';
 import userTwo from '../../assets/user-two.png';
 import userThree from '../../assets/user-three.png';
+import { ResponsiveContainer } from 'recharts';
 
 // DonutChart component for circular progress (full background, partial foreground, screenshot style)
 const DonutChart = ({ value = 0, max = 100, label = '', color = '#06402B', bgColor = '#90EE90', size = 240, stroke = 24, valueLabel = '', valueColor = '#111827', fontSize = 24 }) => {
@@ -74,6 +75,55 @@ export const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   // Accordion state for revenue cards
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
+  // State for success notification
+  const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+  // State for selected tools
+  const [selectedTools, setSelectedTools] = useState<{ [key: string]: boolean }>({
+    'tool-x': false,
+    'tool-y': false,
+    'tool-z': false
+  });
+  
+  // State for modal
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState<{ title: string; value: string } | null>(null);
+
+
+  // Function to handle tool addition
+  const handleAddTool = (toolId: string) => {
+    setSelectedTools(prev => ({
+      ...prev,
+      [toolId]: true
+    }));
+    setShowSuccessNotification(true);
+    setTimeout(() => {
+      setShowSuccessNotification(false);
+    }, 3000);
+  };
+
+  // Function to handle modal open
+  const handleModalOpen = (title: string, value: string) => {
+    setModalData({ title, value });
+    setShowModal(true);
+  };
+
+  // Function to handle modal close
+  const handleModalClose = () => {
+    setShowModal(false);
+    setModalData(null);
+  };
+
+  // Bar chart data for Revenue Insights
+  const revenueData = [
+    { month: 'JAN', lightGreen: 17.5, darkGreen: 13.5 },
+    { month: 'FEB', lightGreen: 25, darkGreen: 20.5 },
+    { month: 'MAR', lightGreen: 17.5, darkGreen: 9.5 },
+    { month: 'APR', lightGreen: 18, darkGreen: 14 },
+    { month: 'MAY', lightGreen: 25, darkGreen: 20.5 },
+    { month: 'JUNE', lightGreen: 18, darkGreen: 9.5 },
+    { month: 'JULY', lightGreen: 25, darkGreen: 20.5 },
+    { month: 'AUG', lightGreen: 18, darkGreen: 9.5 },
+  ];
 
   return (
     <div className="min-h-screen bg-[#FFFFFF] flex">
@@ -149,7 +199,7 @@ export const Dashboard = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-4 xl:gap-6 mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10">
             {/* Tool Card 1 */}
-            <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative">
+            <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative hover:bg-green-50 transition-all duration-200 cursor-pointer">
               <div className="flex items-center mb-1 sm:mb-2">
                 <span className="w-8 h-8 sm:w-12 sm:h-12 rounded flex items-center justify-center text-white font-bold mr-2 sm:mr-3 ">
                   <svg width="64" height="65" viewBox="0 0 64 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -179,7 +229,7 @@ export const Dashboard = () => {
             </div>
 
             {/* Tool Card 2 */}
-            <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative">
+            <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative hover:bg-green-50 transition-all duration-200 cursor-pointer">
               <div className="flex items-center mb-1 sm:mb-2">
                 <span className="w-8 h-8 sm:w-12 sm:h-12  rounded flex items-center justify-center text-white font-bold mr-2 sm:mr-3"><svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="0.333984" y="0.332031" width="64" height="64" rx="16" fill="#FEF9C3"/>
@@ -209,7 +259,7 @@ export const Dashboard = () => {
             </div>
 
             {/* Tool Card 3 */}
-            <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative">
+            <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative hover:bg-green-50 transition-all duration-200 cursor-pointer">
               <div className="flex items-center mb-1 sm:mb-2">
                 <span className="w-8 h-8 sm:w-12 sm:h-12  rounded flex items-center justify-center text-white font-bold mr-2 sm:mr-3">
                   <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -226,12 +276,13 @@ export const Dashboard = () => {
             </div>
           </div>
           <div className="border-t border-[#F3F4F6] mt-12 mb-0 w-full mx-auto"></div>
-          {/* Recommended Tools Section */}
+          {/* Recommended Tools Section - HIDDEN */}
+          {/* 
           <div className="mt-8 mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10">
             <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-left sm:text-left  mb-2 sm:mb-4 mt-3 sm:mt-5" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Recommended Tools</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
               
-              {/* Card 1 */}
+              Card 1
               <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-start justify-between min-w-[280px]">
                 <div className="">
                   <span className=" flex items-center  mb-4">
@@ -254,7 +305,7 @@ export const Dashboard = () => {
                 </span>
               </div>
 
-              {/* Card 2 */}
+              Card 2
               <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-start justify-between min-w-[280px]">
                 <div className="">
                   <span className=" flex items-center  mb-4">
@@ -277,7 +328,7 @@ export const Dashboard = () => {
                 </span>
               </div>
 
-              {/* Card 3 */}
+              Card 3
               <div className="bg-[#F9FAFB] rounded-[16px] p-6 flex items-start justify-between min-w-[280px]">
                 <div className="">
                   <span className=" flex items-center  mb-4">
@@ -301,11 +352,11 @@ export const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div className="border-t border-[#F3F4F6] mt-12 mb-0 w-full mx-auto"></div>
+          */}
           {/* END Recommended Tools Section */}
 
-          {/* Popular Features Section */}
-          <div className="mt-8 mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10">
+          {/* Popular Features Section - HIDDEN */}
+          {/* <div className="mt-8 mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10">
             <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-left sm:text-left mb-2 sm:mb-4 mt-3 sm:mt-5" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Popular Features</div>
             <div className="flex flex-wrap gap-3">
               <span className="bg-blue-100 text-blue-700 text-[16px] sm:text-[18px] font-medium px-4 py-1 rounded-full" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>CR</span>
@@ -315,56 +366,138 @@ export const Dashboard = () => {
               <span className="bg-pink-100 text-pink-700 text-[16px] sm:text-[18px] font-medium px-4 py-1 rounded-full" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Mobile</span>
               <span className="bg-cyan-100 text-cyan-700 text-[16px] sm:text-[18px] font-medium px-4 py-1 rounded-full" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>API</span>
             </div>
-          </div>
-          <div className="border-t border-[#F3F4F6] mt-12 mb-0 w-full mx-auto"></div>
+          </div> */}
+          
           {/* Suggested Tools Section */}
-          <div className="mt-8 mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10">
-            <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-left mb-6 mt-3 sm:mt-5" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+          <div className="mt-8 mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10 relative">
+            {/* Success Notification */}
+            {showSuccessNotification && (
+              <div className="absolute top-0 right-0 bg-green-500 text-white px-6 py-4 rounded-[10px] flex items-center space-x-3 z-50 shadow-lg">
+                <div className="w-[21px] h-[21px] bg-white rounded-full flex items-center justify-center">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.3333 4L6 11.3333L2.66667 8" stroke="#22C55E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <span className="text-[16px] font-medium" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool has been successfully added.</span>
+              </div>
+            )}
+            
+            <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-left mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
               Suggested Tools
             </div>
-            <div className="flex flex-col sm:flex-row gap-6">
-              {/* Slack Card */}
-              <div className="flex items-center bg-white rounded-[10px] border border-[#E5E7EB] p-5 w-full sm:w-1/2 shadow-sm">
-                <span className=" flex items-center justify-center mr-2 sm:mr-4">
-                  {/* Slack icon */}
-                  <svg width="50" height="50" className=" sm:w-[65px] sm:h-[65px]" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="0.666016" y="0.666748" width="64" height="64" rx="10.6667" fill="#A855F7"/>
-                  <path d="M27.9992 36.6669C32.7867 36.6669 36.6658 33.3836 36.6658 29.3336C36.6658 25.2836 32.7867 22.0002 27.9992 22.0002C23.2117 22.0002 19.3325 25.2836 19.3325 29.3336C19.3325 30.9419 19.945 32.4294 20.9825 33.6419C20.8367 34.0336 20.62 34.3794 20.3908 34.6711C20.1908 34.9294 19.9867 35.1294 19.8367 35.2669C19.7617 35.3336 19.6992 35.3877 19.6575 35.4211C19.6367 35.4377 19.62 35.4502 19.6117 35.4544L19.6033 35.4627C19.3742 35.6336 19.2742 35.9336 19.3658 36.2044C19.4575 36.4752 19.7117 36.6669 19.9992 36.6669C20.9075 36.6669 21.8242 36.4336 22.5867 36.1461C22.97 36.0002 23.3283 35.8377 23.6408 35.6711C24.92 36.3044 26.4075 36.6669 27.9992 36.6669ZM37.9992 29.3336C37.9992 34.0127 33.87 37.5377 28.9783 37.9586C29.9908 41.0586 33.3492 43.3336 37.3325 43.3336C38.9242 43.3336 40.4117 42.9711 41.695 42.3377C42.0075 42.5044 42.3617 42.6669 42.745 42.8127C43.5075 43.1002 44.4242 43.3336 45.3325 43.3336C45.62 43.3336 45.8783 43.1461 45.9658 42.8711C46.0533 42.5961 45.9575 42.2961 45.7242 42.1252L45.7158 42.1169C45.7075 42.1086 45.6908 42.1002 45.67 42.0836C45.6283 42.0502 45.5658 42.0002 45.4908 41.9294C45.3408 41.7919 45.1367 41.5919 44.9367 41.3336C44.7075 41.0419 44.4908 40.6919 44.345 40.3044C45.3825 39.0961 45.995 37.6086 45.995 35.9961C45.995 32.1294 42.4575 28.9586 37.97 28.6836C37.9867 28.8961 37.995 29.1127 37.995 29.3294L37.9992 29.3336Z" fill="white"/>
+            <div className="text-[#6B7280] text-[16px] sm:text-[18px] mb-6" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+              Discover tools that match your workflow
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* Tool X (CRM) */}
+              <div className={`rounded-[10px] border border-[#E5E7EB] px-4 py-8 flex items-center shadow-sm relative group ${selectedTools['tool-x'] ? 'bg-green-50' : 'bg-white'}`}>
+                <div className="flex items-center flex-1">
+                  <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="9" cy="7" r="4" stroke="white" strokeWidth="2"/>
+                      <path d="M23 21V19C23 18.1133 22.7311 17.2528 22.2312 16.5523C21.7314 15.8519 21.0282 15.3516 20.2426 15.1313C19.4571 14.911 18.6249 14.9842 17.8837 15.3402C17.1425 15.6963 16.5331 16.3179 16.1566 17.1011C15.7802 17.8844 15.6619 18.7847 15.8216 19.6587C15.9812 20.5327 16.4082 21.3329 17.0394 21.9523C17.6707 22.5718 18.4719 22.9769 19.3459 23.1075C20.2199 23.2381 21.1202 23.0874 21.9035 22.6789" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-
-                </span>
+                  </div>
                 <div>
-                  <div className="font-medium text-[18px] sm:text-[21px] text-[#1F2937]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Slack</div>
-                  <span className="bg-[#F3F4F6] text-[#4B5563] text-[14px] sm:text-[18px] font-normal px-2 py-0.5 rounded-[5px] mt-1 inline-block" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Communication</span>
+                    <div className="font-semibold text-[#111827] text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool X</div>
+                    <div className="text-[#6B7280] text-[14px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>CRM</div>
+                  </div>
                 </div>
-                <div className="ml-auto mr-0 sm:mr-5">
-                  {/* Checkmark */}
-                  <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.6082 4.39185C19.129 4.91268 19.129 5.75851 18.6082 6.27935L7.94154 16.946C7.4207 17.4668 6.57487 17.4668 6.05404 16.946L0.720703 11.6127C0.19987 11.0918 0.19987 10.246 0.720703 9.72518C1.24154 9.20435 2.08737 9.20435 2.6082 9.72518L6.99987 14.1127L16.7249 4.39185C17.2457 3.87101 18.0915 3.87101 18.6124 4.39185H18.6082Z" fill="#22C55E"/>
+                <button 
+                  onClick={() => handleAddTool('tool-x')}
+                  className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition-all duration-200 relative group/button"
+                >
+                  {selectedTools['tool-x'] ? (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3333 4L6 11.3333L2.66667 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  ) : (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 3.33334V12.6667" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M3.33334 8H12.6667" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-
-                </div>
+                  )}
+                  {/* Tooltip */}
+                  <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover/button:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+                    Add to My Tools
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
+                  </div>
+                </button>
               </div>
-              {/* Asana Card */}
-              <div className="flex items-center bg-white rounded-[10px] border border-[#E5E7EB] p-5 w-full sm:w-1/2 shadow-sm">
-                <span className=" flex items-center justify-center mr-2 sm:mr-4">
-                  {/* Asana icon */}
-                  <svg width="50" height="50" className=" sm:w-[65px] sm:h-[65px]" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="0.666016" y="0.666748" width="64" height="64" rx="10.6667" fill="#EF4444"/>
-                  <path d="M28.3357 23.5918C28.7482 23.9626 28.7815 24.5918 28.4107 25.0043L25.4107 28.3376C25.2273 28.5418 24.969 28.6626 24.694 28.6668C24.419 28.6709 24.1565 28.5668 23.9607 28.3751L22.2898 26.7084C21.9023 26.3168 21.9023 25.6834 22.2898 25.2918C22.6773 24.9001 23.3148 24.9001 23.7023 25.2918L24.6232 26.2126L26.919 23.6626C27.2898 23.2501 27.919 23.2168 28.3315 23.5876L28.3357 23.5918ZM28.3357 30.2584C28.7482 30.6293 28.7815 31.2584 28.4107 31.6709L25.4107 35.0043C25.2273 35.2084 24.969 35.3293 24.694 35.3334C24.419 35.3376 24.1565 35.2334 23.9607 35.0418L22.2898 33.3751C21.8982 32.9834 21.8982 32.3501 22.2898 31.9626C22.6815 31.5751 23.3148 31.5709 23.7023 31.9626L24.6232 32.8834L26.919 30.3334C27.2898 29.9209 27.919 29.8876 28.3315 30.2584H28.3357ZM31.3315 26.0001C31.3315 25.2626 31.9273 24.6668 32.6648 24.6668H41.9982C42.7357 24.6668 43.3315 25.2626 43.3315 26.0001C43.3315 26.7376 42.7357 27.3334 41.9982 27.3334H32.6648C31.9273 27.3334 31.3315 26.7376 31.3315 26.0001ZM31.3315 32.6668C31.3315 31.9293 31.9273 31.3334 32.6648 31.3334H41.9982C42.7357 31.3334 43.3315 31.9293 43.3315 32.6668C43.3315 33.4043 42.7357 34.0001 41.9982 34.0001H32.6648C31.9273 34.0001 31.3315 33.4043 31.3315 32.6668ZM28.6648 39.3334C28.6648 38.5959 29.2607 38.0001 29.9982 38.0001H41.9982C42.7357 38.0001 43.3315 38.5959 43.3315 39.3334C43.3315 40.0709 42.7357 40.6668 41.9982 40.6668H29.9982C29.2607 40.6668 28.6648 40.0709 28.6648 39.3334ZM23.9982 37.3334C24.5286 37.3334 25.0373 37.5442 25.4124 37.9192C25.7875 38.2943 25.9982 38.803 25.9982 39.3334C25.9982 39.8639 25.7875 40.3726 25.4124 40.7477C25.0373 41.1227 24.5286 41.3334 23.9982 41.3334C23.4677 41.3334 22.959 41.1227 22.584 40.7477C22.2089 40.3726 21.9982 39.8639 21.9982 39.3334C21.9982 38.803 22.2089 38.2943 22.584 37.9192C22.959 37.5442 23.4677 37.3334 23.9982 37.3334Z" fill="white"/>
-                  </svg>
-                </span>
-                <div>
-                  <div className="font-medium text-[18px] sm:text-[21px] text-[#1F2937]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Asana</div>
-                  <span className="bg-[#F3F4F6] text-[#4B5563] text-[14px] sm:text-[18px] font-normal px-2 py-0.5 rounded-[5px] mt-1 inline-block" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Project Management</span>
-                </div>
-                <div className="ml-auto mr-0 sm:mr-5">
-                  {/* Checkmark */}
-                  <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.6082 4.39185C19.129 4.91268 19.129 5.75851 18.6082 6.27935L7.94154 16.946C7.4207 17.4668 6.57487 17.4668 6.05404 16.946L0.720703 11.6127C0.19987 11.0918 0.19987 10.246 0.720703 9.72518C1.24154 9.20435 2.08737 9.20435 2.6082 9.72518L6.99987 14.1127L16.7249 4.39185C17.2457 3.87101 18.0915 3.87101 18.6124 4.39185H18.6082Z" fill="#22C55E"/>
-                  </svg>
 
+              {/* Tool Y (Analytics) */}
+              <div className={`rounded-[10px] border border-[#E5E7EB] px-4 py-8  flex items-center shadow-sm relative group ${selectedTools['tool-y'] ? 'bg-green-50' : 'bg-white'}`}>
+                <div className="flex items-center flex-1">
+                  <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 3V21H21" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M9 9L12 6L16 10L21 5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M21 5H17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-[#111827] text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool Y</div>
+                    <div className="text-[#6B7280] text-[14px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Analytics</div>
+                  </div>
                 </div>
+                <button 
+                  onClick={() => handleAddTool('tool-y')}
+                  className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition-all duration-200 relative group/button"
+                >
+                  {selectedTools['tool-y'] ? (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3333 4L6 11.3333L2.66667 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  ) : (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 3.33334V12.6667" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M3.33334 8H12.6667" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                  {/* Tooltip */}
+                  <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover/button:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+                    Add to My Tools
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
+                  </div>
+                </button>
+              </div>
+
+              {/* Tool Z (Email) */}
+              <div className={`rounded-[10px] border border-[#E5E7EB] px-4 py-8  flex items-center shadow-sm relative group ${selectedTools['tool-z'] ? 'bg-green-50' : 'bg-white'}`}>
+                <div className="flex items-center flex-1">
+                  <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mr-3">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M22 6L12 13L2 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  </div>
+                <div>
+                    <div className="font-semibold text-[#111827] text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool Z</div>
+                    <div className="text-[#6B7280] text-[14px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Email</div>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => handleAddTool('tool-z')}
+                  className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition-all duration-200 relative group/button"
+                >
+                  {selectedTools['tool-z'] ? (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.3333 4L6 11.3333L2.66667 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  ) : (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 3.33334V12.6667" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M3.33334 8H12.6667" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  )}
+                  {/* Tooltip */}
+                  <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover/button:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+                    Add to My Tools
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
+                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -374,7 +507,42 @@ export const Dashboard = () => {
             <div>
               <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-left mb-6 mt-3 sm:mt-5" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Business Revenue Data Column</div>
               <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 justify-items-center w-full">
-                <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto">
+                <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto cursor-pointer hover:shadow-md transition-all duration-200 relative group">
+                  {/* Hover Modal */}
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+                    <div className="text-center h-full flex flex-col">
+                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4">Revenue Insights Details</h3>
+                      <div className="w-full overflow-x-auto mb-4">
+                        <div style={{ minWidth: 240, minHeight: 140 }}>
+                          <ResponsiveContainer width="100%" aspect={2.1}>
+                            <BarChart
+                              data={revenueData}
+                              margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
+                              barGap={4}
+                              barCategoryGap={18}
+                            >
+                              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                              <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#6B7280', fontWeight: 500 }} axisLine={false} tickLine={false} />
+                              <YAxis domain={[0, 30]} ticks={[0, 5, 10, 15, 20, 25, 30]} tick={{ fontSize: 10, fill: '#6B7280', fontWeight: 500 }} axisLine={false} tickLine={false} />
+                              <Bar dataKey="lightGreen" fill="#90EE90" barSize={12} radius={[4, 4, 0, 0]} name="Revenue" />
+                              <Bar dataKey="darkGreen" fill="#06402B" barSize={12} radius={[4, 4, 0, 0]} name="Profit" />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+                      <div className="flex justify-center space-x-3 sm:space-x-6">
+                        <div className="flex items-center">
+                          <div className="w-2.5 h-2.5 sm:w-4 sm:h-4 bg-[#90EE90] rounded mr-2"></div>
+                          <span className="text-xs sm:text-sm text-gray-700 font-medium">Revenue</span>
+                        </div>
+                        <div className="flex items-center">
+                          <div className="w-2.5 h-2.5 sm:w-4 sm:h-4 bg-[#06402B] rounded mr-2"></div>
+                          <span className="text-xs sm:text-sm text-gray-700 font-medium">Profit</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-white"></div>
+                  </div>
                   <div className="font-bold text-[15px] sm:text-[17px] text-[#23272E] mb-2 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Revenue this month</div>
                   <div className="block sm:hidden">
                     <DonutChart value={25} max={100} valueLabel="$8000" color="#06402B" bgColor="#90EE90" stroke={16} size={120} fontSize={16} valueColor="#23272E" />
@@ -383,7 +551,42 @@ export const Dashboard = () => {
                     <DonutChart value={25} max={100} valueLabel="$8000" color="#06402B" bgColor="#90EE90" stroke={24} size={180} fontSize={24} valueColor="#23272E" />
                   </div>
                 </div>
-                <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto">
+                <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto cursor-pointer hover:shadow-md transition-all duration-200 relative group">
+                  {/* Hover Modal */}
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+                    <div className="text-center h-full flex flex-col">
+                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4">Revenue Insights Details</h3>
+                      <div className="w-full overflow-x-auto mb-4">
+                        <div style={{ minWidth: 240, minHeight: 140 }}>
+                          <ResponsiveContainer width="100%" aspect={2.1}>
+                            <BarChart
+                              data={revenueData}
+                              margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
+                              barGap={4}
+                              barCategoryGap={18}
+                            >
+                              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                              <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#6B7280', fontWeight: 500 }} axisLine={false} tickLine={false} />
+                              <YAxis domain={[0, 30]} ticks={[0, 5, 10, 15, 20, 25, 30]} tick={{ fontSize: 10, fill: '#6B7280', fontWeight: 500 }} axisLine={false} tickLine={false} />
+                              <Bar dataKey="lightGreen" fill="#90EE90" barSize={12} radius={[4, 4, 0, 0]} name="Revenue" />
+                              <Bar dataKey="darkGreen" fill="#06402B" barSize={12} radius={[4, 4, 0, 0]} name="Profit" />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+                      <div className="flex justify-center space-x-3 sm:space-x-6">
+                        <div className="flex items-center">
+                          <div className="w-2.5 h-2.5 sm:w-4 sm:h-4 bg-[#90EE90] rounded mr-2"></div>
+                          <span className="text-xs sm:text-sm text-gray-700 font-medium">Revenue</span>
+                        </div>
+                        <div className="flex items-center">
+                          <div className="w-2.5 h-2.5 sm:w-4 sm:h-4 bg-[#06402B] rounded mr-2"></div>
+                          <span className="text-xs sm:text-sm text-gray-700 font-medium">Profit</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-white"></div>
+                  </div>
                   <div className="font-bold text-[15px] sm:text-[17px] text-[#23272E] mb-2 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Total revenue</div>
                   <div className="block sm:hidden">
                     <DonutChart value={70} max={100} valueLabel="$200,000" color="#06402B" bgColor="#90EE90" stroke={16} size={120} fontSize={16} valueColor="#23272E" />
@@ -392,7 +595,42 @@ export const Dashboard = () => {
                     <DonutChart value={70} max={100} valueLabel="$200,000" color="#06402B" bgColor="#90EE90" stroke={24} size={180} fontSize={24} valueColor="#23272E" />
                   </div>
                 </div>
-                <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto">
+                <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto cursor-pointer hover:shadow-md transition-all duration-200 relative group">
+                  {/* Hover Modal */}
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+                    <div className="text-center h-full flex flex-col">
+                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4">Revenue Insights Details</h3>
+                      <div className="w-full overflow-x-auto mb-4">
+                        <div style={{ minWidth: 240, minHeight: 140 }}>
+                          <ResponsiveContainer width="100%" aspect={2.1}>
+                            <BarChart
+                              data={revenueData}
+                              margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
+                              barGap={4}
+                              barCategoryGap={18}
+                            >
+                              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                              <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#6B7280', fontWeight: 500 }} axisLine={false} tickLine={false} />
+                              <YAxis domain={[0, 30]} ticks={[0, 5, 10, 15, 20, 25, 30]} tick={{ fontSize: 10, fill: '#6B7280', fontWeight: 500 }} axisLine={false} tickLine={false} />
+                              <Bar dataKey="lightGreen" fill="#90EE90" barSize={12} radius={[4, 4, 0, 0]} name="Revenue" />
+                              <Bar dataKey="darkGreen" fill="#06402B" barSize={12} radius={[4, 4, 0, 0]} name="Profit" />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+                      <div className="flex justify-center space-x-3 sm:space-x-6">
+                        <div className="flex items-center">
+                          <div className="w-2.5 h-2.5 sm:w-4 sm:h-4 bg-[#90EE90] rounded mr-2"></div>
+                          <span className="text-xs sm:text-sm text-gray-700 font-medium">Revenue</span>
+                        </div>
+                        <div className="flex items-center">
+                          <div className="w-2.5 h-2.5 sm:w-4 sm:h-4 bg-[#06402B] rounded mr-2"></div>
+                          <span className="text-xs sm:text-sm text-gray-700 font-medium">Profit</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-white"></div>
+                  </div>
                   <div className="font-bold text-[15px] sm:text-[17px] text-[#23272E] mb-2 text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Yearly Revenue</div>
                   <div className="block sm:hidden">
                     <DonutChart value={30} max={100} valueLabel="$80,000" color="#06402B" bgColor="#90EE90" stroke={16} size={120} fontSize={16} valueColor="#23272E" />
@@ -401,7 +639,42 @@ export const Dashboard = () => {
                     <DonutChart value={30} max={100} valueLabel="$80,000" color="#06402B" bgColor="#90EE90" stroke={24} size={180} fontSize={24} valueColor="#23272E" />
                   </div>
                 </div>
-                <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto">
+                <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto cursor-pointer hover:shadow-md transition-all duration-200 relative group">
+                  {/* Hover Modal */}
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+                    <div className="text-center h-full flex flex-col">
+                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4">Revenue Insights Details</h3>
+                      <div className="w-full overflow-x-auto mb-4">
+                        <div style={{ minWidth: 240, minHeight: 140 }}>
+                          <ResponsiveContainer width="100%" aspect={2.1}>
+                            <BarChart
+                              data={revenueData}
+                              margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
+                              barGap={4}
+                              barCategoryGap={18}
+                            >
+                              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                              <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#6B7280', fontWeight: 500 }} axisLine={false} tickLine={false} />
+                              <YAxis domain={[0, 30]} ticks={[0, 5, 10, 15, 20, 25, 30]} tick={{ fontSize: 10, fill: '#6B7280', fontWeight: 500 }} axisLine={false} tickLine={false} />
+                              <Bar dataKey="lightGreen" fill="#90EE90" barSize={12} radius={[4, 4, 0, 0]} name="Revenue" />
+                              <Bar dataKey="darkGreen" fill="#06402B" barSize={12} radius={[4, 4, 0, 0]} name="Profit" />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+                      <div className="flex justify-center space-x-3 sm:space-x-6">
+                        <div className="flex items-center">
+                          <div className="w-2.5 h-2.5 sm:w-4 sm:h-4 bg-[#90EE90] rounded mr-2"></div>
+                          <span className="text-xs sm:text-sm text-gray-700 font-medium">Revenue</span>
+                        </div>
+                        <div className="flex items-center">
+                          <div className="w-2.5 h-2.5 sm:w-4 sm:h-4 bg-[#06402B] rounded mr-2"></div>
+                          <span className="text-xs sm:text-sm text-gray-700 font-medium">Profit</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-white"></div>
+                  </div>
                   <div className="flex flex-row justify-between items-start w-full">
                     <span className="font-bold text-[15px] sm:text-[17px] text-[#23272E] text-left" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Growth %</span>
                     <span className=" ">
@@ -424,8 +697,9 @@ export const Dashboard = () => {
           <div className="border-t border-[#F3F4F6] mt-12 mb-0 w-full mx-auto"></div>
           <div className="mt-6 px-4 sm:px-2 lg:px-6 xl:px-10">
             <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-left mb-6 mt-3 sm:mt-5" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Team Member</div>
-            <div className="w-full  mx-auto">
-              <div className="flex flex-row px-6 py-3 text-[#23272E] font-semibold text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+            <div className="w-full mx-auto">
+              {/* Table header: hidden on mobile */}
+              <div className="hidden sm:flex flex-row px-6 py-3 text-[#23272E] font-semibold text-[16px]">
                 <div className="flex-1">Name</div>
                 <div className="flex-1">Role/Position</div>
                 <div className="flex-1">Last Active</div>
@@ -438,11 +712,21 @@ export const Dashboard = () => {
                   { name: 'Name 3', role: 'Marketing Lead', last: 'Active 2 days ago', icon: 'outline' },
                   { name: 'Name 3', role: 'Marketing Lead', last: 'Active 2 days ago', icon: 'outline' },
                 ].map((m, i) => (
-                  <div key={i} className="flex flex-row items-center bg-white rounded-xl border border-[#F3F4F6] px-6 py-3 text-[15px] w-full" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
-                    <div className="flex-1">{m.name}</div>
-                    <div className="flex-1">{m.role}</div>
-                    <div className="flex-1">{m.last}</div>
-                    <div className="w-10 flex justify-end">
+                  <div key={i} className="flex flex-col sm:flex-row items-start sm:items-center bg-white rounded-xl border border-[#F3F4F6] px-4 py-3 sm:px-6 sm:py-3 text-[15px] w-full gap-2 sm:gap-0" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+                    {/* Mobile label-value pairs */}
+                    <div className="flex flex-col sm:flex-1 w-full">
+                      <span className="block sm:hidden text-xs text-gray-500 font-semibold mb-1">Name</span>
+                      <span>{m.name}</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-1 w-full">
+                      <span className="block sm:hidden text-xs text-gray-500 font-semibold mb-1">Role/Position</span>
+                      <span>{m.role}</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-1 w-full">
+                      <span className="block sm:hidden text-xs text-gray-500 font-semibold mb-1">Last Active</span>
+                      <span>{m.last}</span>
+                    </div>
+                    <div className="w-full sm:w-10 flex justify-end mt-2 sm:mt-0">
                       {m.icon === 'filled' ? (
                         <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#F5F3FF"/><path d="M12 12.75a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" stroke="#A78BFA" strokeWidth="1.5"/><path d="M17.25 18a5.25 5.25 0 0 0-10.5 0" stroke="#A78BFA" strokeWidth="1.5" strokeLinecap="round"/></svg>
                       ) : (
@@ -454,6 +738,7 @@ export const Dashboard = () => {
               </div>
             </div>
           </div>
+
 
 
         </div>

@@ -14,7 +14,7 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
   // Filter state for demo
   const [selectedCategories, setSelectedCategories] = useState<string[]>(["CRM"]);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
-
+  const [activeBadge, setActiveBadge] = useState('Recommended Only');
   const categories = ["CRM", "Analytics", "Email Marketing"];
   const features = ["Automation", "Reports", "Integration"];
 
@@ -71,48 +71,9 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
             value={searchValue}
             onChange={e => setSearchValue(e.target.value)}
           />
-          {/* Dropdown results - placeholder data */}
+          {/* Dropdown results - accordion-only UI */}
           {searchValue && (
-            <div className="absolute left-0 right-0 mt-2 bg-white rounded-[16px] shadow-md z-40 border border-[#E5E7EB] p-4 flex flex-col gap-4" style={{ minWidth: '100%', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif', borderWidth: "2px" }}>
-              {[1,2,3].map((tool, idx) => (
-                <div key={tool} className="flex items-start gap-4 bg-white rounded-[12px] p-4 hover:bg-gray-50 transition cursor-pointer border border-transparent">
-                  {/* Icon */}
-                  <span className={`w-[53px] h-[53px] flex items-center justify-center rounded-full mr-2 ${idx===0 ? 'bg-[#FFEDD5]' : idx===1 ? 'bg-[#FFEDD5]' : 'bg-[#FFEDD5]'}`}>
-                    {idx===0 && (
-                      <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4.65515 0.986328C3.12819 0.986328 1.88672 2.2278 1.88672 3.75476V20.3653C1.88672 21.8923 3.12819 23.1338 4.65515 23.1338H17.1131C18.6401 23.1338 19.8815 21.8923 19.8815 20.3653V3.75476C19.8815 2.2278 18.6401 0.986328 17.1131 0.986328H4.65515ZM9.49991 13.4443H12.2683C14.1803 13.4443 15.7289 14.9929 15.7289 16.9048C15.7289 17.2855 15.4174 17.5969 15.0368 17.5969H6.73147C6.35082 17.5969 6.03937 17.2855 6.03937 16.9048C6.03937 14.9929 7.58796 13.4443 9.49991 13.4443ZM8.11569 9.29162C8.11569 8.55739 8.40736 7.85323 8.92655 7.33405C9.44573 6.81486 10.1499 6.52319 10.8841 6.52319C11.6184 6.52319 12.3225 6.81486 12.8417 7.33405C13.3609 7.85323 13.6526 8.55739 13.6526 9.29162C13.6526 10.0259 13.3609 10.73 12.8417 11.2492C12.3225 11.7684 11.6184 12.0601 10.8841 12.0601C10.1499 12.0601 9.44573 11.7684 8.92655 11.2492C8.40736 10.73 8.11569 10.0259 8.11569 9.29162ZM22.65 4.44687C22.65 4.06621 22.3385 3.75476 21.9578 3.75476C21.5772 3.75476 21.2657 4.06621 21.2657 4.44687V7.2153C21.2657 7.59596 21.5772 7.90741 21.9578 7.90741C22.3385 7.90741 22.65 7.59596 22.65 7.2153V4.44687ZM21.9578 9.29162C21.5772 9.29162 21.2657 9.60307 21.2657 9.98373V12.7522C21.2657 13.1328 21.5772 13.4443 21.9578 13.4443C22.3385 13.4443 22.65 13.1328 22.65 12.7522V9.98373C22.65 9.60307 22.3385 9.29162 21.9578 9.29162ZM22.65 15.5206C22.65 15.1399 22.3385 14.8285 21.9578 14.8285C21.5772 14.8285 21.2657 15.1399 21.2657 15.5206V18.289C21.2657 18.6697 21.5772 18.9811 21.9578 18.9811C22.3385 18.9811 22.65 18.6697 22.65 18.289V15.5206Z" fill="#EA580C"/>
-                      </svg>
-                      
-                   )}
-                    {idx===1 && (
-                      <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7.57761 3.65267C8.00585 4.03766 8.04045 4.69083 7.65547 5.11907L4.54098 8.57961C4.35065 8.79157 4.08246 8.91702 3.79697 8.92134C3.51147 8.92567 3.23896 8.81753 3.03565 8.61855L1.30105 6.88828C0.898766 6.48166 0.898766 5.82416 1.30105 5.41755C1.70334 5.01093 2.36517 5.01093 2.76746 5.41755L3.72343 6.37352L6.10688 3.72621C6.49186 3.29797 7.14504 3.26336 7.57328 3.64835L7.57761 3.65267ZM7.57761 10.5738C8.00585 10.9587 8.04045 11.6119 7.65547 12.0402L4.54098 15.5007C4.35065 15.7127 4.08246 15.8381 3.79697 15.8424C3.51147 15.8467 3.23896 15.7386 3.03565 15.5396L1.30105 13.8094C0.89444 13.4027 0.89444 12.7452 1.30105 12.343C1.70767 11.9407 2.36517 11.9363 2.76746 12.343L3.72343 13.2989L6.10688 10.6516C6.49186 10.2234 7.14504 10.1888 7.57328 10.5738H7.57761ZM10.6878 6.15291C10.6878 5.38727 11.3063 4.7687 12.072 4.7687H21.7615C22.5271 4.7687 23.1457 5.38727 23.1457 6.15291C23.1457 6.91856 22.5271 7.53713 21.7615 7.53713H12.072C11.3063 7.53713 10.6878 6.91856 10.6878 6.15291ZM10.6878 13.074C10.6878 12.3083 11.3063 11.6898 12.072 11.6898H21.7615C22.5271 11.6898 23.1457 12.3083 23.1457 13.074C23.1457 13.8396 22.5271 14.4582 21.7615 14.4582H12.072C11.3063 14.4582 10.6878 13.8396 10.6878 13.074ZM7.91934 19.9951C7.91934 19.2294 8.53791 18.6109 9.30355 18.6109H21.7615C22.5271 18.6109 23.1457 19.2294 23.1457 19.9951C23.1457 20.7607 22.5271 21.3793 21.7615 21.3793H9.30355C8.53791 21.3793 7.91934 20.7607 7.91934 19.9951ZM3.07458 17.9187C3.62526 17.9187 4.15338 18.1375 4.54276 18.5269C4.93215 18.9163 5.1509 19.4444 5.1509 19.9951C5.1509 20.5457 4.93215 21.0739 4.54276 21.4633C4.15338 21.8526 3.62526 22.0714 3.07458 22.0714C2.5239 22.0714 1.99578 21.8526 1.6064 21.4633C1.21701 21.0739 0.998257 20.5457 0.998257 19.9951C0.998257 19.4444 1.21701 18.9163 1.6064 18.5269C1.99578 18.1375 2.5239 17.9187 3.07458 17.9187Z" fill="#9333EA"/>
-                      </svg>
-                      
-                   )}
-                    {idx===2 && (
-                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1.38422 1.38477C2.14986 1.38477 2.76843 2.00334 2.76843 2.76898V17.3032C2.76843 17.6839 3.07988 17.9954 3.46054 17.9954H20.7632C21.5289 17.9954 22.1475 18.6139 22.1475 19.3796C22.1475 20.1452 21.5289 20.7638 20.7632 20.7638H3.46054C1.54859 20.7638 0 19.2152 0 17.3032V2.76898C0 2.00334 0.618571 1.38477 1.38422 1.38477ZM5.53686 5.53741C5.53686 4.77177 6.15543 4.1532 6.92108 4.1532H15.2264C15.992 4.1532 16.6106 4.77177 16.6106 5.53741C16.6106 6.30306 15.992 6.92163 15.2264 6.92163H6.92108C6.15543 6.92163 5.53686 6.30306 5.53686 5.53741ZM6.92108 8.30584H12.4579C13.2236 8.30584 13.8422 8.92442 13.8422 9.69006C13.8422 10.4557 13.2236 11.0743 12.4579 11.0743H6.92108C6.15543 11.0743 5.53686 10.4557 5.53686 9.69006C5.53686 8.92442 6.15543 8.30584 6.92108 8.30584ZM6.92108 12.4585H17.9948C18.7605 12.4585 19.379 13.0771 19.379 13.8427C19.379 14.6084 18.7605 15.2269 17.9948 15.2269H6.92108C6.15543 15.2269 5.53686 14.6084 5.53686 13.8427C5.53686 13.0771 6.15543 12.4585 6.92108 12.4585Z" fill="#2563EB"/>
-                      </svg>
-                      
-                  )}
-                  </span>
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between">
-                      <span className="font-medium text-[#374151] text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool {tool}</span>
-                      <span className="bg-[#EBFAEB] text-[#32CD32] rounded-full px-4 py-1 text-[13px] font-medium ml-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Popular</span>
-                    </div>
-                    <div className="text-[#787E8B] text-[14px] mt-1 mb-3" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</div>
-                    <div className="flex gap-3 mt-1">
-                      <span className="bg-[#EBFAEB] text-[#32CD32] rounded-full px-4 py-1 text-[15px] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} >CRM</span>
-                      <span className="bg-white text-[#4B5563] border border-[#B9B9B9] rounded-full px-4 py-1 text-[15px] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Email</span>
-                      <span className="bg-white text-[#4B5563] border border-[#B9B9B9] rounded-full px-4 py-1 text-[15px] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Analytics</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <SearchDropdownAccordion searchValue={searchValue} />
           )}
         </div>
       </div>
@@ -159,7 +120,7 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
                 <span className="w-[31px] h-[31px] rounded-full bg-[#32CD32] flex items-center justify-center mr-3">
                   <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4.97059 2.8V1M12.0294 2.8V1M8.5 19C4.96441 19 3.19706 19 2.09853 17.8138C1 16.6276 1 14.7178 1 10.9C1 7.0822 1 5.1724 2.09853 3.9862C3.19706 2.8 4.96441 2.8 8.5 2.8C12.0356 2.8 13.8029 2.8 14.9015 3.9862C16 5.1724 16 7.0822 16 10.9C16 14.7178 16 16.6276 14.9015 17.8138C13.8029 19 12.0356 19 8.5 19Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10.2786 7.74366C10.2786 8.22105 10.0927 8.67889 9.76173 9.01646C9.43078 9.35402 8.98192 9.54366 8.51389 9.54366C8.04586 9.54366 7.597 9.35402 7.26606 9.01646C6.93511 8.67889 6.74919 8.22105 6.74919 7.74366C6.74919 7.26627 6.93511 6.80844 7.26606 6.47087C7.597 6.13331 8.04586 5.94366 8.51389 5.94366C8.98192 5.94366 9.43078 6.13331 9.76173 6.47087C10.0927 6.80844 10.2786 7.26627 10.2786 7.74366ZM5.02419 14.2444C5.95771 12.7774 7.44095 12.2284 8.51389 12.2293C9.58683 12.2302 11.0268 12.7783 11.9604 14.2453C12.0204 14.3398 12.0371 14.4559 11.9824 14.5549C11.7645 14.95 11.086 15.7339 10.5971 15.787C10.0342 15.8473 8.56154 15.8563 8.51477 15.8563C8.46801 15.8563 6.95124 15.8473 6.3883 15.787C5.89772 15.733 5.22007 14.95 5.00124 14.554C4.94742 14.4559 4.96419 14.3398 5.02419 14.2444Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10.2786 7.74366C10.2786 8.22105 10.0927 8.67889 9.76173 9.01646C9.43078 9.35402 8.98192 9.54366 8.51389 9.54366C8.04586 9.54366 7.597 9.35402 7.26606 9.01646C6.93511 8.67889 6.74919 8.22105 6.74919 7.74366C6.74919 7.26627 6.93511 6.80844 7.26606 6.47087C7.597 6.13331 8.04586 5.94366 8.51389 5.94366C8.98192 5.94366 9.43078 6.13331 9.76173 6.47087C10.0927 6.80844 10.2786 7.26627 10.2786 7.74366ZM5.02419 14.2444C5.95771 12.7774 7.44095 12.2284 8.51389 12.2293C9.58683 12.2302 11.0268 12.7783 11.9604 14.2453C12.0204 14.3398 12.0371 14.4559 11.9824 14.5549C11.7645 14.95 11.086 15.7339 10.5971 15.787C10.0342 15.8473 8.56154 15.8563 8.51477 15.8563C8.46801 15.8563 6.95124 15.8563 6.3883 15.787C5.89772 15.733 5.22007 14.95 5.00124 14.554C4.94742 14.4559 4.96419 14.3398 5.02419 14.2444Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </span>
                 <span className="font-semibold text-[#000000] text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Contact Support</span>
@@ -260,6 +221,186 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
       </div>
       </div>
       
+    </div>
+  );
+}; 
+
+// Accordion-only dropdown component (no tabs, just badges and accordions)
+const SearchDropdownAccordion = ({ searchValue }: { searchValue: string }) => {
+  const [openIndices, setOpenIndices] = useState<number[]>([]);
+  const [activeBadge, setActiveBadge] = useState('Recommended Only');
+  const badgeList = [
+    { key: 'CRM', label: 'CRM' },
+    { key: 'Email Marketing', label: 'Email Marketing' },
+    { key: 'Analytics', label: 'Analytics' },
+    { key: 'Recommended Only', label: 'Recommended Only' },
+    { key: 'Free Tools', label: 'Free Tools' },
+  ];
+  // Screenshot-accurate accordion data
+  const accordions = [
+    {
+      badge: 'Email Marketing',
+      badgeColor: 'bg-[#EBFAEB] text-[#22C55E]',
+      icon: (
+        <span className="w-10 h-10 flex items-center justify-center ">
+          <svg width="55" height="54" viewBox="0 0 55 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect y="0.302429" width="50" height="50" rx="16" fill="url(#paint0_linear_100_179)"/>
+          <path d="M17.8134 16.3024C18.67 16.3024 19.4915 16.6427 20.0972 17.2484C20.7029 17.8541 21.0431 18.6756 21.0431 19.5321C21.0431 20.3887 20.7029 21.2102 20.0972 21.8159C19.4915 22.4215 18.67 22.7618 17.8134 22.7618C16.9569 22.7618 16.1354 22.4215 15.5297 21.8159C14.924 21.2102 14.5838 20.3887 14.5838 19.5321C14.5838 18.6756 14.924 17.8541 15.5297 17.2484C16.1354 16.6427 16.9569 16.3024 17.8134 16.3024ZM32.67 16.3024C33.5266 16.3024 34.3481 16.6427 34.9537 17.2484C35.5594 17.8541 35.8997 18.6756 35.8997 19.5321C35.8997 20.3887 35.5594 21.2102 34.9537 21.8159C34.3481 22.4215 33.5266 22.7618 32.67 22.7618C31.8134 22.7618 30.992 22.4215 30.3863 21.8159C29.7806 21.2102 29.4403 20.3887 29.4403 19.5321C29.4403 18.6756 29.7806 17.8541 30.3863 17.2484C30.992 16.6427 31.8134 16.3024 32.67 16.3024ZM12 28.3613C12 25.9834 13.9297 24.0537 16.3076 24.0537H18.0314C18.6733 24.0537 19.2829 24.195 19.832 24.4453C19.7795 24.736 19.7553 25.0387 19.7553 25.3456C19.7553 26.8877 20.4335 28.2725 21.5034 29.2212C21.4953 29.2212 21.4872 29.2212 21.4751 29.2212H12.8599C12.3876 29.2212 12 28.8336 12 28.3613ZM28.3624 29.2212C28.3543 29.2212 28.3463 29.2212 28.3341 29.2212C29.408 28.2725 30.0822 26.8877 30.0822 25.3456C30.0822 25.0387 30.054 24.74 30.0055 24.4453C30.5546 24.1909 31.1642 24.0537 31.8061 24.0537H33.5299C35.9078 24.0537 37.8375 25.9834 37.8375 28.3613C37.8375 28.8377 37.4499 29.2212 36.9776 29.2212H28.3624ZM21.0431 25.3456C21.0431 24.3177 21.4514 23.3319 22.1783 22.6051C22.9051 21.8783 23.8909 21.4699 24.9188 21.4699C25.9466 21.4699 26.9324 21.8783 27.6592 22.6051C28.3861 23.3319 28.7944 24.3177 28.7944 25.3456C28.7944 26.3734 28.3861 27.3592 27.6592 28.086C26.9324 28.8129 25.9466 29.2212 24.9188 29.2212C23.8909 29.2212 22.9051 28.8129 22.1783 28.086C21.4514 27.3592 21.0431 26.3734 21.0431 25.3456ZM17.1675 35.8945C17.1675 32.9232 19.5777 30.5131 22.549 30.5131H27.2885C30.2598 30.5131 32.67 32.9232 32.67 35.8945C32.67 36.488 32.1896 36.9724 31.5921 36.9724H18.2454C17.652 36.9724 17.1675 36.492 17.1675 35.8945Z" fill="white"/>
+          <defs>
+          <linearGradient id="paint0_linear_100_179" x1="0" y1="0.302429" x2="50" y2="50.3024" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#3B82F6"/>
+          <stop offset="1" stop-color="#2563EB"/>
+          </linearGradient>
+          </defs>
+          </svg>
+
+        </span>
+      ),
+      name: 'Email Marketing',
+      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.....",
+      tooltip: null,
+      recommended: false,
+      image: '/assets/srch-img.png',
+    },
+    {
+      badge: 'CRM',
+      badgeColor: 'bg-[#EBFAEB] text-[#22C55E]',
+      icon: (
+        <span className="w-10 h-10 flex items-center justify-center ">
+          <svg width="50" height="51" viewBox="0 0 50 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect y="0.302429" width="50" height="50" rx="16" fill="url(#paint0_linear_100_198)"/>
+          <path d="M15.3333 15.6357C15.3333 14.7138 14.5885 13.969 13.6667 13.969C12.7448 13.969 12 14.7138 12 15.6357V33.1357C12 35.4377 13.8646 37.3023 16.1667 37.3023H37C37.9219 37.3023 38.6667 36.5575 38.6667 35.6357C38.6667 34.7138 37.9219 33.969 37 33.969H16.1667C15.7083 33.969 15.3333 33.594 15.3333 33.1357V15.6357ZM36.5104 20.1461C37.1615 19.495 37.1615 18.4377 36.5104 17.7867C35.8594 17.1357 34.8021 17.1357 34.151 17.7867L28.6667 23.2763L25.6771 20.2867C25.026 19.6357 23.9688 19.6357 23.3177 20.2867L17.4844 26.12C16.8333 26.7711 16.8333 27.8284 17.4844 28.4794C18.1354 29.1305 19.1927 29.1305 19.8438 28.4794L24.5 23.8284L27.4896 26.818C28.1406 27.469 29.1979 27.469 29.849 26.818L36.5156 20.1513L36.5104 20.1461Z" fill="white"/>
+          <defs>
+          <linearGradient id="paint0_linear_100_198" x1="0" y1="0.302429" x2="50" y2="50.3024" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#A855F7"/>
+          <stop offset="1" stop-color="#9333EA"/>
+          </linearGradient>
+          </defs>
+          </svg>
+
+        </span>
+      ),
+      name: 'CRM',
+      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.....",
+      tooltip: null,
+      recommended: false,
+      image: '/assets/srch-img.png',
+    },
+    {
+      badge: 'Analytics',
+      badgeColor: 'bg-[#22C55E] text-white',
+      icon: (
+        <span className="w-10 h-10 flex items-center justify-center">
+          <svg width="50" height="51" viewBox="0 0 50 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect y="0.302429" width="50" height="50" rx="16" fill="url(#paint0_linear_100_201)"/>
+          <path d="M14.5 15.6359C13.1198 15.6359 12 16.7557 12 18.1359C12 18.9223 12.3698 19.6619 13 20.1359L24.3333 28.6359C24.9271 29.0786 25.7396 29.0786 26.3333 28.6359L37.6667 20.1359C38.2969 19.6619 38.6667 18.9223 38.6667 18.1359C38.6667 16.7557 37.5469 15.6359 36.1667 15.6359H14.5ZM12 21.4692V32.3025C12 34.1411 13.4948 35.6359 15.3333 35.6359H35.3333C37.1719 35.6359 38.6667 34.1411 38.6667 32.3025V21.4692L27.3333 29.9692C26.1458 30.8598 24.5208 30.8598 23.3333 29.9692L12 21.4692Z" fill="white"/>
+          <defs>
+          <linearGradient id="paint0_linear_100_201" x1="0" y1="0.302429" x2="50" y2="50.3024" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#F97316"/>
+          <stop offset="1" stop-color="#EA580C"/>
+          </linearGradient>
+          </defs>
+          </svg>
+
+        </span>
+      ),
+      name: 'Analytics',
+      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.....",
+      tooltip: 'Transify AI recommends this.',
+      recommended: true,
+      image: '/assets/srch-img.png',
+    },
+  ];
+  return (
+    <div className="absolute left-0 right-0 mt-2 bg-white rounded-[16px] shadow-lg z-40 border " style={{ minWidth: '100%', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif', borderWidth: "2px" }}>
+      {/* Badges row */}
+      <div className="flex gap-3 px-6 pt-5 pb-3">
+        {badgeList.map(badge => (
+          <button
+            key={badge.key}
+            className={`px-4 py-2 rounded-[6px] font-semibold text-[13px] transition-all duration-150 ${activeBadge === badge.key ? 'bg-[#22C55E] text-white' : 'bg-[#EBFAEB] text-[#22C55E]'}`}
+            onClick={() => {
+              setActiveBadge(badge.key);
+              // When switching to 'Recommended Only', open Analytics by default
+              if (badge.key === 'Recommended Only') {
+                setOpenIndices([2]);
+              } else {
+                setOpenIndices([]);
+              }
+            }}
+          >
+            {badge.label}
+          </button>
+        ))}
+      </div>
+      <div className="border-t border-[#E5E7EB]" >
+        {accordions.map((tool, idx) => {
+          // Only use openIndices to determine open/close state for all cards
+          const isOpen = openIndices.includes(idx);
+          return (
+            <div key={tool.name + idx} className={`mb-3 border-b border-[#E5E7EB]   relative`}> 
+              <button
+                className="w-full flex items-center justify-between px-0 py-4 focus:outline-none"
+                onClick={() => {
+                  if (isOpen) {
+                    setOpenIndices(openIndices.filter(i => i !== idx));
+                  } else {
+                    setOpenIndices([...openIndices, idx]);
+                  }
+                }}
+              >
+                <div className="flex items-center gap-3 relative pl-4">
+                  {tool.icon}
+                  <span className={`ml-2 px-3 py-1 rounded-[6px] font-bold ml-2 text-[15px] relative ${isOpen ? 'bg-[#EBFAEB] text-[#22c55e]' : 'bg-[#fff] text-[#23272E]'}`}>{tool.badge}</span>
+                </div>
+                <div className="flex items-center gap-2 pr-6">
+                  {tool.recommended && (
+                    <span className="relative group">
+                      <span className="px-3 py-1 rounded-full text-[15px] font-medium bg-[#DCFCE7] text-[#23272E] border border-[#EBFAEB] cursor-pointer">
+                        Recommended
+                      </span>
+                      <span className="absolute left-1/2 -translate-x-1/2 -top-9 z-50 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-150 flex flex-col items-center">
+                        <span className="bg-[#111827] text-white text-xs px-4 py-1 rounded-full font-medium mb-1 whitespace-nowrap">
+                          Transify AI recommends this.
+                        </span>
+                        <span className="w-0 h-0 border-l-6 border-r-6 border-t-6 border-l-transparent border-r-transparent border-t-[#111827]"></span>
+                      </span>
+                    </span>
+                  )}
+                  <span className="text-[#22C55E] text-2xl font-bold">{isOpen ? '-' : '+'}</span>
+                </div>
+              </button>
+              {isOpen && tool.desc && (
+                <div className="px-6 pb-6 pt-1">
+                  <div className="text-[#6B7280] text-[14px] mb-2">{tool.desc}</div>
+                  <div className="bg-[#F8FAFB] rounded-xl p-5 mt-4 flex flex-col sm:flex-row sm:items-start gap-4">
+                    <div className="flex-1">
+                      <div className="font-semibold text-[#23272E] text-[16px] mb-2">Key features</div>
+                      <ul className="list-disc pl-5 text-[#23272E] text-[14px] space-y-1">
+                        <li>Lorem Ipsum is simply dummy text</li>
+                        <li>Lorem Ipsum is simply dummy text</li>
+                        <li>Lorem Ipsum is simply dummy text</li>
+                        <li>Lorem Ipsum is simply dummy text</li>
+                      </ul>
+                    </div>
+                    {tool.image && (
+                      <img src={tool.image} alt="tool thumb" className="w-32 h-20 object-cover rounded-lg border border-[#E5E7EB]" />
+                    )}
+                  </div>
+                  <div className="flex items-center justify-between mt-5">
+                    <span className="flex items-center text-[#22C55E] text-[15px] font-medium">
+                    <svg className="mr-1" width="14" height="24" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.6667 0.684448C11.0214 0.684448 10.5 1.2058 10.5 1.85111C10.5 2.49643 11.0214 3.01778 11.6667 3.01778H14.6818L7.34271 10.3605C6.88698 10.8162 6.88698 11.5563 7.34271 12.0121C7.79844 12.4678 8.53854 12.4678 8.99427 12.0121L16.3333 4.66934V7.68445C16.3333 8.32976 16.8547 8.85111 17.5 8.85111C18.1453 8.85111 18.6667 8.32976 18.6667 7.68445V1.85111C18.6667 1.2058 18.1453 0.684448 17.5 0.684448H11.6667ZM2.91667 1.85111C1.30521 1.85111 0 3.15632 0 4.76778V16.4344C0 18.0459 1.30521 19.3511 2.91667 19.3511H14.5833C16.1948 19.3511 17.5 18.0459 17.5 16.4344V12.3511C17.5 11.7058 16.9786 11.1844 16.3333 11.1844C15.688 11.1844 15.1667 11.7058 15.1667 12.3511V16.4344C15.1667 16.7553 14.9042 17.0178 14.5833 17.0178H2.91667C2.59583 17.0178 2.33333 16.7553 2.33333 16.4344V4.76778C2.33333 4.44695 2.59583 4.18445 2.91667 4.18445H7C7.64531 4.18445 8.16667 3.66309 8.16667 3.01778C8.16667 2.37247 7.64531 1.85111 7 1.85111H2.91667Z" fill="#32CD32"/>
+                    </svg>Open</span>
+                  
+                    <button className="flex items-center bg-[#22C55E] text-white font-semibold px-8 py-2 rounded-lg text-[16px] shadow hover:bg-[#16a34a] transition-all"><svg className="mr-2" width="18" height="18" fill="none" viewBox="0 0 18 18"><path d="M9 3.75V14.25M3.75 9H14.25" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg> Add Tool</button>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }; 

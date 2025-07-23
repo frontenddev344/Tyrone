@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -9,6 +10,7 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ sidebarOpen, setSidebarOpen, toolList, setToolList, hasTools }: SidebarProps) => {
+  const location = useLocation();
   return (
     <aside
       className={`hello fixed top-0 left-0 overflow-auto  w-[80vw] max-w-xs bg-white border-r border-[#F3F4F6] flex-col min-h-screen z-50 transition-transform duration-300 lg:static lg:w-[320px] xl:w-[426px] lg:flex ${sidebarOpen ? 'flex' : 'hidden'} lg:!flex`}
@@ -50,12 +52,12 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen, toolList, setToolList, ha
         </div>
       </div>
       <div className='p-4 sm:p-6 lg:p-8'>
-        <button className="w-full flex items-center justify-start bg-[#EBFAEB] text-[#32CD32] font-semibold py-2 sm:py-3 px-4 rounded-[12px] mb-4 sm:mb-6 text-[16px] sm:text-[16px] lg:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
+        <Link to="/dashboard" className="w-full flex items-center justify-start bg-[#EBFAEB] text-[#32CD32] font-semibold py-2 sm:py-3 px-4 rounded-[12px] mb-4 sm:mb-6 text-[16px] sm:text-[16px] lg:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
           <svg className='mr-2' width="18" height="16" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M23.9917 11.3125C23.9917 12.0625 23.3667 12.65 22.6583 12.65H21.325L21.3542 19.325C21.3542 19.4375 21.3458 19.55 21.3333 19.6625V20.3334C21.3333 21.2542 20.5875 22 19.6667 22H19C18.9542 22 18.9083 22 18.8625 21.9959C18.8042 22 18.7458 22 18.6875 22H17.3333H16.3333C15.4125 22 14.6667 21.2542 14.6667 20.3334V19.3334V16.6667C14.6667 15.9292 14.0708 15.3334 13.3333 15.3334H10.6667C9.92917 15.3334 9.33333 15.9292 9.33333 16.6667V19.3334V20.3334C9.33333 21.2542 8.5875 22 7.66667 22H6.66667H5.3375C5.275 22 5.2125 21.9959 5.15 21.9917C5.1 21.9959 5.05 22 5 22H4.33333C3.4125 22 2.66667 21.2542 2.66667 20.3334V15.6667C2.66667 15.6292 2.66667 15.5875 2.67083 15.55V12.65H1.33333C0.583333 12.65 0 12.0667 0 11.3125C0 10.9375 0.125 10.6042 0.416667 10.3125L11.1 1.00002C11.3917 0.708354 11.725 0.666687 12.0167 0.666687C12.3083 0.666687 12.6417 0.75002 12.8917 0.958354L23.5333 10.3125C23.8667 10.6042 24.0333 10.9375 23.9917 11.3125Z" fill="#32CD32"/>
           </svg>
           Back to Dashboard
-        </button>
+        </Link>
         <div className="mb-4 sm:mb-6">
           <div className="text-[15px] sm:text-[18px] text-[#6B7280] font-semibold mb-1 sm:mb-2 uppercase" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Settings</div>
           <ul className="">
@@ -77,6 +79,27 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen, toolList, setToolList, ha
               </svg>
               Billing & Plans
             </li>
+            <li className="p-0">
+              <Link
+                to="/recent-activity"
+                className={`flex items-center font-medium text-[16px] sm:text-[16px] lg:text-[18px] py-2 sm:py-3 px-4 rounded-[12px] transition-all duration-150 cursor-pointer group w-full ${location.pathname === '/recent-activity' ? 'bg-[#EBFAEB] text-[#22C55E]' : 'text-[#4B5563] hover:bg-[#EBFAEB] hover:text-[#22C55E]'}`}
+                style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  className={`mr-2 stroke-current ${location.pathname === '/recent-activity' ? 'text-[#22C55E]' : 'text-[#4B5563] group-hover:text-[#22C55E]'}`}
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M15.166 10.0007H13.166L11.166 15.0007L9.16602 5.00067L7.16602 10.0007H5.16602" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M1.16602 10.0007C1.16602 5.75767 1.16602 3.63667 2.48402 2.31867C3.80202 1.00067 5.92402 1.00067 10.166 1.00067C14.408 1.00067 16.53 1.00067 17.848 2.31867C19.166 3.63667 19.166 5.75867 19.166 10.0007C19.166 14.2427 19.166 16.3647 17.848 17.6827C16.53 19.0007 14.408 19.0007 10.166 19.0007C5.92402 19.0007 3.80202 19.0007 2.48402 17.6827C1.16602 16.3647 1.16602 14.2427 1.16602 10.0007Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                Recent activity
+              </Link>
+            </li>
+            
           </ul>
         </div>
         <div>
@@ -98,7 +121,7 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen, toolList, setToolList, ha
               ))}
             </ul>
           ) : (
-            <div className="bg-[#FFEDD5] text-[#111827] font-medium text-center px-2 py-4 sm:py-5 rounded-[16px] text-[16px] sm:text-[16px] lg:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>No Tools Added</div>
+            <div className="bg-[#FFEDD5] text-[#111827] font-medium text-center px-2 py-4 sm:py-5 rounded-[16px] text-[16px] sm:text-[16px] lg:text-[18px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Let's Add a Tool!</div>
           )}
         </div>
       </div>
