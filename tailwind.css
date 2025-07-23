@@ -89,3 +89,22 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+@media (max-width: 991px) {
+.order-one {
+  order: 1;
+}
+
+.order-two {
+  order: 3;
+  width: 100%;
+  flex: none;
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+.order-three {
+  order: 2;
+
+}
+}

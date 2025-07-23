@@ -48,10 +48,10 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
   }, [filterOpen]);
 
   return (
-    <div className="flex items-center justify-between mb-8 p-6" style={{ boxShadow: '0 2px 8px 0 rgba(16,30,54,.03)' }}>
+    <div className="flex flex-wrap items-center justify-between mb-8 p-6" style={{ boxShadow: '0 2px 8px 0 rgba(16,30,54,.03)' }}>
       {/* Hamburger for mobile */}
       <button
-        className="lg:hidden mr-4 text-2xl"
+        className="lg:hidden mr-4 text-2xl order-one"
         onClick={() => setSidebarOpen(true)}
         aria-label="Open sidebar"
       >
@@ -59,7 +59,7 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
       </button>
       
       {/* Search Bar */}
-      <div className="flex-1 flex justify-center items-center">
+      <div className="flex-1 flex justify-center items-center order-two">
         <div className="relative w-full max-w-2xl mx-0 sm:mx-4">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8A94A6]">
             <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="#8A94A6" strokeWidth="2"/><path d="M21 21l-4.35-4.35" stroke="#8A94A6" strokeWidth="2" strokeLinecap="round"/></svg>
@@ -79,7 +79,7 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
       </div>
       
       {/* Icon Buttons */}
-      <div className="flex items-center gap-2 sm:gap-4 ml-2 sm:ml-6">
+      <div className="flex items-center gap-2 sm:gap-4 ml-2 sm:ml-6 order-three">
         <button className="rounded-full bg-[#22C55E] hover:bg-[#16a34a] border border-[#22C55E] w-[40px] h-[40px] sm:w-[60px] sm:h-[60px] flex items-center justify-center transition-colors duration-150 focus:outline-none">
           <svg width="20" height="20" className="sm:w-[26px] sm:h-[26px]" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.64366 3.61951C9.83277 3.3938 9.92585 3.10294 9.90292 2.80938C9.87998 2.51581 9.74286 2.24293 9.52098 2.04933C9.29911 1.85574 9.01018 1.75684 8.71621 1.77389C8.42224 1.79094 8.14667 1.92257 7.94866 2.14051L6.01066 4.36051C4.91173 5.61986 4.29052 7.22547 4.25566 8.89651L4.17016 12.975C4.164 13.2734 4.27661 13.562 4.48323 13.7773C4.68985 13.9927 4.97354 14.1171 5.27191 14.1233C5.57028 14.1294 5.85888 14.0168 6.07422 13.8102C6.28956 13.6036 6.414 13.3199 6.42016 13.0215L6.50416 8.94451C6.52823 7.8011 6.95352 6.70255 7.70566 5.84101L9.64366 3.61951Z" fill="white"/>
@@ -163,8 +163,7 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
               </div>
             )}
             {/* Separator */}
-            <div className="border-b border-[#E5E7EB]"></div>
-            <div className="px-4 pt-4 pb-6">
+            <div className="border-b border-[#E5E7EB]" >
               {/* Category section */}
               <div className="mb-5">
                 <div className="font-medium text-[#111827] text-[17px] mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Category:</div>
@@ -314,7 +313,7 @@ const SearchDropdownAccordion = ({ searchValue }: { searchValue: string }) => {
   return (
     <div className="absolute left-0 right-0 mt-2 bg-white rounded-[16px] shadow-lg z-40 border " style={{ minWidth: '100%', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif', borderWidth: "2px" }}>
       {/* Badges row */}
-      <div className="flex gap-3 px-6 pt-5 pb-3">
+      <div className="flex flex-wrap gap-3 px-6 pt-5 pb-3">
         {badgeList.map(badge => (
           <button
             key={badge.key}
@@ -387,13 +386,14 @@ const SearchDropdownAccordion = ({ searchValue }: { searchValue: string }) => {
                       <img src={tool.image} alt="tool thumb" className="w-32 h-20 object-cover rounded-lg border border-[#E5E7EB]" />
                     )}
                   </div>
-                  <div className="flex items-center justify-between mt-5">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mt-5 gap-3 sm:gap-0">
                     <span className="flex items-center text-[#22C55E] text-[15px] font-medium">
-                    <svg className="mr-1" width="14" height="24" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M11.6667 0.684448C11.0214 0.684448 10.5 1.2058 10.5 1.85111C10.5 2.49643 11.0214 3.01778 11.6667 3.01778H14.6818L7.34271 10.3605C6.88698 10.8162 6.88698 11.5563 7.34271 12.0121C7.79844 12.4678 8.53854 12.4678 8.99427 12.0121L16.3333 4.66934V7.68445C16.3333 8.32976 16.8547 8.85111 17.5 8.85111C18.1453 8.85111 18.6667 8.32976 18.6667 7.68445V1.85111C18.6667 1.2058 18.1453 0.684448 17.5 0.684448H11.6667ZM2.91667 1.85111C1.30521 1.85111 0 3.15632 0 4.76778V16.4344C0 18.0459 1.30521 19.3511 2.91667 19.3511H14.5833C16.1948 19.3511 17.5 18.0459 17.5 16.4344V12.3511C17.5 11.7058 16.9786 11.1844 16.3333 11.1844C15.688 11.1844 15.1667 11.7058 15.1667 12.3511V16.4344C15.1667 16.7553 14.9042 17.0178 14.5833 17.0178H2.91667C2.59583 17.0178 2.33333 16.7553 2.33333 16.4344V4.76778C2.33333 4.44695 2.59583 4.18445 2.91667 4.18445H7C7.64531 4.18445 8.16667 3.66309 8.16667 3.01778C8.16667 2.37247 7.64531 1.85111 7 1.85111H2.91667Z" fill="#32CD32"/>
-                    </svg>Open</span>
-                  
-                    <button className="flex items-center bg-[#22C55E] text-white font-semibold px-8 py-2 rounded-lg text-[16px] shadow hover:bg-[#16a34a] transition-all"><svg className="mr-2" width="18" height="18" fill="none" viewBox="0 0 18 18"><path d="M9 3.75V14.25M3.75 9H14.25" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg> Add Tool</button>
+                      <svg className="mr-1" width="14" height="24" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.6667 0.684448C11.0214 0.684448 10.5 1.2058 10.5 1.85111C10.5 2.49643 11.0214 3.01778 11.6667 3.01778H14.6818L7.34271 10.3605C6.88698 10.8162 6.88698 11.5563 7.34271 12.0121C7.79844 12.4678 8.53854 12.4678 8.99427 12.0121L16.3333 4.66934V7.68445C16.3333 8.32976 16.8547 8.85111 17.5 8.85111C18.1453 8.85111 18.6667 8.32976 18.6667 7.68445V1.85111C18.6667 1.2058 18.1453 0.684448 17.5 0.684448H11.6667ZM2.91667 1.85111C1.30521 1.85111 0 3.15632 0 4.76778V16.4344C0 18.0459 1.30521 19.3511 2.91667 19.3511H14.5833C16.1948 19.3511 17.5 18.0459 17.5 16.4344V12.3511C17.5 11.7058 16.9786 11.1844 16.3333 11.1844C15.688 11.1844 15.1667 11.7058 15.1667 12.3511V16.4344C15.1667 16.7553 14.9042 17.0178 14.5833 17.0178H2.91667C2.59583 17.0178 2.33333 16.7553 2.33333 16.4344V4.76778C2.33333 4.44695 2.59583 4.18445 2.91667 4.18445H7C7.64531 4.18445 8.16667 3.66309 8.16667 3.01778C8.16667 2.37247 7.64531 1.85111 7 1.85111H2.91667Z" fill="#32CD32"/>
+                      </svg>
+                      Open
+                    </span>
+                    <button className="flex items-center bg-[#22C55E] text-white font-semibold px-8 py-2 rounded-lg text-[16px] shadow hover:bg-[#16a34a] transition-all w-full sm:w-auto justify-center"><svg className="mr-2" width="18" height="18" fill="none" viewBox="0 0 18 18"><path d="M9 3.75V14.25M3.75 9H14.25" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg> Add Tool</button>
                   </div>
                 </div>
               )}
