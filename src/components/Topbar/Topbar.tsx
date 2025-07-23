@@ -149,7 +149,7 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
             </div>
             {/* Selected tags */}
             {(selectedCategories.length > 0 || selectedFeatures.length > 0) && (
-              <div className="flex flex-wrap gap-2 px-4 pt-4 pb-3">
+              <div className="flex flex-wrap gap-2 px-4 pt-4 pb-3 border-b border-[#E5E7EB] mb-5">
                 {selectedCategories.map((cat) => (
                   <span key={cat} className="bg-[#EBFAEB] text-[#32CD32] rounded-[6px] px-3 py-1 text-[12px] font-semibold w-fit  text-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
                     {cat}
@@ -163,7 +163,7 @@ export const Topbar = ({ setSidebarOpen }: TopbarProps) => {
               </div>
             )}
             {/* Separator */}
-            <div className="border-b border-[#E5E7EB]" >
+            <div className="px-4" >
               {/* Category section */}
               <div className="mb-5">
                 <div className="font-medium text-[#111827] text-[17px] mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Category:</div>

@@ -27,7 +27,7 @@ export const RecentActivity = () => {
             Recent Activity
           </h1>
           <div className="w-full  bg-white rounded-[21px] border border-[#F3F4F6] shadow-sm p-0 py-6">
-            <div className="grid grid-cols-12 px-6 py-3 text-[#23272E] font-bold text-[13px] sm:text-[16px]">
+            <div className="hidden sm:grid grid-cols-12 px-6 py-3 text-[#23272E] font-bold text-[13px] sm:text-[16px]">
               <div className="col-span-5 text-left">Team Member</div>
               <div className="col-span-4 text-left">Modified Tools</div>
               <div className="col-span-3 text-right">Recent Activity</div>
