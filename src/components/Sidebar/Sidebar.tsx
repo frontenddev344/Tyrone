@@ -61,11 +61,17 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen, toolList, setToolList, ha
         <div className="mb-4 sm:mb-6">
           <div className="text-[15px] sm:text-[18px] text-[#6B7280] font-semibold mb-1 sm:mb-2 uppercase" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Settings</div>
           <ul className="">
-            <li className="flex items-center text-[#4B5563] font-medium text-[16px] sm:text-[16px] lg:text-[18px] py-2 sm:py-3 px-4 rounded-[12px] transition-all duration-150 cursor-pointer group hover:bg-[#EBFAEB] hover:text-[#22C55E]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
-              <svg className='mr-2 group-hover:text-[#22C55E]' width="15" height="18" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.33333 10.9994C10.7478 10.9994 12.1044 10.4375 13.1046 9.43733C14.1048 8.43714 14.6667 7.08059 14.6667 5.6661C14.6667 4.25161 14.1048 2.89506 13.1046 1.89486C12.1044 0.894667 10.7478 0.332764 9.33333 0.332764C7.91884 0.332764 6.56229 0.894667 5.5621 1.89486C4.5619 2.89506 4 4.25161 4 5.6661C4 7.08059 4.5619 8.43714 5.5621 9.43733C6.56229 10.4375 7.91884 10.9994 9.33333 10.9994ZM7.42917 12.9994C3.325 12.9994 0 16.3244 0 20.4286C0 21.1119 0.554167 21.6661 1.2375 21.6661H17.4292C18.1125 21.6661 18.6667 21.1119 18.6667 20.4286C18.6667 16.3244 15.3417 12.9994 11.2375 12.9994H7.42917Z" fill="currentColor"/>
-              </svg>
-              Account Overview
+            <li className="p-0">
+              <Link
+                to="/account-overview"
+                className={`flex items-center font-medium text-[16px] sm:text-[16px] lg:text-[18px] py-2 sm:py-3 px-4 rounded-[12px] transition-all duration-150 cursor-pointer group w-full ${location.pathname === '/account-overview' ? 'bg-[#EBFAEB] text-[#22C55E]' : 'text-[#4B5563] hover:bg-[#EBFAEB] hover:text-[#22C55E]'}`}
+                style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}
+              >
+                <svg className={`mr-2 ${location.pathname === '/account-overview' ? 'text-[#22C55E]' : 'text-[#4B5563] group-hover:text-[#22C55E]'}`} width="15" height="18" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.33333 10.9994C10.7478 10.9994 12.1044 10.4375 13.1046 9.43733C14.1048 8.43714 14.6667 7.08059 14.6667 5.6661C14.6667 4.25161 14.1048 2.89506 13.1046 1.89486C12.1044 0.894667 10.7478 0.332764 9.33333 0.332764C7.91884 0.332764 6.56229 0.894667 5.5621 1.89486C4.5619 2.89506 4 4.25161 4 5.6661C4 7.08059 4.5619 8.43714 5.5621 9.43733C6.56229 10.4375 7.91884 10.9994 9.33333 10.9994ZM7.42917 12.9994C3.325 12.9994 0 16.3244 0 20.4286C0 21.1119 0.554167 21.6661 1.2375 21.6661H17.4292C18.1125 21.6661 18.6667 21.1119 18.6667 20.4286C18.6667 16.3244 15.3417 12.9994 11.2375 12.9994H7.42917Z" fill="currentColor"/>
+                </svg>
+                Account Overview
+              </Link>
             </li>
             <li className="flex items-center text-[#4B5563] font-medium text-[16px] sm:text-[16px] lg:text-[18px] py-2 sm:py-3 px-4 rounded-[12px] transition-all duration-150 cursor-pointer group hover:bg-[#EBFAEB] hover:text-[#22C55E]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
               <svg className='mr-2 group-hover:text-[#22C55E]' width="23" height="18" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">

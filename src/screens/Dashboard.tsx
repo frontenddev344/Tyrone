@@ -509,9 +509,9 @@ export const Dashboard = () => {
               <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 justify-items-center w-full">
                 <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto cursor-pointer hover:shadow-md transition-all duration-200 relative group">
                   {/* Hover Modal */}
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+                  <div className="absolute top-[90%] left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
                     <div className="text-center h-full flex flex-col">
-                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4">Revenue Insights Details</h3>
+                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4 text-left">Revenue Insights Details</h3>
                       <div className="w-full overflow-x-auto mb-4">
                         <div style={{ minWidth: 240, minHeight: 140 }}>
                           <ResponsiveContainer width="100%" aspect={2.1}>
@@ -553,9 +553,9 @@ export const Dashboard = () => {
                 </div>
                 <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto cursor-pointer hover:shadow-md transition-all duration-200 relative group">
                   {/* Hover Modal */}
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+                  <div className="absolute top-[90%] left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
                     <div className="text-center h-full flex flex-col">
-                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4">Revenue Insights Details</h3>
+                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4 text-left">Revenue Insights Details</h3>
                       <div className="w-full overflow-x-auto mb-4">
                         <div style={{ minWidth: 240, minHeight: 140 }}>
                           <ResponsiveContainer width="100%" aspect={2.1}>
@@ -597,9 +597,9 @@ export const Dashboard = () => {
                 </div>
                 <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto cursor-pointer hover:shadow-md transition-all duration-200 relative group">
                   {/* Hover Modal */}
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+                  <div className="absolute top-[90%] left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
                     <div className="text-center h-full flex flex-col">
-                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4">Revenue Insights Details</h3>
+                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4 text-left">Revenue Insights Details</h3>
                       <div className="w-full overflow-x-auto mb-4">
                         <div style={{ minWidth: 240, minHeight: 140 }}>
                           <ResponsiveContainer width="100%" aspect={2.1}>
@@ -641,9 +641,9 @@ export const Dashboard = () => {
                 </div>
                 <div className="bg-white border border-[#E5E7EB] rounded-xl p-3 sm:p-6 flex flex-col items-center shadow-sm w-full max-w-[100%] h-auto cursor-pointer hover:shadow-md transition-all duration-200 relative group">
                   {/* Hover Modal */}
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+                  <div className="absolute top-[90%] left-1/2 transform -translate-x-1/2 mt-4 bg-white rounded-lg shadow-xl border border-gray-200 p-2 sm:p-6 w-full max-w-[98vw] h-auto z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
                     <div className="text-center h-full flex flex-col">
-                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4">Revenue Insights Details</h3>
+                      <h3 className="text-xs sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-4 text-left">Revenue Insights Details</h3>
                       <div className="w-full overflow-x-auto mb-4">
                         <div style={{ minWidth: 240, minHeight: 140 }}>
                           <ResponsiveContainer width="100%" aspect={2.1}>
