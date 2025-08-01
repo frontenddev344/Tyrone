@@ -71,7 +71,7 @@ export const RecommendedStackStep = ({ onBack }: { onBack: () => void }) => {
           {/* Subtitle */}
           <p className="text-[#4B5563] text-[15px] sm:text-[16px] lg:text-[18px] mb-4 sm:mb-8 text-center max-w-[700px] mx-auto" style={{ fontWeight: 400, lineHeight: '28px' }}>Based on your business profile and goals, we've curated the perfect set of tools to help you succeed. Review and customize your selection below.</p>
           {/* Profile Summary */}
-          <div className="w-full bg-gradient-to-r from-[#32cd320d] to-[#82e38743] to-[#32cd320d] border border-[#35da351a] rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between px-4 sm:px-8 py-4 sm:py-5 mb-6 sm:mb-8 gap-4 sm:gap-0" style={{ borderWidth:'3px' }}>
+          <div className="w-full bg-gradient-to-r from-[#32cd320d] to-[#82e38743] to-[#32cd320d] border border-[#35da354a] rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between px-4 sm:px-8 py-4 sm:py-5 mb-6 sm:mb-8 gap-4 sm:gap-0" style={{ borderWidth:'3px' }}>
             <div>
               <div className="font-bold text-[17px] sm:text-[20px] lg:text-[22px] text-[#111827] mb-1 sm:mb-2">Your Business Profile</div>
               <div className="flex flex-wrap gap-3 sm:gap-6 items-center">
@@ -126,7 +126,7 @@ export const RecommendedStackStep = ({ onBack }: { onBack: () => void }) => {
                 <div
                   key={tool.name}
                   className={`relative border rounded-xl flex flex-col items-start p-3 sm:p-5 min-h-[100px] sm:min-h-[120px] transition-all ${isHovered ? 'bg-[#22C55E] border-[#E5E7EB] shadow-lg' : 'bg-white border-[#E5E7EB]'} hover:bg-[#22C55E] hover:shadow-lg`}
-                  style={{ borderWidth: '3px', cursor: 'pointer' }}
+                  style={{ borderWidth: '3px', cursor: 'pointer', boxShadow: '0px 2px 12px rgb(0 0 0 / 25%)' }}
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >

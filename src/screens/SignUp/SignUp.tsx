@@ -108,9 +108,9 @@ export const SignUp = (): JSX.Element => {
           {/* Terms Checkbox */}
           <div className="flex items-start space-x-3 pt-1 mb-5">
             <Checkbox id="terms" className="rounded border-gray-300 mt-1 flex-shrink-0" />
-            <label htmlFor="terms" className="text-[#4B5563] text-[13px] sm:text-[14px] lg:text-[15px] font-normal leading-relaxed">
-              I agree to the <span className="text-[#32CD32] font-semibold cursor-pointer">Terms of Service</span> and <span className="text-[#32CD32] font-semibold cursor-pointer">Privacy Policy</span>
-            </label>
+            <div className="text-[#4B5563] text-[13px] sm:text-[14px] lg:text-[15px] font-normal leading-relaxed">
+              I agree to the <a href="" className="text-[#32CD32] font-semibold cursor-pointer hover:underline">Terms of Service</a> and <a href="" className="text-[#32CD32] font-semibold cursor-pointer hover:underline">Privacy Policy</a>
+            </div>
           </div>
           {/* Create Account Button */}
           <Button type="submit" className="w-full px-6 h-[45px] bg-[#32CD32] hover:bg-[#2db82d] rounded-[10px] font-medium text-[15px] sm:text-[16px] lg:text-[17px] text-white flex items-center justify-center transition-colors shadow-none">

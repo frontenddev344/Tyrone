@@ -121,7 +121,7 @@ export const ToolCategoryStep = ({ onBack, onContinue }: { onBack: () => void; o
             {selected.length} categories selected
           </div>
           {/* Buttons */}
-          <div className="flex w-full flex-col sm:flex-row justify-between items-center  border-t border-[#F3F4F6] pt-4 sm:pt-6 border-t-[7px] gap-4 sm:gap-0">
+          <div className="flex w-full  flex-row justify-between items-center  border-t border-[#F3F4F6] pt-4 sm:pt-6 border-t-[7px] gap-4 sm:gap-0">
             <button onClick={onBack} className="text-[#4B5563] text-[15px] sm:text-[17px] font-medium flex items-center hover:underline"><span className="mr-2">&#8592;</span>Back</button>
             <button onClick={onContinue} className="h-12 sm:h-14 px-6 sm:px-10 bg-gradient-to-r from-[#32cd32] to-[#4ade80] font-bold text-[15px] sm:text-[17px] text-white flex items-center justify-center ml-auto transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#32cd32] shadow-none"
           style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif', boxShadow: 'none', letterSpacing: '-0.01em', borderRadius: '16px' }}>

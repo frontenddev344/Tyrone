@@ -2,9 +2,6 @@ import React, { useState, useRef } from 'react';
 import { Sidebar } from '../components/Sidebar/Sidebar';
 import { Topbar } from '../components/Topbar/Topbar';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
-import userOne from '../../assets/user-one.png';
-import userTwo from '../../assets/user-two.png';
-import userThree from '../../assets/user-three.png';
 import { ResponsiveContainer } from 'recharts';
 
 // DonutChart component for circular progress (full background, partial foreground, screenshot style)
@@ -143,7 +140,7 @@ export const Dashboard = () => {
           {/* Welcome and Stats */}
           <div className="mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10">
             <div className="flex flex-col sm:flex-row items-center mb-4 sm:mb-6">
-              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="avatar" className="w-14 h-14 sm:w-[85px] sm:h-[85px] rounded-[21px] mr-0 sm:mr-4 mb-3 sm:mb-0" />
+              <img src="assets/avt.png" alt="avatar" className="w-14 h-14 sm:w-[85px] sm:h-[85px] rounded-[21px] mr-0 sm:mr-4 mb-3 sm:mb-0" />
               <div className="text-center sm:text-left">
                 <div className="font-bold text-[22px] sm:text-[28px] lg:text-[36px] text-[#11182] mb-1 sm:mb-0" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Welcome back, Sarah!  <span className="inline-block">👋</span></div>
                 <div className="text-[#4B5563] text-[15px] sm:text-[18px] lg:text-[22px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Ready to power up your marketing agency today?</div>
@@ -199,7 +196,7 @@ export const Dashboard = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-4 xl:gap-6 mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10">
             {/* Tool Card 1 */}
-            <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative hover:bg-green-50 transition-all duration-200 cursor-pointer">
+            <div className="bg-white shadow-md rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative hover:bg-green-50 transition-all duration-200 cursor-pointer">
               <div className="flex items-center mb-1 sm:mb-2">
                 <span className="w-8 h-8 sm:w-12 sm:h-12 rounded flex items-center justify-center text-white font-bold mr-2 sm:mr-3 ">
                   <svg width="64" height="65" viewBox="0 0 64 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -209,8 +206,8 @@ export const Dashboard = () => {
                 </span>
                 <span style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} className="ml-auto absolute right-3 sm:right-6 top-3 sm:top-8 text-[11px] sm:text-[14px] font-semibold text-[#16A34A] flex items-center"><svg className="mr-1" width="8" height="8" fill="none" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#16A34A"/></svg>Active</span>
                 <div className='w-full'>
-                  <div className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool 1</div>
-                  <div className="text-[#6B7280] text-[12px] sm:text-[14px] lg:text-[15px] mb-1 sm:mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Customer Management</div>
+                  <div className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Customer Management</div>
+                  {/* <div className="text-[#6B7280] text-[12px] sm:text-[14px] lg:text-[15px] mb-1 sm:mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Customer Management</div> */}
                 </div>
               </div>
               <div className="flex items-center justify-between mb-1 sm:mb-2">
@@ -222,14 +219,14 @@ export const Dashboard = () => {
               </div>
               <div className="flex items-center justify-between text-[12px] sm:text-[14px] lg:text-[15px] mt-1 sm:mt-2">
                 <span className="text-[#111827] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>$45/month</span>
-                <span className="text-[#32CD32] text-[13px] sm:text-[15px] lg:text-[17px] font-semibold flex items-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}><svg className='mr-1' width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* <span className="text-[#32CD32] text-[13px] sm:text-[15px] lg:text-[17px] font-semibold flex items-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}><svg className='mr-1' width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M11.8796 0.33252C11.2342 0.33252 10.7129 0.853874 10.7129 1.49919C10.7129 2.1445 11.2342 2.66585 11.8796 2.66585H14.8947L7.5556 10.0086C7.09987 10.4643 7.09987 11.2044 7.5556 11.6601C8.01133 12.1159 8.75143 12.1159 9.20716 11.6601L16.5462 4.31742V7.33252C16.5462 7.97783 17.0676 8.49919 17.7129 8.49919C18.3582 8.49919 18.8796 7.97783 18.8796 7.33252V1.49919C18.8796 0.853874 18.3582 0.33252 17.7129 0.33252H11.8796ZM3.12956 1.49919C1.5181 1.49919 0.212891 2.80439 0.212891 4.41585V16.0825C0.212891 17.694 1.5181 18.9992 3.12956 18.9992H14.7962C16.4077 18.9992 17.7129 17.694 17.7129 16.0825V11.9992C17.7129 11.3539 17.1915 10.8325 16.5462 10.8325C15.9009 10.8325 15.3796 11.3539 15.3796 11.9992V16.0825C15.3796 16.4034 15.1171 16.6659 14.7962 16.6659H3.12956C2.80872 16.6659 2.54622 16.4034 2.54622 16.0825V4.41585C2.54622 4.09502 2.80872 3.83252 3.12956 3.83252H7.21289C7.8582 3.83252 8.37956 3.31117 8.37956 2.66585C8.37956 2.02054 7.8582 1.49919 7.21289 1.49919H3.12956Z" fill="#32CD32"/>
-                </svg>Open</span>
+                </svg>Open</span> */}
               </div>
             </div>
 
             {/* Tool Card 2 */}
-            <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative hover:bg-green-50 transition-all duration-200 cursor-pointer">
+            <div className="bg-white shadow-md rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative hover:bg-green-50 transition-all duration-200 cursor-pointer">
               <div className="flex items-center mb-1 sm:mb-2">
                 <span className="w-8 h-8 sm:w-12 sm:h-12  rounded flex items-center justify-center text-white font-bold mr-2 sm:mr-3"><svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="0.333984" y="0.332031" width="64" height="64" rx="16" fill="#FEF9C3"/>
@@ -238,8 +235,8 @@ export const Dashboard = () => {
                 </span>
                 <span style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} className="ml-auto absolute right-3 sm:right-6 top-3 sm:top-8 text-[11px] sm:text-[14px] font-semibold text-[#16A34A] flex items-center"><svg className="mr-1" width="8" height="8" fill="none" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#16A34A"/></svg>Active</span>
                 <div className='w-full'>
-                  <div className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool 2</div>
-                  <div className="text-[#6B7280] text-[12px] sm:text-[14px] lg:text-[15px] mb-1 sm:mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Email Marketing</div>
+                  <div className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Email Marketing</div>
+                  {/* <div className="text-[#6B7280] text-[12px] sm:text-[14px] lg:text-[15px] mb-1 sm:mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Email Marketing</div> */}
                 </div>
               </div>
               <div className="flex items-center justify-between  mb-1 sm:mb-2">
@@ -251,15 +248,15 @@ export const Dashboard = () => {
               </div>
               <div className="flex items-center justify-between text-[12px] sm:text-[14px] lg:text-[15px] mt-1 sm:mt-2">
                 <span className="text-[#111827] font-semibold" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>$30/month</span>
-                <span className="text-[#32CD32] text-[13px] sm:text-[15px] lg:text-[17px] font-semibold flex items-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}><svg className='mr-1' width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* <span className="text-[#32CD32] text-[13px] sm:text-[15px] lg:text-[17px] font-semibold flex items-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}><svg className='mr-1' width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M11.8796 0.33252C11.2342 0.33252 10.7129 0.853874 10.7129 1.49919C10.7129 2.1445 11.2342 2.66585 11.8796 2.66585H14.8947L7.5556 10.0086C7.09987 10.4643 7.09987 11.2044 7.5556 11.6601C8.01133 12.1159 8.75143 12.1159 9.20716 11.6601L16.5462 4.31742V7.33252C16.5462 7.97783 17.0676 8.49919 17.7129 8.49919C18.3582 8.49919 18.8796 7.97783 18.8796 7.33252V1.49919C18.8796 0.853874 18.3582 0.33252 17.7129 0.33252H11.8796ZM3.12956 1.49919C1.5181 1.49919 0.212891 2.80439 0.212891 4.41585V16.0825C0.212891 17.694 1.5181 18.9992 3.12956 18.9992H14.7962C16.4077 18.9992 17.7129 17.694 17.7129 16.0825V11.9992C17.7129 11.3539 17.1915 10.8325 16.5462 10.8325C15.9009 10.8325 15.3796 11.3539 15.3796 11.9992V16.0825C15.3796 16.4034 15.1171 16.6659 14.7962 16.6659H3.12956C2.80872 16.6659 2.54622 16.4034 2.54622 16.0825V4.41585C2.54622 4.09502 2.80872 3.83252 3.12956 3.83252H7.21289C7.8582 3.83252 8.37956 3.31117 8.37956 2.66585C8.37956 2.02054 7.8582 1.49919 7.21289 1.49919H3.12956Z" fill="#32CD32"/>
                 </svg>
-                Open</span>
+                Open</span> */}
               </div>
             </div>
 
             {/* Tool Card 3 */}
-            <div className="bg-white rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative hover:bg-green-50 transition-all duration-200 cursor-pointer">
+            <div className="bg-white shadow-md rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative hover:bg-green-50 transition-all duration-200 cursor-pointer">
               <div className="flex items-center mb-1 sm:mb-2">
                 <span className="w-8 h-8 sm:w-12 sm:h-12  rounded flex items-center justify-center text-white font-bold mr-2 sm:mr-3">
                   <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -269,8 +266,8 @@ export const Dashboard = () => {
                 </span>
                 <span style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} className="ml-auto absolute right-3 sm:right-6 top-3 sm:top-8 text-[11px] sm:text-[14px] font-semibold text-[#16A34A] flex items-center"><svg className="mr-1" width="8" height="8" fill="none" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#16A34A"/></svg>Active</span>
                 <div className='w-full'>
-                  <span className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Tool 3</span>
-                  <div className="text-[#6B7280] text-[12px] sm:text-[14px] lg:text-[15px] mb-1 sm:mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Web Analytics</div>
+                  <span className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Web Analytics</span>
+                  {/* <div className="text-[#6B7280] text-[12px] sm:text-[14px] lg:text-[15px] mb-1 sm:mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Web Analytics</div> */}
                 </div>
               </div>
             </div>
@@ -420,7 +417,7 @@ export const Dashboard = () => {
                   </svg>
                   )}
                   {/* Tooltip */}
-                  <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover/button:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+                  <div className="absolute z-50 bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover/button:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
                     Add to My Tools
                     <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
                   </div>
@@ -457,7 +454,7 @@ export const Dashboard = () => {
                     </svg>
                   )}
                   {/* Tooltip */}
-                  <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover/button:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+                  <div className="absolute z-50 bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover/button:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
                     Add to My Tools
                     <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
                   </div>
@@ -493,7 +490,7 @@ export const Dashboard = () => {
                   </svg>
                   )}
                   {/* Tooltip */}
-                  <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover/button:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+                  <div className="absolute z-50 bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover/button:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
                     Add to My Tools
                     <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
                 </div>

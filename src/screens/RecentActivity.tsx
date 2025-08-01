@@ -47,7 +47,8 @@ export const RecentActivity = () => {
                   {/* Team Member (avatar, name, role) */}
                   <div className="flex flex-row items-center gap-3 sm:col-span-5 w-full">
                     <span className={`w-10 h-10 flex items-center justify-center rounded-full ${item.avatarBg}`}>
-                      <img src="../../assets/user-one.png" alt="avatar" className="w-6 h-6" />
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#00" stroke-width="1.5" fill="#fff"></circle><path d="M12 12.75a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" stroke="#000" stroke-width="1.5"></path><path d="M17.25 18a5.25 5.25 0 0 0-10.5 0" stroke="#000" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                    
                     </span>
                     <div className="flex flex-col">
                       <span className="block sm:hidden text-xs text-[#6B7280] font-semibold mb-0.5">Team Member</span>
