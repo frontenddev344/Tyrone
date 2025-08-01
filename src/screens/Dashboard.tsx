@@ -133,12 +133,12 @@ export const Dashboard = () => {
         hasTools={hasTools}
       />
       {/* Main Content */}
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden">
         {/* Topbar */}
         <Topbar setSidebarOpen={setSidebarOpen} />
-        <div className=' py-4 sm:py-8'>
+        <div className='py-4 sm:py-8 overflow-x-hidden'>
           {/* Welcome and Stats */}
-          <div className="mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10">
+          <div className="mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10 max-w-full">
             <div className="flex flex-col sm:flex-row items-center mb-4 sm:mb-6">
               <img src="assets/avt.png" alt="avatar" className="w-14 h-14 sm:w-[85px] sm:h-[85px] rounded-[21px] mr-0 sm:mr-4 mb-3 sm:mb-0" />
               <div className="text-center sm:text-left">
@@ -188,13 +188,13 @@ export const Dashboard = () => {
           </div>
           <div className="border-t border-[#F3F4F6] mt-12 mb-0 w-full mx-auto"></div>
           {/* Your Tool Stack */}
-          <div className="flex  sm:flex-row items-center justify-between mb-2 sm:mb-4 mt-3 sm:mt-5 px-4 sm:px-2 lg:px-6 xl:px-10">
-            <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-center sm:text-left" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Your Tool Stack</div>
-            <a href="#" className="text-[#32CD32] font-semibold text-[15px] sm:text-[18px] flex items-center mt-0 sm:mt-0" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>View All <svg className='ml-1' width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className="flex flex-col sm:flex-row items-center justify-between mb-2 sm:mb-4 mt-3 sm:mt-5 px-4 sm:px-2 lg:px-6 xl:px-10">
+            <div className="text-[20px] sm:text-[26px] lg:text-[32px] font-semibold text-[#111827] text-center sm:text-left mb-2 sm:mb-0" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Your Tool Stack</div>
+            <a href="#" className="text-[#32CD32] font-semibold text-[15px] sm:text-[18px] flex items-center" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>View All <svg className='ml-1' width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M18.275 11.6075C18.7958 11.0867 18.7958 10.2408 18.275 9.72001L11.6083 3.05334C11.0875 2.53251 10.2417 2.53251 9.72083 3.05334C9.2 3.57418 9.2 4.42001 9.72083 4.94084L14.1167 9.33251H1.33333C0.595833 9.33251 0 9.92834 0 10.6658C0 11.4033 0.595833 11.9992 1.33333 11.9992H14.1125L9.725 16.3908C9.20417 16.9117 9.20417 17.7575 9.725 18.2783C10.2458 18.7992 11.0917 18.7992 11.6125 18.2783L18.2792 11.6117L18.275 11.6075Z" fill="#32CD32"/>
             </svg></a>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-4 xl:gap-6 mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 lg:gap-4 xl:gap-6 mb-6 sm:mb-8 px-4 sm:px-2 lg:px-6 xl:px-10">
             {/* Tool Card 1 */}
             <div className="bg-white shadow-md rounded-[21px] p-3 sm:p-4 lg:p-6 flex flex-col shadow-sm border border-[#F3F4F6] relative hover:bg-green-50 transition-all duration-200 cursor-pointer">
               <div className="flex items-center mb-1 sm:mb-2">
@@ -206,12 +206,12 @@ export const Dashboard = () => {
                 </span>
                 <span style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} className="ml-auto absolute right-3 sm:right-6 top-3 sm:top-8 text-[11px] sm:text-[14px] font-semibold text-[#16A34A] flex items-center"><svg className="mr-1" width="8" height="8" fill="none" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#16A34A"/></svg>Active</span>
                 <div className='w-full'>
-                  <div className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Customer Management</div>
+                  <div className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px] pr-[50px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Customer Management</div>
                   {/* <div className="text-[#6B7280] text-[12px] sm:text-[14px] lg:text-[15px] mb-1 sm:mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Customer Management</div> */}
                 </div>
               </div>
               <div className="flex items-center justify-between mb-1 sm:mb-2">
-                <span className="text-[#4B5563] font-normal mr-2 text-[12px] sm:text-[14px] lg:text-[15px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Usage this month</span>
+                <span className="text-[#4B5563] font-normal mr-2 text-[12px] sm:text-[14px] lg:text-[15px] " style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Usage this month</span>
                 <span className="text-[#111827] font-semibold text-[12px] sm:text-[14px] lg:text-[15px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>92%</span>
               </div>
               <div className="w-full h-[7px] sm:h-[10px] bg-[#E5E7EB] rounded-full mb-1 sm:mb-2">
@@ -235,7 +235,7 @@ export const Dashboard = () => {
                 </span>
                 <span style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} className="ml-auto absolute right-3 sm:right-6 top-3 sm:top-8 text-[11px] sm:text-[14px] font-semibold text-[#16A34A] flex items-center"><svg className="mr-1" width="8" height="8" fill="none" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#16A34A"/></svg>Active</span>
                 <div className='w-full'>
-                  <div className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Email Marketing</div>
+                  <div className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px] pr-[50px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Email Marketing</div>
                   {/* <div className="text-[#6B7280] text-[12px] sm:text-[14px] lg:text-[15px] mb-1 sm:mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Email Marketing</div> */}
                 </div>
               </div>
@@ -266,7 +266,7 @@ export const Dashboard = () => {
                 </span>
                 <span style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }} className="ml-auto absolute right-3 sm:right-6 top-3 sm:top-8 text-[11px] sm:text-[14px] font-semibold text-[#16A34A] flex items-center"><svg className="mr-1" width="8" height="8" fill="none" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#16A34A"/></svg>Active</span>
                 <div className='w-full'>
-                  <span className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Web Analytics</span>
+                  <span className="font-bold text-[#111827] text-[13px] sm:text-[15px] lg:text-[16px] pr-[50px]" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Web Analytics</span>
                   {/* <div className="text-[#6B7280] text-[12px] sm:text-[14px] lg:text-[15px] mb-1 sm:mb-2" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>Web Analytics</div> */}
                 </div>
               </div>
